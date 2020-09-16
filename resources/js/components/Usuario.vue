@@ -284,7 +284,7 @@ export default {
         },
         eliminar(i){
             this.$fire({
-                title: 'Seguro de elminar??',
+                title: 'Seguro de eliminar??',
                 // text: "You won't be able to revert this!",
                 type: 'question',
                 showCancelButton: true,

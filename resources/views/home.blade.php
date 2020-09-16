@@ -320,8 +320,8 @@
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p>RECINTO {{Auth::user()->tipo}}</p>
+                    <a ><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
 
@@ -348,6 +348,7 @@
                             </a>
                         </li>
                     </router-link>
+                @if(Auth::user()->tipo=='ADMIN')
                 <router-link
                     to="/usuario"
                     v-slot="{ href, route, navigate, isActive, isExactActive }"
@@ -359,6 +360,7 @@
                         </a>
                     </li>
                 </router-link>
+                @endif
 
                 <router-link
                     to="/verpersona"
@@ -386,7 +388,7 @@
                 >
                     <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                         <a :href="href" @click="navigate">
-                            <i class="fa fa-laptop"></i>Reporte
+                            <i class="fa fa-laptop"></i> <span>Reporte</span>
                         </a>
                     </li>
                 </router-link>
@@ -395,10 +397,7 @@
         </section>
 
     </aside>
-
-
     <div class="content-wrapper">
-
         <section class="content-header">
             <h1>
                 Dashboard
@@ -633,6 +632,21 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-
+<script>
+    // function get(name) {
+    //     if (typeof (Storage) !== 'undefined') {
+    //         return localStorage.getItem(name)
+    //     } else {
+    //         window.alert('Please use a modern browser to properly view this template!')
+    //     }
+    // }
+    @if(Auth::user()->tipo=='ADMIN')
+        localStorage.setItem('skin','skin-blue');
+    @elseif(Auth::user()->tipo=='ORURO')
+        localStorage.setItem('skin','skin-purple');
+    @elseif(Auth::user()->tipo=='LA PAZ')
+        localStorage.setItem('skin','skin-yellow');
+    @endif
+</script>
 </body>
 </html>

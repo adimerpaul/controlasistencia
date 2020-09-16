@@ -36,4 +36,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::apiResource('/user',\App\Http\Controllers\UserController::class)->middleware('auth');
 Route::apiResource('/persona',\App\Http\Controllers\PersonaController::class)->middleware('auth');
+Route::apiResource('/asistencia',\App\Http\Controllers\AsistenciaController::class)->middleware('auth');
 Route::put('/pass/{id}',[App\Http\Controllers\UserController::class, 'pass'])->middleware('auth');

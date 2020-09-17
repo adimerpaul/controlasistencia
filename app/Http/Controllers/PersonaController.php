@@ -38,9 +38,10 @@ class PersonaController extends Controller
      * @param  \App\Models\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function show(Persona $persona)
+    public function show($id)
     {
-        //
+        $p=Persona::find($id);
+        return $p;
     }
 
     /**

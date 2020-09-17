@@ -7,8 +7,8 @@
                         <h3 class="box-title">Hover Data Table</h3>
                     </div>
                     <div class="box-body">
-                        <button type="button"  @click="crear" class="btn btn-primary" style="margin-bottom: 1em" data-toggle="modal" data-target="#modal-default">
-                            <i class="fa fa-user"></i> Crear persona
+                        <button type="button"  @click="crear" class="btn btn-success" style="margin-bottom: 1em" data-toggle="modal" data-target="#modal-default">
+                            <i class="fa fa-plus-circle"></i> Registrar
                         </button>
                         <button type="button" v-on:click="actualizar" class="btn btn-info" style="margin-bottom: 1em">
                             <i class="fa fa-refresh"></i>
@@ -25,6 +25,12 @@
                                         <form class="form-horizontal" @submit.prevent="guardar()">
                                             <div class="box-body">
                                                 <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">CI</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" v-model="dato.ci" class="form-control" id="inputEmail3" placeholder="CI" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Nombre completo</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" v-model="dato.nombre" class="form-control" id="name" placeholder="Nombre" required>
@@ -34,12 +40,6 @@
                                                     <label for="celular" class="col-sm-2 control-label">Celular</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" v-model="dato.celular" class="form-control" id="celular" placeholder="Celular" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-2 control-label">CI</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" v-model="dato.ci" class="form-control" id="inputEmail3" placeholder="CI" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                 <tbody>
                                 <tr v-for="(i,index) in datos" :key="index">
                                     <td>{{index+1}}</td>
-                                    <td>{{i.created_at}}</td>
+                                    <td>{{i.created_at|moment("DD-MM-YYYY")}}</td>
                                     <td>{{i.persona.nombre}}</td>
                                     <td>{{i.objetos}}</td>
                                     <td>{{i.observaciones}}</td>

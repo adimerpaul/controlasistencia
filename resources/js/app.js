@@ -8,6 +8,9 @@ import VueSimpleAlert from "vue-simple-alert";
 import 'sweetalert2/src/sweetalert2.scss'
 Vue.use(VueSimpleAlert);
 
+Vue.use(require('vue-moment'));
+
+
 import VueToast from 'vue-toast-notification';
 // Import one of available themes
 import 'vue-toast-notification/dist/theme-default.css';

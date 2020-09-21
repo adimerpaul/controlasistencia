@@ -26,10 +26,14 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         $p=new Persona();
-        $p->nombre=$request->nombre;
-        $p->ci=$request->ci;
+        $p->nombres=$request->nombres;
+        $p->apellidos=$request->apellidos;
         $p->celular=$request->celular;
+        $p->expedido=$request->expedido;
+        $p->nacionalidad=$request->nacionalidad;
+        $p->ci=$request->ci;
         $p->save();
+        return $p;
     }
 
     /**
@@ -40,7 +44,7 @@ class PersonaController extends Controller
      */
     public function show($id)
     {
-        $p=Persona::find($id);
+        $p=Persona::where('ci','=',"$id")->get();
         return $p;
     }
 
@@ -54,9 +58,12 @@ class PersonaController extends Controller
     public function update(Request $request, $id)
     {
         $p=Persona::find($id);
-        $p->nombre=$request->nombre;
-        $p->ci=$request->ci;
+        $p->nombres=$request->nombres;
+        $p->apellidos=$request->apellidos;
         $p->celular=$request->celular;
+        $p->expedido=$request->expedido;
+        $p->nacionalidad=$request->nacionalidad;
+        $p->ci=$request->ci;
         $p->save();
     }
 

@@ -24,13 +24,13 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name'=>'oruro',
             'email'=>'oruro@gmail.com',
-            'tipo'=>'ORURO',
+            'tipo'=>'RECINTO ADUANERO ORURO',
             'password'=>Hash::make(123456)
         ]);
         DB::table('users')->insert([
             'name'=>'lapaz',
             'email'=>'lapaz@gmail.com',
-            'tipo'=>'LA PAZ',
+            'tipo'=>'RECINTO ADUANERO LA PAZ',
             'password'=>Hash::make(123456)
         ]);
     }

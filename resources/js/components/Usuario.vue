@@ -54,8 +54,8 @@
 <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
                                                         <select name="recinto" id="recinto" v-model="dato.tipo" class="form-control" required>
                                                             <option value="">Seleccionar...</option>
-                                                            <option value="ORURO">ORURO</option>
-                                                            <option value="LA PAZ">LA PAZ</option>
+                                                            <option value="RECINTO ADUANERO ORURO">RECINTO ADUANERO ORURO</option>
+                                                            <option value="RECINTO ADUANERO LA PAZ">RECINTO ADUANERO LA PAZ</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -99,8 +99,8 @@
                                                         <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
                                                         <select name="recinto" id="recinto2" v-model="dato.tipo" class="form-control" required>
                                                             <option value="">Seleccionar...</option>
-                                                            <option value="ORURO">ORURO</option>
-                                                            <option value="LA PAZ">LA PAZ</option>
+                                                            <option value="RECINTO ADUANERO ORURO">RECINTO ADUANERO ORURO</option>
+                                                            <option value="RECINTO ADUANERO LA PAZ">RECINTO ADUANERO LA PAZ</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -156,7 +156,7 @@
                                 <th>N</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
-                                <th>Tipo</th>
+                                <th>Recinto</th>
                                 <th>Opciones</th>
                             </tr>
                             </thead>

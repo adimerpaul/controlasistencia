@@ -9,10 +9,14 @@ class Asistencia extends Model
 {
 
     use HasFactory;
-    protected $fillable=['objetos','observaciones','persona_id'];
+    protected $fillable=['objetos','observaciones','persona_id','destino_1','recinto'];
 
     public function persona()
     {
-        return $this->belongsTo('App\Models\persona');
+        return $this->belongsTo('App\Models\Persona');
+    }
+    public function destino()
+    {
+        return $this->belongsTo('App\Models\Destino');
     }
 }

@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" rel="stylesheet">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div id="app">
@@ -49,10 +50,14 @@
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-
-            <div class="navbar-custom-menu">
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul class="nav navbar-nav">
+                    <li class="active"><a>{{Auth::user()->tipo}}</a></li>
+                </ul>
+            </div>
+            <div class="navbar-custom-menu">
 
+                <ul class="nav navbar-nav">
 {{--                    <li class="dropdown messages-menu">--}}
 {{--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
 {{--                            <i class="fa fa-envelope-o"></i>--}}
@@ -249,23 +254,19 @@
                             </li>
                         </ul>
                     </li>
-
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::user()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
-
                             <li class="user-header">
                                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                                 <p>
                                     Alexander Pierce - Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
-
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
@@ -310,7 +311,6 @@
             </div>
         </nav>
     </header>
-
     <aside class="main-sidebar">
 
         <section class="sidebar">
@@ -320,7 +320,7 @@
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>RECINTO {{Auth::user()->tipo}}</p>
+                    <p>{{Auth::user()->email}}</p>
                     <a ><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -334,8 +334,6 @@
               </span>
                 </div>
             </form>
-
-
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                     <router-link
@@ -360,6 +358,16 @@
                         </a>
                     </li>
                 </router-link>
+                <router-link
+                    to="/verdestino"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-laptop"></i> <span>Destinos</span>
+                        </a>
+                    </li>
+                </router-link>
                 @endif
 
                 <router-link
@@ -373,6 +381,16 @@
                     </li>
                 </router-link>
                 <router-link
+                    to="/verauto"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-automobile"></i> <span>Auto</span>
+                        </a>
+                    </li>
+                </router-link>
+                <router-link
                     to="/verasistencia"
                     v-slot="{ href, route, navigate, isActive, isExactActive }"
                 >
@@ -382,16 +400,7 @@
                         </a>
                     </li>
                 </router-link>
-                <router-link
-                    to="/reporte"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-laptop"></i> <span>Reporte</span>
-                        </a>
-                    </li>
-                </router-link>
+
 
             </ul>
         </section>
@@ -615,7 +624,6 @@
 </div>
 </div>
 
-
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -631,6 +639,14 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 <!-- page script -->
 <script>
     // function get(name) {
@@ -642,9 +658,9 @@
     // }
     @if(Auth::user()->tipo=='ADMIN')
         localStorage.setItem('skin','skin-blue');
-    @elseif(Auth::user()->tipo=='ORURO')
+    @elseif(Auth::user()->tipo=='RECINTO ADUANERO ORURO')
         localStorage.setItem('skin','skin-purple');
-    @elseif(Auth::user()->tipo=='LA PAZ')
+    @elseif(Auth::user()->tipo=='RECINTO ADUANERO LA PAZ')
         localStorage.setItem('skin','skin-yellow');
     @endif
 </script>

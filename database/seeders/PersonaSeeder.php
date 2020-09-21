@@ -14,6 +14,14 @@ class PersonaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('personas')->insert(['nombre'=>'alejandro lopez','celular'=>'7336547','ci'=>'7894156']);
+
+        DB::table('personas')->insert([
+            'nombres'=>'ALEJANDRO',
+            'apellidos'=>'LOPEZ',
+            'celular'=>'69603027',
+            'ci'=>'7336199',
+            'expedido'=>'OR',
+            'nacionalidad'=>'BOLIVIANA',
+            ]);
     }
 }

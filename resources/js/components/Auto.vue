@@ -8,7 +8,7 @@
                     </div>
                     <div class="box-body">
                         <button type="button"  @click="crear" class="btn btn-primary" style="margin-bottom: 1em" data-toggle="modal" data-target="#modal-default">
-                            <i class="fa fa-user"></i> Crear persona
+                            <i class="fa fa-automobile"></i> Crear Automovil
                         </button>
                         <button type="button" v-on:click="actualizar" class="btn btn-info" style="margin-bottom: 1em">
                             <i class="fa fa-refresh"></i>
@@ -25,51 +25,48 @@
                                         <form class="form-horizontal" @submit.prevent="guardar()">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-1 control-label">Nombres</label>
+                                                    <label for="placa" class="col-sm-1 control-label">Placa</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.nombres" class="form-control" id="name" placeholder="Nombres" required>
+                                                        <input type="text" v-model="dato.placa" class="form-control" id="placa" placeholder="Placa" required>
                                                     </div>
-                                                    <label for="apellidos" class="col-sm-1 control-label">Apellidos</label>
+                                                    <label for="tipo" class="col-sm-1 control-label">Tipo</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.apellidos" class="form-control" id="apellidos" placeholder="Apellidos" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-1 control-label">CI</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.ci" class="form-control" id="inputEmail3" placeholder="CI" required>
-                                                    </div>
-                                                    <label for="expedido" class="col-sm-1 control-label">Expedido</label>
-                                                    <div class="col-sm-5">
-                                                        <select name="expedido" id="expedido" class="form-control" v-model="dato.expedido" required>
-                                                            <option value="CH">CHUQUISACA</option>
-                                                            <option value="PL">LA PAZ</option>
-                                                            <option value="CB">COCHABAMBA</option>
-                                                            <option value="OR">ORURO</option>
-                                                            <option value="PT">POTOSI</option>
-                                                            <option value="TJ">TARIJA</option>
-                                                            <option value="SC">SANTA CRUZ</option>
-                                                            <option value="BE">BENI</option>
-                                                            <option value="PD">PANDO</option>
-                                                            <option value="OTROS">OTROS</option>
-                                                        </select>
+                                                        <input type="text" v-model="dato.tipo" class="form-control" id="tipo" placeholder="Tipo" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="celular" class="col-sm-1 control-label">Celular</label>
+                                                    <label class="col-sm-1 control-label">Uso</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.celular" class="form-control" id="celular" placeholder="Celular" required>
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="USO PARTICULAR" checked v-model="dato.uso">
+                                                                    USO PARTICULAR
+                                                                </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="USO ADUANA" v-model="dato.uso">
+                                                                    USO DE ADUANA
+                                                                </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="USO DEL DAB" v-model="dato.uso">
+                                                                    USO DEL DAB
+                                                                </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="OTROS" v-model="dato.uso">
+                                                                    OTROS
+                                                                </label>
+                                                            </div>
                                                     </div>
-                                                    <label for="nacionalidad" class="col-sm-1 control-label">Nacionalidad</label>
+                                                    <label for="dueno" class="col-sm-1 control-label">Dueño</label>
                                                     <div class="col-sm-5">
-                                                        <select name="nacionalidad" id="nacionalidad" class="form-control" v-model="dato.nacionalidad" required>
-                                                            <option value="BOLIVIANA">BOLIVIANA</option>
-                                                            <option value="PERU">PERU</option>
-                                                            <option value="CHILE">CHILE</option>
-                                                            <option value="ARGENTINA">ARGENTINA</option>
-                                                            <option value="VENEZUELA">VENEZUELA</option>
-                                                            <option value="BRAZIL">BRAZIL</option>
-                                                            <option value="OTROS">OTROS</option>
+                                                        <select name="dueno" id="dueno" class="form-control" v-model="dato.persona_id" required>
+                                                            <option v-for="i in personas" v-bind:value="i.id">{{ i.apellidos }} {{ i.nombres }}</option>
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -96,51 +93,48 @@
                                         <form class="form-horizontal" @submit.prevent="update">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <label for="name2" class="col-sm-1 control-label">Nombres</label>
+                                                    <label for="placa2" class="col-sm-1 control-label">Placa</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.nombres" class="form-control" id="name2" placeholder="Nombres" required>
+                                                        <input type="text" v-model="dato.placa" class="form-control" id="placa2" placeholder="Placa" required>
                                                     </div>
-                                                    <label for="apellidos2" class="col-sm-1 control-label">Apellidos</label>
+                                                    <label for="tipo2" class="col-sm-1 control-label">Tipo</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.apellidos" class="form-control" id="apellidos2" placeholder="Apellidos" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail33" class="col-sm-1 control-label">CI</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.ci" class="form-control" id="inputEmail33" placeholder="CI" required>
-                                                    </div>
-                                                    <label for="expedido2" class="col-sm-1 control-label">Expedido</label>
-                                                    <div class="col-sm-5">
-                                                        <select name="expedido" id="expedido2" class="form-control" v-model="dato.expedido" required>
-                                                            <option value="CH">CHUQUISACA</option>
-                                                            <option value="PL">LA PAZ</option>
-                                                            <option value="CB">COCHABAMBA</option>
-                                                            <option value="OR">ORURO</option>
-                                                            <option value="PT">POTOSI</option>
-                                                            <option value="TJ">TARIJA</option>
-                                                            <option value="SC">SANTA CRUZ</option>
-                                                            <option value="BE">BENI</option>
-                                                            <option value="PD">PANDO</option>
-                                                            <option value="OTROS">OTROS</option>
-                                                        </select>
+                                                        <input type="text" v-model="dato.tipo" class="form-control" id="tipo2" placeholder="Tipo" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="celular2" class="col-sm-1 control-label">Celular</label>
+                                                    <label class="col-sm-1 control-label">Uso</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.celular" class="form-control" id="celular2" placeholder="Celular" required>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" id="optionsRadios12" value="USO PARTICULAR" checked v-model="dato.uso">
+                                                                USO PARTICULAR
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" id="optionsRadios22" value="USO ADUANA" v-model="dato.uso">
+                                                                USO DE ADUANA
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" id="optionsRadios32" value="USO DEL DAB" v-model="dato.uso">
+                                                                USO DEL DAB
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" id="optionsRadios42" value="OTROS" v-model="dato.uso">
+                                                                OTROS
+                                                            </label>
+                                                        </div>
                                                     </div>
-                                                    <label for="nacionalidad2" class="col-sm-1 control-label">Nacionalidad</label>
+                                                    <label for="dueno2" class="col-sm-1 control-label">Dueño</label>
                                                     <div class="col-sm-5">
-                                                        <select name="nacionalidad" id="nacionalidad2" class="form-control" v-model="dato.nacionalidad" required>
-                                                            <option value="BOLIVIANA">BOLIVIANA</option>
-                                                            <option value="PERU">PERU</option>
-                                                            <option value="CHILE">CHILE</option>
-                                                            <option value="ARGENTINA">ARGENTINA</option>
-                                                            <option value="VENEZUELA">VENEZUELA</option>
-                                                            <option value="BRAZIL">BRAZIL</option>
-                                                            <option value="OTROS">OTROS</option>
+                                                        <select name="dueno" id="dueno2" class="form-control" v-model="dato.persona_id" required>
+                                                            <option v-for="i in personas" v-bind:value="i.id">{{ i.apellidos }} {{ i.nombres }}</option>
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -160,24 +154,20 @@
                                 <thead>
                                 <tr>
                                     <th>N</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
-                                    <th>Ci</th>
-                                    <th>Expedido</th>
-                                    <th>Celular</th>
-                                    <th>Nacionalidad</th>
+                                    <th>Placa</th>
+                                    <th>Tipo</th>
+                                    <th>Uso</th>
+                                    <th>Persona</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="(i,index) in datos" :key="index">
                                     <td>{{index+1}}</td>
-                                    <td>{{i.nombres}}</td>
-                                    <td>{{i.apellidos}}</td>
-                                    <td>{{i.ci}}</td>
-                                    <td>{{i.expedido}}</td>
-                                    <td>{{i.celular}}</td>
-                                    <td>{{i.nacionalidad}}</td>
+                                    <td>{{i.placa}}</td>
+                                    <td>{{i.tipo}}</td>
+                                    <td>{{i.uso}}</td>
+                                    <td>{{i.persona.apellidos}} {{i.persona.nombres}}</td>
                                     <td>
                                         <button @click="modificar(i)" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
                                         <button @click="eliminar(i)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
@@ -203,14 +193,17 @@ export default {
         // $('#example1').DataTable()
         // this.datatable = $('#example1').DataTable({});
         this.misdatos();
-
         // console.log(this.dato.password);
+        axios.get('persona').then(res=>{
+            this.personas=res.data;
+        });
     },
     data:function (){
         return {
             datatable:null,
             datos:[],
-            dato:{tipo:''}
+            dato:{uso:'USO PARTICULAR'},
+            personas:[],
         }
     },
     methods:{
@@ -218,12 +211,12 @@ export default {
             this.dato={tipo:''};
         },
         misdatos(){
-            axios.get('/persona').then(res=>{
+            axios.get('/auto').then(res=>{
                 this.datos=res.data;
             });
         },
         guardar(){
-            axios.post('/persona',this.dato).then(res=>{
+            axios.post('/auto',this.dato).then(res=>{
                 this.misdatos();
                 $('#modal-default').modal('hide');
                 this.$toast.open({
@@ -236,7 +229,7 @@ export default {
             })
         },
         update(){
-            axios.put('/persona/'+this.dato.id,this.dato).then(res=>{
+            axios.put('/auto/'+this.dato.id,this.dato).then(res=>{
                 // console.log(res.data);
                 this.misdatos();
                 $('#modificar').modal('hide');
@@ -273,7 +266,7 @@ export default {
                 confirmButtonText: 'Si!'
             }).then((r) => {
                 if (r.value){
-                    axios.delete('/persona/'+i.id).then(res=>{
+                    axios.delete('/auto/'+i.id).then(res=>{
                         this.misdatos();
                         // $('#modal-default').modal('hide');
                         this.$toast.open({

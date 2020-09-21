@@ -16,7 +16,13 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-default.css';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
+
+
+
 Vue.use(VueToast);
+
+
+
 // let instance = Vue.$toast.open('You did it!');
 
 //Vue.$toast.open({/* options */});
@@ -27,12 +33,13 @@ Vue.use(VueToast);
 // Vue.$toast.clear();
 
 
-import Foo from './components/ExampleComponent';
+import Auto from './components/Auto';
 import Home from './components/Home';
 import Usuario from './components/Usuario';
 import Persona from './components/Persona';
 import Asistencia from './components/Asistencia';
 import Reporte from './components/Reporte';
+import Destino from './components/Destino';
 
 const Bar = { template: '<div>bar</div>' }
 
@@ -41,8 +48,8 @@ const routes = [
     { path: '/verpersona', component: Persona },
     { path: '/verasistencia', component: Asistencia },
     { path: '/reporte', component: Reporte },
-    { path: '/bar', component: Bar },
-    { path: '/foo', component: Foo },
+    { path: '/verauto', component: Auto },
+    { path: '/verdestino', component: Destino },
     { path: '/home', component: Home },
 ]
 

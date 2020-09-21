@@ -15,7 +15,23 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        return Asistencia::with('persona')->get();
+        return Asistencia::with('persona')->with('destino')->get();
+    }
+    public function date($d1,$d2)
+    {
+        if (Auth::user()->tipo=='ADMIN')
+            return Asistencia::with('persona')
+                ->with('destino')
+                ->whereDate('created_at','>=',$d1)
+                ->whereDate('created_at','<=',$d2)
+                ->get();
+        else
+            return Asistencia::with('persona')
+                ->with('destino')
+                ->where('recinto','=',Auth::user()->tipo)
+                ->whereDate('created_at','>=',$d1)
+                ->whereDate('created_at','<=',$d2)
+                ->get();
     }
 
     /**
@@ -39,8 +55,9 @@ class AsistenciaController extends Controller
         $d=New Asistencia();
         $d->objetos=$request->objetos;
         $d->recinto=Auth::user()->tipo;
-        $d->objetos=$request->objetos;
+        $d->motivo=$request->motivo;
         $d->persona_id=$request->persona_id;
+        $d->destino_id=$request->destino_id;
         $d->save();
     }
 

@@ -17,9 +17,11 @@ class AsistenciaSeeder extends Seeder
         DB::table('asistencias')->insert([
             'objetos'=>'celular,gps',
             'observaciones'=>'Se le vio misrando un auto',
-            'recinto'=>'ORURO',
-            'unidad'=>'SISTEMAS',
-            'persona_id'=>1
+            'recinto'=>'RECINTO ADUANERO ORURO',
+            'motivo'=>'Control de asistencia',
+            'persona_id'=>1,
+            'destino_id'=>1,
+            'created_at'=>'2020-09-20 15:00:00'
         ]);
     }
 }

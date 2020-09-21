@@ -2,13 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84c4ca8e-dc86-4d29-b56d-230796957f00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Asistenciaauto.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Auto.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Destino.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/controlingreso.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/controlingreso.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AsistenciaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AsistenciaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Asistencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Asistencia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_14_222520_create_personas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_14_222520_create_personas_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_16_143440_create_asistencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_16_143440_create_asistencias_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AsistenciaSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AsistenciaSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/PersonaSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PersonaSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Asistencia.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Asistencia.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Persona.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Persona.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Usuario.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Usuario.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +34,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -169,7 +184,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -184,24 +199,32 @@
       <workItem from="1600132642327" duration="6860000" />
       <workItem from="1600277686636" duration="5044000" />
       <workItem from="1600348311817" duration="2549000" />
+      <workItem from="1600375277436" duration="4053000" />
+      <workItem from="1600437740914" duration="132000" />
+      <workItem from="1600542833332" duration="5295000" />
+      <workItem from="1600548788570" duration="18172000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="498" height="446" key="SwitcherDM" timestamp="1599866319719">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1600437770780">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599866319719" />
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600437770780" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1600547826920">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600547826920" />
     <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1600348367589">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1360.728@0.0.1366.728" timestamp="1600348367589" />
-    <state x="1366" y="59" width="1009" height="508" key="dock-window-1" timestamp="1599865736214">
+    <state x="1403" y="0" width="953" height="479" maximized="true" key="dock-window-1" timestamp="1600642848374">
       <screen x="1366" y="0" width="1366" height="728" />
     </state>
-    <state x="1366" y="59" width="1009" height="508" key="dock-window-1/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599865736214" />
+    <state x="1403" y="0" width="953" height="479" maximized="true" key="dock-window-1/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600642848374" />
   </component>
 </project>

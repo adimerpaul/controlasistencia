@@ -52,10 +52,8 @@
                                                     <label for="recinto" class="col-sm-2 control-label">Recinto</label>
                                                     <div class="col-sm-10">
 <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
-                                                        <select name="recinto" id="recinto" v-model="dato.tipo" class="form-control" required>
-                                                            <option value="">Seleccionar...</option>
-                                                            <option value="RECINTO ADUANERO ORURO">RECINTO ADUANERO ORURO</option>
-                                                            <option value="RECINTO ADUANERO LA PAZ">RECINTO ADUANERO LA PAZ</option>
+                                                        <select name="recinto" id="recinto" v-model="dato.recinto_id" class="form-control" required>
+                                                            <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -97,10 +95,8 @@
                                                     <label for="recinto2" class="col-sm-2 control-label">Recinto</label>
                                                     <div class="col-sm-10">
                                                         <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
-                                                        <select name="recinto" id="recinto2" v-model="dato.tipo" class="form-control" required>
-                                                            <option value="">Seleccionar...</option>
-                                                            <option value="RECINTO ADUANERO ORURO">RECINTO ADUANERO ORURO</option>
-                                                            <option value="RECINTO ADUANERO LA PAZ">RECINTO ADUANERO LA PAZ</option>
+                                                        <select name="recinto" id="recinto2" v-model="dato.recinto_id" class="form-control" required>
+                                                            <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -165,7 +161,7 @@
                                     <td>{{index+1}}</td>
                                     <td>{{i.name}}</td>
                                     <td>{{i.email}}</td>
-                                    <td>{{i.tipo}}</td>
+                                    <td>{{i.recinto.nombre}}</td>
                                     <td>
                                         <button @click="modificar(i)" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
                                         <button @click="pass(i)" class="btn btn-info btn-xs"><i class="fa fa-key"></i></button>
@@ -193,12 +189,16 @@ export default {
         // this.datatable = $('#example1').DataTable({});
         this.misdatos();
         // console.log(this.dato.password);
+        axios.get('/recinto').then(res=>{
+            this.recintos=res.data;
+        });
     },
     data:function (){
         return {
             datatable:null,
             datos:[],
-            dato:{tipo:''}
+            dato:{tipo:''},
+            recintos:[]
         }
     },
     methods:{

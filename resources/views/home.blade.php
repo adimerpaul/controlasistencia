@@ -348,6 +348,17 @@
                     </router-link>
                 @if(Auth::user()->tipo=='ADMIN')
                 <router-link
+                    to="/verrecinto"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-home"></i>
+                            <span>Recinto</span>
+                        </a>
+                    </li>
+                </router-link>
+                <router-link
                     to="/usuario"
                     v-slot="{ href, route, navigate, isActive, isExactActive }"
                 >
@@ -358,6 +369,7 @@
                         </a>
                     </li>
                 </router-link>
+
                 <router-link
                     to="/verdestino"
                     v-slot="{ href, route, navigate, isActive, isExactActive }"
@@ -400,6 +412,16 @@
                         </a>
                     </li>
                 </router-link>
+                <router-link
+                    to="/salidas"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-minus-circle"></i><span>Salidas</span>
+                        </a>
+                    </li>
+                </router-link>
 
 
             </ul>
@@ -409,8 +431,8 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Dashboard
-                <small>Control panel</small>
+                Sistema
+                <small>Control </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

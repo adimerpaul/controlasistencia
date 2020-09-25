@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asistencia;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,9 @@ class PersonaController extends Controller
     {
         $p=Persona::where('ci','=',"$id")->get();
         return $p;
+    }
+    public function obs($id){
+        return Asistencia::where('persona_id','=',$id)->where('observaciones','!=','')->get();
     }
 
     /**

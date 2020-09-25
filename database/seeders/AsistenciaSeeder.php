@@ -21,7 +21,8 @@ class AsistenciaSeeder extends Seeder
             'motivo'=>'Control de asistencia',
             'persona_id'=>1,
             'destino_id'=>1,
-            'created_at'=>'2020-09-20 15:00:00'
+            'user_id'=>2,
+            'created_at'=>'2020-09-24 15:00:00'
         ]);
     }
 }

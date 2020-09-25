@@ -36,6 +36,13 @@ Route::get('/verauto', function () {
 Route::get('/verasistenciaauto', function () {
     return view('home');
 })->middleware('auth');
+Route::get('/verrecinto', function () {
+    return view('home');
+})->middleware('auth');
+
+Route::get('/salidas', function () {
+    return view('home');
+})->middleware('auth');
 
 Route::get('/reporte', function () {
     return view('home');
@@ -51,4 +58,6 @@ Route::apiResource('/asistencia',\App\Http\Controllers\AsistenciaController::cla
 Route::get('/asistencia/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date'])->middleware('auth');
 Route::apiResource('/destino',\App\Http\Controllers\DestinoController::class)->middleware('auth');
 Route::apiResource('/auto',\App\Http\Controllers\AutoController::class)->middleware('auth');
+Route::apiResource('/recinto',\App\Http\Controllers\RecintoController::class)->middleware('auth');
 Route::put('/pass/{id}',[App\Http\Controllers\UserController::class, 'pass'])->middleware('auth');
+Route::get('/obs/{id}',[App\Http\Controllers\PersonaController::class, 'obs'])->middleware('auth');

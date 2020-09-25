@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recinto;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::where('id','<>',1)->get();
+        return User::where('id','<>',1)->with('recinto')->get();
     }
 
     /**
@@ -26,10 +27,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $r=Recinto::find($request->recinto_id);
         $u=new User();
         $u->name=$request->name;
         $u->email=$request->email;
-        $u->tipo=$request->tipo;
+        $u->tipo=$r->nombre;
+        $u->recinto_id=$request->recinto_id;
         $u->password= Hash::make($request->password);
         $u->save();
     }
@@ -54,10 +57,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $r=Recinto::find($request->recinto_id);
         $u=User::find($id);
         $u->name=$request->name;
         $u->email=$request->email;
-        $u->tipo=$request->tipo;
+        $u->tipo=$r->nombre;
+        $u->recinto_id=$request->recinto_id;
         $u->save();
 //        return isset($request->password);
     }

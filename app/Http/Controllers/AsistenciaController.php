@@ -15,19 +15,22 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        return Asistencia::with('persona')->with('destino')->get();
+        return Asistencia::with('persona')->with('destino')->with('user')->get();
     }
     public function date($d1,$d2)
     {
         if (Auth::user()->tipo=='ADMIN')
             return Asistencia::with('persona')
                 ->with('destino')
+                ->with('user')
                 ->whereDate('created_at','>=',$d1)
                 ->whereDate('created_at','<=',$d2)
+//                ->where('estado','=','')
                 ->get();
         else
             return Asistencia::with('persona')
                 ->with('destino')
+                ->with('user')
                 ->where('recinto','=',Auth::user()->tipo)
                 ->whereDate('created_at','>=',$d1)
                 ->whereDate('created_at','<=',$d2)
@@ -52,13 +55,17 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $d=New Asistencia();
-        $d->objetos=$request->objetos;
-        $d->recinto=Auth::user()->tipo;
-        $d->motivo=$request->motivo;
-        $d->persona_id=$request->persona_id;
-        $d->destino_id=$request->destino_id;
-        $d->save();
+
+            $d=New Asistencia();
+            $d->objetos=$request->objetos;
+            $d->recinto=Auth::user()->tipo;
+            $d->motivo=$request->motivo;
+            $d->targeta=$request->targeta;
+            $d->persona_id=$request->persona_id;
+            $d->destino_id=$request->destino_id;
+            $d->user_id=Auth::user()->id;
+            $d->save();
+
     }
 
     /**
@@ -67,9 +74,12 @@ class AsistenciaController extends Controller
      * @param  \App\Models\Asistencia  $asistencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Asistencia $asistencia)
+    public function show($id)
     {
-        //
+        $d=Asistencia::find($id);
+        $d->salida=date('Y-m-d H:i:s');
+        $d->estado="SALIDO";
+        $d->save();
     }
 
     /**
@@ -96,8 +106,9 @@ class AsistenciaController extends Controller
 //        $d->objetos=$request->objetos;
 //        $d->recinto=Auth::user()->tipo;
 //        $d->objetos=$request->objetos;
-        $d->observacion=$request->observacion;
+        $d->observaciones=$request->observaciones;
         $d->save();
+        return  $d;
     }
 
     /**

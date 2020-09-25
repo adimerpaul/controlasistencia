@@ -59,6 +59,11 @@
             </div>
             <div class="col-md-6">
                 <form role="form" @submit.prevent="guardar">
+                    <div class="row" v-if="observaciones.length>0">
+                        <div class="col-md-12">
+                            <label v-for="i in observaciones" class="label label-warning">En fecha:{{i.created_at|fecha}} Tuvo la observacion de :{{i.observaciones}}</label>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
 <!--                            <div class="form-group">-->
@@ -223,6 +228,7 @@
                 ci:'',
                 date1:moment().format('YYYY-MM-DD'),
                 date2:moment().format('YYYY-MM-DD'),
+                observaciones:[]
             }
         },
         methods:{
@@ -338,8 +344,13 @@
                         // console.log(res.data);
                         if (res.data.length>=1){
                             this.dato=res.data[0];
+                            axios.get('/obs/'+this.dato.id).then(res=>{
+                                // console.log(res.data);
+                                this.observaciones=res.data;
+                            });
                         }else{
                             this.dato={};
+                            this.observaciones={};
                         }
                     })
                 }else{
@@ -358,7 +369,7 @@
         },
         filters: {
             fecha: function (date) {
-                return moment(date).format('DD-MM-YYYY, h:mm:ss a');
+                return moment(date).format('DD-MM-YYYY');
             }
         }
     }

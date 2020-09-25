@@ -40,6 +40,8 @@ import Persona from './components/Persona';
 import Asistencia from './components/Asistencia';
 import Reporte from './components/Reporte';
 import Destino from './components/Destino';
+import Recinto from './components/Recinto';
+import Salidas from './components/Salidas';
 
 const Bar = { template: '<div>bar</div>' }
 
@@ -51,6 +53,8 @@ const routes = [
     { path: '/verauto', component: Auto },
     { path: '/verdestino', component: Destino },
     { path: '/home', component: Home },
+    { path: '/verrecinto', component: Recinto },
+    { path: '/salidas', component: Salidas },
 ]
 
 const router = new VueRouter({

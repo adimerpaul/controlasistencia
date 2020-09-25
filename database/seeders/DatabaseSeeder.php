@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call([
+            RecintoSeeder::class,
             UserSeeder::class,
             PersonaSeeder::class,
             DestinoSeeder::class,

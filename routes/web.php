@@ -48,6 +48,14 @@ Route::get('/reporte', function () {
     return view('home');
 })->middleware('auth');
 
+Route::get('/registroautomovil', function () {
+    return view('home');
+})->middleware('auth');
+
+Route::get('/salidaautomovil', function () {
+    return view('home');
+})->middleware('auth');
+
 
 Auth::routes();
 
@@ -55,7 +63,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::apiResource('/user',\App\Http\Controllers\UserController::class)->middleware('auth');
 Route::apiResource('/persona',\App\Http\Controllers\PersonaController::class)->middleware('auth');
 Route::apiResource('/asistencia',\App\Http\Controllers\AsistenciaController::class)->middleware('auth');
+Route::apiResource('/ingresoauto',\App\Http\Controllers\IngresoautoController::class)->middleware('auth');
 Route::get('/asistencia/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date'])->middleware('auth');
+Route::get('/ingresoauto/{d1}/{d2}',[\App\Http\Controllers\IngresoautoController::class,'date'])->middleware('auth');
+Route::get('/destino/{d1}/{d2}',[\App\Http\Controllers\DestinoController::class,'date'])->middleware('auth');
 Route::apiResource('/destino',\App\Http\Controllers\DestinoController::class)->middleware('auth');
 Route::apiResource('/auto',\App\Http\Controllers\AutoController::class)->middleware('auth');
 Route::apiResource('/recinto',\App\Http\Controllers\RecintoController::class)->middleware('auth');

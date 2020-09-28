@@ -20,7 +20,7 @@
                             {{destinos.length}}
 <!--                            <sup style="font-size: 20px">%</sup>-->
                         </h3>
-                        <p>Bounce Rate</p>
+                        <p>Destinos registrados</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>

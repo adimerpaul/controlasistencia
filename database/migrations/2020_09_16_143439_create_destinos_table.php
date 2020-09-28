@@ -16,6 +16,8 @@ class CreateDestinosTable extends Migration
         Schema::create('destinos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->unsignedBigInteger('recinto_id');
+            $table->foreign('recinto_id')->references('id')->on('recintos');
             $table->timestamps();
         });
     }

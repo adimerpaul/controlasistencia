@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asistencia;
 use App\Models\Destino;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DestinoController extends Controller
 {
@@ -14,7 +16,7 @@ class DestinoController extends Controller
      */
     public function index()
     {
-        return Destino::all();
+        return Destino::with('recinto')->get();
     }
 
     /**
@@ -37,6 +39,7 @@ class DestinoController extends Controller
     {
         $d=new Destino();
         $d->nombre=$request->nombre;
+        $d->recinto_id=$request->recinto_id;
         $d->save();
     }
 
@@ -73,6 +76,7 @@ class DestinoController extends Controller
     {
         $d=Destino::find($id);
         $d->nombre=$request->nombre;
+        $d->recinto_id=$request->recinto_id;
         $d->save();
     }
 
@@ -86,5 +90,21 @@ class DestinoController extends Controller
     {
         $d=Destino::find($id);
         $d->delete();
+    }
+
+    public function date($d1,$d2)
+    {
+        if (Auth::user()->tipo=='ADMIN')
+            return Destino::with('recinto')
+//                ->whereDate('created_at','>=',$d1)
+//                ->whereDate('created_at','<=',$d2)
+//                ->where('estado','=','')
+                ->get();
+        else
+            return Destino::with('recinto')
+                ->where('recinto_id','=',Auth::user()->recinto_id)
+//                ->whereDate('created_at','>=',$d1)
+//                ->whereDate('created_at','<=',$d2)
+                ->get();
     }
 }

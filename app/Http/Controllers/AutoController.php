@@ -14,7 +14,7 @@ class AutoController extends Controller
      */
     public function index()
     {
-        return Auto::with('persona')->get();
+        return Auto::with('persona')->orderBy('placa')->get();
     }
 
     /**
@@ -50,9 +50,10 @@ class AutoController extends Controller
      * @param  \App\Models\Auto  $auto
      * @return \Illuminate\Http\Response
      */
-    public function show(Auto $auto)
+    public function show($id)
     {
-        //
+        $p=Auto::where('id','=',"$id")->with('persona')->get();
+        return $p;
     }
 
     /**

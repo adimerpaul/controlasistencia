@@ -30,6 +30,15 @@
                                                         <input type="text" v-model="dato.nombre" class="form-control" id="name" placeholder="Nombres" required>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="recinto" class="col-sm-2 control-label">Recinto</label>
+                                                    <div class="col-sm-10">
+<!--                                                        <input type="text" v-model="dato.nombre" class="form-control" id="ecinto" placeholder="Nombres" required>-->
+                                                        <select name="recinto" v-model="dato.recinto_id" id="recinto" class="form-control" required>
+                                                            <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"> <i class="fa fa-trash"></i> Cancelar</button>
@@ -59,6 +68,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="recinto2" class="col-sm-2 control-label">Recinto</label>
+                                                <div class="col-sm-10">
+                                                    <!--                                                        <input type="text" v-model="dato.nombre" class="form-control" id="ecinto" placeholder="Nombres" required>-->
+                                                    <select name="recinto" v-model="dato.recinto_id" id="recinto2" class="form-control" required>
+                                                        <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"> <i class="fa fa-trash"></i> Cancelar</button>
                                                 <button type="submit" class="btn btn-warning" > <i class="fa fa-plus-circle"></i> Modificar </button>
@@ -75,6 +93,7 @@
                                 <tr>
                                     <th>N</th>
                                     <th>Nombres</th>
+                                    <th>Recinto</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -82,6 +101,7 @@
                                 <tr v-for="(i,index) in datos" :key="index">
                                     <td>{{index+1}}</td>
                                     <td>{{i.nombre}}</td>
+                                    <td>{{i.recinto.nombre}}</td>
                                     <td>
                                         <button @click="modificar(i)" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
                                         <button @click="eliminar(i)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
@@ -107,14 +127,17 @@ export default {
         // $('#example1').DataTable()
         // this.datatable = $('#example1').DataTable({});
         this.misdatos();
-
+        axios.get('/recinto').then(res=>{
+            this.recintos=res.data;
+        })
         // console.log(this.dato.password);
     },
     data:function (){
         return {
             datatable:null,
             datos:[],
-            dato:{tipo:''}
+            dato:{tipo:''},
+            recintos:[],
         }
     },
     methods:{
@@ -124,6 +147,7 @@ export default {
         misdatos(){
             axios.get('/destino').then(res=>{
                 this.datos=res.data;
+                // console.log(res.data);
             });
         },
         guardar(){

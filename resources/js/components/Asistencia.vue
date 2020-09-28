@@ -124,7 +124,7 @@
                         <div class="col-md-12">
 <!--                            <div class="form-group">-->
                                 <label for="motivo">Motivo</label>
-                                <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" ></textarea>
+                                <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" required></textarea>
 <!--                            </div>-->
                         </div>
                         <div class="col-md-6">
@@ -144,7 +144,7 @@
                         <div class="col-md-12">
 <!--                            <div class="form-group">-->
                                 <label for="objetos">Objetos de valor</label>
-                                <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos" ></textarea>
+                                <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos" required ></textarea>
 <!--                            </div>-->
                         </div>
                     </div>
@@ -215,9 +215,11 @@
             });
             this.misdatos();
             // console.log(this.dato.password);
-            axios.get('/destino').then(res=>{
+            axios.get('/destino/1/1').then(res=>{
                 this.destinos=res.data;
+                // console.log(res.data)
             })
+
         },
         data:function (){
             return {
@@ -228,7 +230,8 @@
                 ci:'',
                 date1:moment().format('YYYY-MM-DD'),
                 date2:moment().format('YYYY-MM-DD'),
-                observaciones:[]
+                observaciones:[],
+
             }
         },
         methods:{

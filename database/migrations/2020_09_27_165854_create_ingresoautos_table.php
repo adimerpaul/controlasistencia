@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsistenciasTable extends Migration
+class CreateIngresoautosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAsistenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('asistencias', function (Blueprint $table) {
+        Schema::create('ingresoautos', function (Blueprint $table) {
             $table->id();
             $table->string('objetos');
             $table->string('observaciones')->default('');
@@ -28,6 +28,8 @@ class CreateAsistenciasTable extends Migration
             $table->foreign('destino_id')->references('id')->on('destinos');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('auto_id');
+            $table->foreign('auto_id')->references('id')->on('autos');
             $table->timestamps();
         });
     }
@@ -39,6 +41,6 @@ class CreateAsistenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('ingresoautos');
     }
 }

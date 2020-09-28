@@ -41,8 +41,9 @@
         <a href="index2.html" class="logo">
 
             <span class="logo-mini"><b>C</b>T</span>
-
-            <span class="logo-lg"><b>CON</b>TROL</span>
+            <span class="logo-lg">
+                <img src="img/logo.png" alt="" width="250">
+            </span>
         </a>
 
         <nav class="navbar navbar-static-top">
@@ -354,7 +355,17 @@
                     <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                         <a :href="href" @click="navigate">
                             <i class="fa fa-home"></i>
-                            <span>Recinto</span>
+                            <span>Registro Recinto</span>
+                        </a>
+                    </li>
+                </router-link>
+                <router-link
+                    to="/verdestino"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-laptop"></i> <span> Registro Destinos</span>
                         </a>
                     </li>
                 </router-link>
@@ -364,22 +375,13 @@
                 >
                     <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                         <a :href="href" @click="navigate">
-                            <i class="fa fa-files-o"></i>
-                            <span>Usuarios</span>
+                            <i class="fa fa-user-secret"></i>
+                            <span>Registro Usuarios</span>
                         </a>
                     </li>
                 </router-link>
 
-                <router-link
-                    to="/verdestino"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-laptop"></i> <span>Destinos</span>
-                        </a>
-                    </li>
-                </router-link>
+
                 @endif
 
                 <router-link
@@ -388,17 +390,7 @@
                 >
                     <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                         <a :href="href" @click="navigate">
-                            <i class="fa fa-th"></i> <span>Personas</span>
-                        </a>
-                    </li>
-                </router-link>
-                <router-link
-                    to="/verauto"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-automobile"></i> <span>Auto</span>
+                            <i class="fa fa-user"></i> <span> Registro Personas</span>
                         </a>
                     </li>
                 </router-link>
@@ -408,7 +400,7 @@
                 >
                     <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                         <a :href="href" @click="navigate">
-                            <i class="fa fa-pie-chart"></i><span>Asistencia</span>
+                            <i class="fa fa-arrow-right"></i><span>Registro de Ingreso</span>
                         </a>
                     </li>
                 </router-link>
@@ -418,12 +410,40 @@
                 >
                     <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                         <a :href="href" @click="navigate">
-                            <i class="fa fa-minus-circle"></i><span>Salidas</span>
+                            <i class="fa fa-arrow-left"></i><span>Registro de Salidas</span>
                         </a>
                     </li>
                 </router-link>
-
-
+                <router-link
+                    to="/verauto"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-automobile"></i> <span> Registro Automovil</span>
+                        </a>
+                    </li>
+                </router-link>
+                <router-link
+                    to="/registroautomovil"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-arrow-right"></i><span>Registro de Automovil</span>
+                        </a>
+                    </li>
+                </router-link>
+                <router-link
+                    to="/salidaautomovil"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                        <a :href="href" @click="navigate">
+                            <i class="fa fa-arrow-left"></i><span>Salida de Automovil</span>
+                        </a>
+                    </li>
+                </router-link>
             </ul>
         </section>
 

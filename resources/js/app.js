@@ -44,6 +44,8 @@ import Recinto from './components/Recinto';
 import Salidas from './components/Salidas';
 import Registroautomovil from './components/RegistroAutomovil';
 import Salidaautomovil from './components/SalidaAutomovil';
+import Reportautomovil from './components/Reportautomovil';
+import Reportpersona from './components/Reportpersona';
 
 const Bar = { template: '<div>bar</div>' }
 
@@ -59,6 +61,8 @@ const routes = [
     { path: '/salidas', component: Salidas },
     { path: '/registroautomovil', component: Registroautomovil },
     { path: '/salidaautomovil', component: Salidaautomovil },
+    { path: '/reportpersona', component: Reportpersona },
+    { path: '/reportautomovil', component: Reportautomovil },
 ]
 
 const router = new VueRouter({

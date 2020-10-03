@@ -4,7 +4,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Hover Data Table</h3>
+                        <h3 class="box-title">Reporte de automoviles</h3>
                     </div>
                     <div class="box-body">
                         <form role="form">
@@ -80,28 +80,21 @@
                                     <th>Estado</th>
                                     <th>Pertenencias</th>
                                     <th>Observado</th>
-                                    <th>Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="(i,index) in datos" :key="index">
-                                    <td>{{index+1}}</td>
-                                    <td>{{i.persona.apellidos}} {{i.persona.nombres}}</td>
-                                    <td>{{i.auto.placa}}</td>
-                                    <td>{{i.persona.celular}}</td>
-                                    <td>{{i.created_at|fecha}}</td>
-                                    <td>{{i.salida}}</td>
-                                    <td>{{i.user.name}}</td>
-                                    <td><span class="label" v-bind:class="i.estado=='INGRESADO'?'label-success':'label-warning'">{{i.estado}}</span></td>
-                                    <td>{{i.objetos}}</td>
-                                    <td>{{i.observaciones}}</td>
-                                    <td>
-                                        <template v-if="i.salida==null">
-                                            <button v-if="moment(i.created_at).format('YYYY-MM-DD')==moment().format('YYYY-MM-DD')"  @click="observacion(i)" class="btn btn-warning btn-xs"><i class="fa fa-eye-slash"></i> Obs.</button>
-                                            <button v-if="moment(i.created_at).format('YYYY-MM-DD')==moment().format('YYYY-MM-DD')"  @click="salida(i)" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Salida</button>
-                                        </template>
-                                    </td>
-                                </tr>
+<!--                                <tr v-for="(i,index) in datos" :key="index">-->
+<!--                                    <td>{{index+1}}</td>-->
+<!--                                    <td>{{i.persona.apellidos}} {{i.persona.nombres}}</td>-->
+<!--                                    <td>{{i.auto.placa}}</td>-->
+<!--                                    <td>{{i.persona.celular}}</td>-->
+<!--                                    <td>{{i.created_at|fecha}}</td>-->
+<!--                                    <td>{{i.salida}}</td>-->
+<!--                                    <td>{{i.user.name}}</td>-->
+<!--                                    <td><span class="label" v-bind:class="i.estado=='INGRESADO'?'label-success':'label-warning'">{{i.estado}}</span></td>-->
+<!--                                    <td>{{i.objetos}}</td>-->
+<!--                                    <td>{{i.observaciones}}</td>-->
+<!--                                </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -122,6 +115,41 @@ export default {
         // console.log('Component mounted.');
         // $('#example1').DataTable()
         // this.datatable = $('#example1').DataTable({});
+        this.datatable = $('#example1').DataTable({
+            "order": [[ 0, "desc" ]],
+            "language": {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'pdf', 'print'
+            ]
+        });
         this.misdatos();
         // console.log('aa');
         // console.log(this.dato.password);
@@ -148,6 +176,25 @@ export default {
             // });
             axios.get('/ingresoauto/'+this.date1+'/'+this.date2).then(res=>{
                 this.datos=res.data;
+                this.datatable.clear().draw();
+                let cont=0;
+                this.datos.forEach(r=>{
+                    // console.log(r);
+                    cont++;
+                    this.datatable.row.add([
+                        cont,
+                        r.persona.nombres+' '+r.persona.apellidos,
+                        r.auto.placa,
+                        r.persona.celular,
+                        moment(r.created_at).format('DD-MM-YY HH:mm:ss'),
+                        moment(r.salida).format('DD-MM-YY HH:mm:ss'),
+                        // r.salida,
+                        r.user.name,
+                        r.estado,
+                        r.objetos,
+                        r.observaciones,
+                    ]).draw(false)
+                })
                 // console.log(this.datos);
             });
         },

@@ -383,67 +383,156 @@
 
 
                 @endif
-
-                <router-link
-                    to="/verpersona"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-user"></i> <span> Registro Personas</span>
+                @if(Auth::user()->tipo=='ADMIN')
+                    <router-link
+                        to="/verpersona"
+                        v-slot="{ href, route, navigate, isActive, isExactActive }"
+                    >
+                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                            <a :href="href" @click="navigate">
+                                <i class="fa fa-user"></i> <span> Registro Personas</span>
+                            </a>
+                        </li>
+                    </router-link>
+                    <router-link
+                        to="/reportpersona"
+                        v-slot="{ href, route, navigate, isActive, isExactActive }"
+                    >
+                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                            <a :href="href" @click="navigate">
+                                <i class="fa fa-file"></i><span>Reporte personas</span>
+                            </a>
+                        </li>
+                    </router-link>
+                @endif
+                @if(Auth::user()->tipo!='ADMIN')
+                    <li class="treeview" style="height: auto;">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Registro personas</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <router-link
+                                to="/verpersona"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-user"></i> <span> Registro Personas</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/verasistencia"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-arrow-right"></i><span>Registro de Ingreso</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/salidas"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-arrow-left"></i><span>Registro de Salidas</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/reportpersona"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-file"></i><span>Reporte personas</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                        </ul>
                     </li>
-                </router-link>
-                <router-link
-                    to="/verasistencia"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-arrow-right"></i><span>Registro de Ingreso</span>
+                @endif
+                @if(Auth::user()->tipo=='ADMIN')
+                    <router-link
+                        to="/verauto"
+                        v-slot="{ href, route, navigate, isActive, isExactActive }"
+                    >
+                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                            <a :href="href" @click="navigate">
+                                <i class="fa fa-automobile"></i> <span> Registro Automovil</span>
+                            </a>
+                        </li>
+                    </router-link>
+                    <router-link
+                        to="/reportautomovil"
+                        v-slot="{ href, route, navigate, isActive, isExactActive }"
+                    >
+                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                            <a :href="href" @click="navigate">
+                                <i class="fa fa-file"></i><span>Reporte Automovil</span>
+                            </a>
+                        </li>
+                    </router-link>
+                @endif
+                @if(Auth::user()->tipo!='ADMIN')
+                    <li class="treeview" style="height: auto;">
+                        <a href="#">
+                            <i class="fa fa-automobile"></i>
+                            <span>Registro Automovil</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <router-link
+                                to="/verauto"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-automobile"></i> <span> Registro Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/registroautomovil"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-arrow-right"></i><span>Registro de Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/salidaautomovil"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-arrow-left"></i><span>Salida de Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/reportautomovil"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-file"></i><span>Reporte Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                        </ul>
                     </li>
-                </router-link>
-                <router-link
-                    to="/salidas"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-arrow-left"></i><span>Registro de Salidas</span>
-                        </a>
-                    </li>
-                </router-link>
-                <router-link
-                    to="/verauto"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-automobile"></i> <span> Registro Automovil</span>
-                        </a>
-                    </li>
-                </router-link>
-                <router-link
-                    to="/registroautomovil"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-arrow-right"></i><span>Registro de Automovil</span>
-                        </a>
-                    </li>
-                </router-link>
-                <router-link
-                    to="/salidaautomovil"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-arrow-left"></i><span>Salida de Automovil</span>
-                        </a>
-                    </li>
-                </router-link>
+                @endif
             </ul>
         </section>
 
@@ -467,11 +556,8 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.18
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; <?=date('Y')?> <a href="https://adminlte.io">AdminLTE</a>.</strong> INNOVA ORURO
     </footer>
-
-
 {{--    <aside class="control-sidebar control-sidebar-dark" style="display: none;">--}}
 
 {{--        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">--}}

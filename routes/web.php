@@ -56,6 +56,14 @@ Route::get('/salidaautomovil', function () {
     return view('home');
 })->middleware('auth');
 
+Route::get('/reportpersona', function () {
+    return view('home');
+})->middleware('auth');
+
+Route::get('/reportautomovil', function () {
+    return view('home');
+})->middleware('auth');
+
 
 Auth::routes();
 

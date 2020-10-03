@@ -10,6 +10,6 @@ class Auto extends Model
     use HasFactory;
     protected $fillable=['placa','tipo','uso','persona_id'];
     public function persona(){
-        return $this->belongsTo('App\models\Persona');
+        return $this->belongsTo('App\Models\Persona');
     }
 }

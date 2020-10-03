@@ -210,7 +210,7 @@
                 },
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    'copy', 'csv', 'pdf', 'print'
                 ]
             });
             this.misdatos();

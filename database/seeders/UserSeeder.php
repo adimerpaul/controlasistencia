@@ -22,19 +22,19 @@ class UserSeeder extends Seeder
             'password'=>Hash::make('admin'),
             'recinto_id'=>1
         ]);
-        DB::table('users')->insert([
-            'name'=>'oruro',
-            'email'=>'oruro@gmail.com',
-            'tipo'=>'RECINTO ADUANERO ORURO',
-            'password'=>Hash::make(123456),
-            'recinto_id'=>2
-        ]);
-        DB::table('users')->insert([
-            'name'=>'lapaz',
-            'email'=>'lapaz@gmail.com',
-            'tipo'=>'RECINTO ADUANERO LA PAZ',
-            'password'=>Hash::make(123456),
-            'recinto_id'=>3
-        ]);
+//        DB::table('users')->insert([
+//            'name'=>'oruro',
+//            'email'=>'oruro@gmail.com',
+//            'tipo'=>'RECINTO ADUANERO ORURO',
+//            'password'=>Hash::make(123456),
+//            'recinto_id'=>2
+//        ]);
+//        DB::table('users')->insert([
+//            'name'=>'lapaz',
+//            'email'=>'lapaz@gmail.com',
+//            'tipo'=>'RECINTO ADUANERO LA PAZ',
+//            'password'=>Hash::make(123456),
+//            'recinto_id'=>3
+//        ]);
     }
 }

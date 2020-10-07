@@ -46,6 +46,8 @@ import Registroautomovil from './components/RegistroAutomovil';
 import Salidaautomovil from './components/SalidaAutomovil';
 import Reportautomovil from './components/Reportautomovil';
 import Reportpersona from './components/Reportpersona';
+import opersona from './components/opersona';
+import oautomovil from './components/oautomovil';
 
 const Bar = { template: '<div>bar</div>' }
 
@@ -63,6 +65,8 @@ const routes = [
     { path: '/salidaautomovil', component: Salidaautomovil },
     { path: '/reportpersona', component: Reportpersona },
     { path: '/reportautomovil', component: Reportautomovil },
+    { path: '/opersona', component: opersona },
+    { path: '/oautomovil', component: oautomovil },
 ]
 
 const router = new VueRouter({

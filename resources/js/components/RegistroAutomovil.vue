@@ -47,7 +47,7 @@
                                     <th>Nombres  apellidos</th>
                                     <th>Placa</th>
                                     <th>Entrada y salida</th>
-                                    <th>Targeta</th>
+                                    <th>Tarjeta</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -142,7 +142,7 @@
                         </div>
                         <div class="col-md-6">
                             <!--                            <div class="form-group">-->
-                            <label for="targeta">Targeta</label>
+                            <label for="targeta">Tarjeta</label>
                             <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Targeta" required>
                             <!--                            </div>-->
                         </div>

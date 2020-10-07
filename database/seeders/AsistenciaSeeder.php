@@ -22,6 +22,7 @@ class AsistenciaSeeder extends Seeder
             'persona_id'=>1,
             'destino_id'=>1,
             'user_id'=>2,
+            'observado'=>'SI',
             'created_at'=>'2020-09-24 15:00:00'
         ]);
     }

@@ -20,6 +20,7 @@ class CreateIngresoautosTable extends Migration
             $table->string('estado')->default('INGRESADO');
             $table->string('recinto');
             $table->string('motivo');
+            $table->string('observado')->default('NO');
             $table->dateTime('salida')->nullable()->default(null);
             $table->string('targeta')->nullable()->default(null);
             $table->unsignedBigInteger('persona_id');

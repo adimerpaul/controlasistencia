@@ -103,7 +103,7 @@ class IngresoautoController extends Controller
         $d=Ingresoauto::find($id);
 //        $d->objetos=$request->objetos;
 //        $d->recinto=Auth::user()->tipo;
-//        $d->objetos=$request->objetos;
+        $d->observado="SI";
         $d->observaciones=$request->observaciones;
         $d->save();
         return  $d;

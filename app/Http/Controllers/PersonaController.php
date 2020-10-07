@@ -13,6 +13,7 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         return Persona::all();
@@ -49,7 +50,7 @@ class PersonaController extends Controller
         return $p;
     }
     public function obs($id){
-        return Asistencia::where('persona_id','=',$id)->where('observaciones','!=','')->get();
+        return Asistencia::where('persona_id','=',$id)->where('observado','=','SI')->get();
     }
 
     /**

@@ -348,62 +348,143 @@
                         </li>
                     </router-link>
                 @if(Auth::user()->tipo=='ADMIN')
-                <router-link
-                    to="/verrecinto"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-home"></i>
-                            <span>Registro Recinto</span>
-                        </a>
-                    </li>
-                </router-link>
-                <router-link
-                    to="/verdestino"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-laptop"></i> <span> Registro Destinos</span>
-                        </a>
-                    </li>
-                </router-link>
-                <router-link
-                    to="/usuario"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                        <a :href="href" @click="navigate">
-                            <i class="fa fa-user-secret"></i>
-                            <span>Registro Usuarios</span>
-                        </a>
-                    </li>
-                </router-link>
 
-
-                @endif
-                @if(Auth::user()->tipo=='ADMIN')
-                    <router-link
-                        to="/verpersona"
-                        v-slot="{ href, route, navigate, isActive, isExactActive }"
-                    >
-                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                            <a :href="href" @click="navigate">
-                                <i class="fa fa-user"></i> <span> Registro Personas</span>
-                            </a>
-                        </li>
-                    </router-link>
-                    <router-link
-                        to="/reportpersona"
-                        v-slot="{ href, route, navigate, isActive, isExactActive }"
-                    >
-                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                            <a :href="href" @click="navigate">
-                                <i class="fa fa-file"></i><span>Reporte personas</span>
-                            </a>
-                        </li>
-                    </router-link>
+                    <li class="treeview" style="height: auto;">
+                        <a href="#">
+                            <i class="fa fa-cogs"></i>
+                            <span>Registros</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <router-link
+                                to="/verrecinto"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-home"></i>
+                                        <span>Registro Recinto</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/verdestino"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-laptop"></i> <span> Registro Destinos</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/usuario"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-user-secret"></i>
+                                        <span>Registro Usuarios</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                        </ul>
+                    </li>
+                    <li class="treeview" style="height: auto;">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Personas </span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <router-link
+                                to="/verpersona"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-user"></i> <span> Registro Personas</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/reportpersona"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-file"></i><span>Reporte personas</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                        </ul>
+                    </li>
+                    <li class="treeview" style="height: auto;">
+                        <a href="#">
+                            <i class="fa fa-automobile"></i>
+                            <span>Automovil </span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <router-link
+                                to="/verauto"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-automobile"></i> <span> Registro Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/reportautomovil"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-file"></i><span>Reporte Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                        </ul>
+                    </li>
+                    <li class="treeview" style="height: auto;">
+                        <a href="#">
+                            <i class="fa fa-eye"></i>
+                            <span>Observados </span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <router-link
+                                to="/opersona"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-user"></i> <span> Observado personas</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/oautomovil"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-automobile"></i><span> Observado  Automovil</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                        </ul>
+                    </li>
                 @endif
                 @if(Auth::user()->tipo!='ADMIN')
                     <li class="treeview" style="height: auto;">
@@ -457,28 +538,6 @@
                             </router-link>
                         </ul>
                     </li>
-                @endif
-                @if(Auth::user()->tipo=='ADMIN')
-                    <router-link
-                        to="/verauto"
-                        v-slot="{ href, route, navigate, isActive, isExactActive }"
-                    >
-                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                            <a :href="href" @click="navigate">
-                                <i class="fa fa-automobile"></i> <span> Registro Automovil</span>
-                            </a>
-                        </li>
-                    </router-link>
-                    <router-link
-                        to="/reportautomovil"
-                        v-slot="{ href, route, navigate, isActive, isExactActive }"
-                    >
-                        <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
-                            <a :href="href" @click="navigate">
-                                <i class="fa fa-file"></i><span>Reporte Automovil</span>
-                            </a>
-                        </li>
-                    </router-link>
                 @endif
                 @if(Auth::user()->tipo!='ADMIN')
                     <li class="treeview" style="height: auto;">

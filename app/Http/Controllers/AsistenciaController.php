@@ -13,6 +13,16 @@ class AsistenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function quitar($id)
+    {
+        $d=Asistencia::find($id);
+//        $d->objetos=$request->objetos;
+//        $d->recinto=Auth::user()->tipo;
+        $d->observado="NO";
+//        $d->observaciones=$request->observaciones;
+        $d->save();
+        return  $d;
+    }
     public function index()
     {
         return Asistencia::with('persona')->with('destino')->with('user')->get();
@@ -105,7 +115,7 @@ class AsistenciaController extends Controller
         $d=Asistencia::find($id);
 //        $d->objetos=$request->objetos;
 //        $d->recinto=Auth::user()->tipo;
-//        $d->objetos=$request->objetos;
+        $d->observado="SI";
         $d->observaciones=$request->observaciones;
         $d->save();
         return  $d;

@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Hover Data Table</h3>
+                        <h3 class="box-title">Control de asistencia</h3>
                     </div>
                     <div class="box-body">
                         <form action="">
@@ -47,7 +47,7 @@
                                     <th>Nombres  apellidos</th>
                                     <th>Id</th>
                                     <th>Entrada y salida</th>
-                                    <th>Targeta</th>
+                                    <th>Tarjeta</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="col-md-6">
 <!--                            <div class="form-group">-->
-                                <label for="targeta">Targeta</label>
+                                <label for="targeta">Tarjeta</label>
                                 <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Targeta" required>
 <!--                            </div>-->
                         </div>

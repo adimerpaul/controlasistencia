@@ -16,7 +16,7 @@ class RecintoSeeder extends Seeder
     public function run()
     {
         DB::table('recintos')->insert(['nombre'=>'ADMIN',]);
-//        DB::table('recintos')->insert(['nombre'=>'RECINTO ADUANERO ORURO',]);
-//        DB::table('recintos')->insert(['nombre'=>'RECINTO ADUANERO LA PAZ',]);
+        DB::table('recintos')->insert(['nombre'=>'RECINTO ADUANERO ORURO',]);
+        DB::table('recintos')->insert(['nombre'=>'RECINTO ADUANERO LA PAZ',]);
     }
 }

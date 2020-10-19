@@ -2085,6 +2085,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2138,6 +2143,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       user: {},
+      imagen1: null,
+      imagen2: null,
+      imagen3: null,
+      imagen4: null,
       datatable: null,
       datos: [],
       destinos: [],
@@ -2149,6 +2158,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getImage1: function getImage1(event) {
+      this.imagen1 = event.target.files[0];
+    },
+    getImage2: function getImage2(event) {
+      this.imagen2 = event.target.files[0];
+    },
+    getImage3: function getImage3(event) {
+      this.imagen3 = event.target.files[0];
+    },
+    getImage4: function getImage4(event) {
+      this.imagen4 = event.target.files[0];
+    },
     crear: function crear() {
       this.dato = {
         tipo: ''
@@ -2179,19 +2200,27 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(res.data);
         if (res.data.length >= 1) {
           // this.dato=res.data[0];
-          axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/asistencia', {
-            objetos: _this3.dato.objetos,
-            recinto: _this3.dato.recinto,
-            targeta: _this3.dato.targeta,
-            motivo: _this3.dato.motivo,
-            persona_id: _this3.dato.id,
-            destino_id: _this3.dato.destino
-          }).then(function (res) {
+          var data = new FormData();
+          data.append('image1', _this3.imagen1);
+          data.append('image2', _this3.imagen2);
+          data.append('image3', _this3.imagen3);
+          data.append('image4', _this3.imagen4);
+          data.append('objetos', _this3.dato.objetos);
+          data.append('recinto', _this3.dato.recinto);
+          data.append('targeta', _this3.dato.targeta);
+          data.append('motivo', _this3.dato.motivo);
+          data.append('persona_id', _this3.dato.id);
+          data.append('destino_id', _this3.dato.destino);
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/asistencia', data).then(function (res) {
             // console.log(res.data);
             _this3.misdatos();
 
             _this3.dato = {};
             _this3.ci = '';
+            $('#image1').val('');
+            $('#image2').val('');
+            $('#image3').val('');
+            $('#image4').val('');
 
             _this3.$toast.open({
               message: "Guardado Correctamnte",
@@ -2217,19 +2246,27 @@ __webpack_require__.r(__webpack_exports__);
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/persona', _this3.dato).then(function (res) {
             // console.log(res.data);
             var persona_id = res.data.id;
-            axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/asistencia', {
-              objetos: _this3.dato.objetos,
-              recinto: _this3.dato.recinto,
-              targeta: _this3.dato.targeta,
-              motivo: _this3.dato.motivo,
-              persona_id: persona_id,
-              destino_id: _this3.dato.destino
-            }).then(function (res) {
+            var data = new FormData();
+            data.append('image1', _this3.imagen1);
+            data.append('image2', _this3.imagen2);
+            data.append('image3', _this3.imagen3);
+            data.append('image4', _this3.imagen4);
+            data.append('objetos', _this3.dato.objetos);
+            data.append('recinto', _this3.dato.recinto);
+            data.append('targeta', _this3.dato.targeta);
+            data.append('motivo', _this3.dato.motivo);
+            data.append('persona_id', persona_id);
+            data.append('destino_id', _this3.dato.destino);
+            axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/asistencia', data).then(function (res) {
               // console.log(res.data);
               _this3.misdatos();
 
               _this3.dato = {};
               _this3.ci = '';
+              $('#image1').val('');
+              $('#image2').val('');
+              $('#image3').val('');
+              $('#image4').val('');
 
               _this3.$toast.open({
                 message: "Guardado Correctamnte",
@@ -2258,6 +2295,7 @@ __webpack_require__.r(__webpack_exports__);
         dismissible: true
       });
     },
+    store: function store() {},
     buscar: function buscar() {
       var _this4 = this;
 
@@ -3760,6 +3798,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3818,6 +3863,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      imagen1: null,
+      imagen2: null,
+      imagen3: null,
+      imagen4: null,
       user: {},
       datatable: null,
       datos: [],
@@ -3838,6 +3887,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getImage1: function getImage1(event) {
+      this.imagen1 = event.target.files[0];
+    },
+    getImage2: function getImage2(event) {
+      this.imagen2 = event.target.files[0];
+    },
+    getImage3: function getImage3(event) {
+      this.imagen3 = event.target.files[0];
+    },
+    getImage4: function getImage4(event) {
+      this.imagen4 = event.target.files[0];
+    },
     crear: function crear() {
       this.dato = {
         tipo: ''
@@ -3905,15 +3966,19 @@ __webpack_require__.r(__webpack_exports__);
       //             // console.log(res.data);
       //
       //             let persona_id= res.data.id;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/ingresoauto', {
-        objetos: this.dato.objetos,
-        recinto: this.dato.recinto,
-        targeta: this.dato.targeta,
-        motivo: this.dato.motivo,
-        persona_id: this.dato.persona.id,
-        auto_id: this.dato.id,
-        destino_id: this.dato.destino
-      }).then(function (res) {
+      var data = new FormData();
+      data.append('image1', this.imagen1);
+      data.append('image2', this.imagen2);
+      data.append('image3', this.imagen3);
+      data.append('image4', this.imagen4);
+      data.append('objetos', this.dato.objetos);
+      data.append('recinto', this.dato.recinto);
+      data.append('targeta', this.dato.targeta);
+      data.append('motivo', this.dato.motivo);
+      data.append('persona_id', this.dato.persona.id);
+      data.append('auto_id', this.dato.id);
+      data.append('destino_id', this.dato.destino);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/ingresoauto', data).then(function (res) {
         // console.log(res.data);
         // return false;
         _this3.misdatos();
@@ -3925,6 +3990,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         };
         _this3.placa = '';
+        $('#image1').val('');
+        $('#image2').val('');
+        $('#image3').val('');
+        $('#image4').val('');
 
         _this3.$toast.open({
           message: "Guardado Correctamnte",
@@ -4736,6 +4805,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4904,6 +4988,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -31958,7 +32057,7 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "col-md-6" }, [
                 _c("label", { attrs: { for: "objetos" } }, [
                   _vm._v("Objetos de valor")
                 ]),
@@ -31987,6 +32086,52 @@ var render = function() {
                       _vm.$set(_vm.dato, "objetos", $event.target.value)
                     }
                   }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("label", { attrs: { for: "objetos" } }, [
+                  _vm._v("Fotografias")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "file",
+                    id: "image1",
+                    name: "image",
+                    accept: "image/*"
+                  },
+                  on: { change: _vm.getImage1 }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "file",
+                    id: "image2",
+                    name: "image",
+                    accept: "image/*"
+                  },
+                  on: { change: _vm.getImage2 }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "file",
+                    id: "image3",
+                    name: "image",
+                    accept: "image/*"
+                  },
+                  on: { change: _vm.getImage3 }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "file",
+                    id: "image4",
+                    name: "image",
+                    accept: "image/*"
+                  },
+                  on: { change: _vm.getImage4 }
                 })
               ])
             ]),
@@ -35412,35 +35557,83 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-12" }, [
-                _c("label", { attrs: { for: "objetos" } }, [
-                  _vm._v("Objetos de valor")
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("label", { attrs: { for: "objetos" } }, [
+                    _vm._v("Objetos de valor")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dato.objetos,
+                        expression: "dato.objetos"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "objetos",
+                      placeholder: "Objetos"
+                    },
+                    domProps: { value: _vm.dato.objetos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.dato, "objetos", $event.target.value)
+                      }
+                    }
+                  })
                 ]),
                 _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.dato.objetos,
-                      expression: "dato.objetos"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "objetos",
-                    placeholder: "Objetos"
-                  },
-                  domProps: { value: _vm.dato.objetos },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.dato, "objetos", $event.target.value)
-                    }
-                  }
-                })
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("label", { attrs: { for: "objetos" } }, [
+                    _vm._v("Fotografias")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "file",
+                      id: "image1",
+                      name: "image",
+                      accept: "image/*"
+                    },
+                    on: { change: _vm.getImage1 }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "file",
+                      id: "image2",
+                      name: "image",
+                      accept: "image/*"
+                    },
+                    on: { change: _vm.getImage2 }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "file",
+                      id: "image3",
+                      name: "image",
+                      accept: "image/*"
+                    },
+                    on: { change: _vm.getImage3 }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "file",
+                      id: "image4",
+                      name: "image",
+                      accept: "image/*"
+                    },
+                    on: { change: _vm.getImage4 }
+                  })
+                ])
               ])
             ]),
             _vm._v(" "),
@@ -36413,6 +36606,92 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(i.observaciones))]),
                         _vm._v(" "),
+                        _c("td", [
+                          i.image1 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image1
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image1,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          i.image2 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image2
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image2,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          i.image3 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image3
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image3,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          i.image4 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image4
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image4,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "td",
                           [
@@ -36539,6 +36818,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Pertenencias")]),
         _vm._v(" "),
         _c("th", [_vm._v("Observado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fotografias")]),
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])
@@ -36833,6 +37114,92 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(i.observaciones))]),
                         _vm._v(" "),
+                        _c("td", [
+                          i.image1 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image1
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image1,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          i.image2 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image2
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image2,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          i.image3 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image3
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image3,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          i.image4 != ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    target: "_blank",
+                                    href: "app/" + i.image4
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      width: "30",
+                                      src: "app/" + i.image4,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "td",
                           [
@@ -36969,6 +37336,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Pertenencias")]),
         _vm._v(" "),
         _c("th", [_vm._v("Observado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fotos")]),
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])
@@ -59999,8 +60368,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravel\controlasistencia\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravel\controlasistencia\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravel\controlingreso\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravel\controlingreso\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

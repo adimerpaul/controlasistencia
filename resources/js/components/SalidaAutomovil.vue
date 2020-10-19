@@ -86,6 +86,7 @@
                                     <th>Estado</th>
                                     <th>Pertenencias</th>
                                     <th>Observado</th>
+                                    <th>Fotografias</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -102,6 +103,20 @@
                                     <td><span class="label" v-bind:class="i.estado=='INGRESADO'?'label-success':'label-warning'">{{i.estado}}</span></td>
                                     <td>{{i.objetos}}</td>
                                     <td>{{i.observaciones}}</td>
+                                    <td>
+                                        <a v-if="i.image1!=''" target="_blank" v-bind:href="'app/'+i.image1">
+                                            <img  width="30" v-bind:src="'app/'+i.image1" alt="">
+                                        </a>
+                                        <a v-if="i.image2!=''" target="_blank" v-bind:href="'app/'+i.image2">
+                                            <img  width="30" v-bind:src="'app/'+i.image2" alt="">
+                                        </a>
+                                        <a v-if="i.image3!=''" target="_blank" v-bind:href="'app/'+i.image3">
+                                            <img  width="30" v-bind:src="'app/'+i.image3" alt="">
+                                        </a>
+                                        <a v-if="i.image4!=''" target="_blank" v-bind:href="'app/'+i.image4">
+                                            <img  width="30" v-bind:src="'app/'+i.image4" alt="">
+                                        </a>
+                                    </td>
                                     <td>
                                         <template v-if="i.salida==null">
                                             <button   @click="observacion(i)" class="btn btn-warning btn-xs"><i class="fa fa-eye-slash"></i> Obs.</button>
@@ -147,7 +162,6 @@ export default {
             date1:moment().format('YYYY-MM-DD'),
             date2:moment().format('YYYY-MM-DD'),
             moment:moment,
-
         }
     },
     methods:{

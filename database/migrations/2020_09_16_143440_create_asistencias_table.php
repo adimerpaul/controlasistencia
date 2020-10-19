@@ -23,6 +23,10 @@ class CreateAsistenciasTable extends Migration
             $table->string('observado')->default('NO');
             $table->dateTime('salida')->nullable()->default(null);
             $table->string('targeta')->nullable()->default(null);
+            $table->string('image1')->nullable()->default(null);
+            $table->string('image2')->nullable()->default(null);
+            $table->string('image3')->nullable()->default(null);
+            $table->string('image4')->nullable()->default(null);
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->unsignedBigInteger('destino_id');

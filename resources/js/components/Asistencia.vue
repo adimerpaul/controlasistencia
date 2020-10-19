@@ -141,11 +141,16 @@
                                 <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Empresa/Institución" >
 <!--                            </div>-->
                         </div>
-                        <div class="col-md-12">
-<!--                            <div class="form-group">-->
+                        <div class="col-md-6">
                                 <label for="objetos">Objetos de valor</label>
                                 <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos"  ></textarea>
-<!--                            </div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <label for="objetos">Fotografias</label>
+                            <input type="file" id="image1" name="image" @change="getImage1" accept="image/*">
+                            <input type="file" id="image2" name="image" @change="getImage2" accept="image/*">
+                            <input type="file" id="image3" name="image" @change="getImage3" accept="image/*">
+                            <input type="file" id="image4" name="image" @change="getImage4" accept="image/*">
                         </div>
                     </div>
 <!--                    <div class="box-body">-->
@@ -228,6 +233,10 @@
         data:function (){
             return {
                 user:{},
+                imagen1 : null,
+                imagen2 : null,
+                imagen3 : null,
+                imagen4 : null,
                 datatable:null,
                 datos:[],
                 destinos:[],
@@ -240,6 +249,18 @@
             }
         },
         methods:{
+            getImage1(event){
+                this.imagen1 = event.target.files[0];
+            },
+            getImage2(event){
+                this.imagen2 = event.target.files[0];
+            },
+            getImage3(event){
+                this.imagen3 = event.target.files[0];
+            },
+            getImage4(event){
+                this.imagen4 = event.target.files[0];
+            },
             crear(){
                 this.dato={tipo:''};
             },
@@ -267,18 +288,27 @@
                     // console.log(res.data);
                     if (res.data.length>=1){
                         // this.dato=res.data[0];
-                        axios.post('/asistencia',{
-                            objetos:this.dato.objetos,
-                            recinto:this.dato.recinto,
-                            targeta:this.dato.targeta,
-                            motivo:this.dato.motivo,
-                            persona_id:this.dato.id,
-                            destino_id:this.dato.destino
-                        }).then(res=>{
+                        var data = new  FormData();
+                        data.append('image1', this.imagen1);
+                        data.append('image2', this.imagen2);
+                        data.append('image3', this.imagen3);
+                        data.append('image4', this.imagen4);
+                        data.append('objetos', this.dato.objetos);
+                        data.append('recinto', this.dato.recinto);
+                        data.append('targeta', this.dato.targeta);
+                        data.append('motivo', this.dato.motivo);
+                        data.append('persona_id', this.dato.id);
+                        data.append('destino_id', this.dato.destino);
+
+                        axios.post('/asistencia',data).then(res=>{
                             // console.log(res.data);
                             this.misdatos();
                             this.dato={};
                             this.ci='';
+                            $('#image1').val('');
+                            $('#image2').val('');
+                            $('#image3').val('');
+                            $('#image4').val('');
                             this.$toast.open({
                                 message: "Guardado Correctamnte",
                                 type: "success",
@@ -300,23 +330,33 @@
                         // });
                         // console.log(this.dato);
                         this.dato.ci=this.ci;
+
+
+
                         axios.post('/persona',this.dato).then(res=>{
                             // console.log(res.data);
 
                             let persona_id= res.data.id;
-
-                            axios.post('/asistencia',{
-                                objetos:this.dato.objetos,
-                                recinto:this.dato.recinto,
-                                targeta:this.dato.targeta,
-                                motivo:this.dato.motivo,
-                                persona_id:persona_id,
-                                destino_id:this.dato.destino
-                            }).then(res=>{
+                            var data = new  FormData();
+                            data.append('image1', this.imagen1);
+                            data.append('image2', this.imagen2);
+                            data.append('image3', this.imagen3);
+                            data.append('image4', this.imagen4);
+                            data.append('objetos', this.dato.objetos);
+                            data.append('recinto', this.dato.recinto);
+                            data.append('targeta', this.dato.targeta);
+                            data.append('motivo', this.dato.motivo);
+                            data.append('persona_id', persona_id);
+                            data.append('destino_id', this.dato.destino);
+                            axios.post('/asistencia',data).then(res=>{
                                 // console.log(res.data);
                                 this.misdatos();
                                 this.dato={};
                                 this.ci='';
+                                $('#image1').val('');
+                                $('#image2').val('');
+                                $('#image3').val('');
+                                $('#image4').val('');
                                 this.$toast.open({
                                     message: "Guardado Correctamnte",
                                     type: "success",
@@ -345,6 +385,9 @@
                     duration: 2000,
                     dismissible: true
                 })
+            },
+            store(){
+
             },
             buscar(){
                 if (this.ci!=""){

@@ -65,15 +65,29 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->hasFile('image1')?$path1 = $request->file('image1')->store('images'):$path1='';
+        $request->hasFile('image2')?$path2 = $request->file('image2')->store('images'):$path2='';
+        $request->hasFile('image3')?$path3 = $request->file('image3')->store('images'):$path3='';
+        $request->hasFile('image4')?$path4 = $request->file('image4')->store('images'):$path4='';
+//        $path = $request->file('image2')->store('images');
+//        $path = $request->file('image3')->store('images');
+//        $path = $request->file('image4')->store('images');
 
+//        return $path;
+//
+//        exit;
             $d=New Asistencia();
 //            $d->objetos=$request->objetos;
-        isset($request->objetos)?$d->objetos=$request->objetos:$d->objetos='';
+        isset($request->objetos)&&$request->objetos!='undefined'?$d->objetos=$request->objetos:$d->objetos='';
             $d->recinto=Auth::user()->tipo;
 //            $d->motivo=$request->motivo;
-        isset($request->motivo)?$d->motivo=$request->motivo:$d->motivo='';
+        isset($request->motivo)&&$request->motivo!='undefined'?$d->motivo=$request->motivo:$d->motivo='';
 //            $d->targeta=$request->targeta;
-        isset($request->targeta)?$d->targeta=$request->targeta:$d->targeta='';
+        isset($request->targeta)&&$request->targeta!='undefined'?$d->targeta=$request->targeta:$d->targeta='';
+            $d->image1=$path1;
+            $d->image2=$path2;
+            $d->image3=$path3;
+            $d->image4=$path4;
             $d->persona_id=$request->persona_id;
             $d->destino_id=$request->destino_id;
             $d->user_id=Auth::user()->id;

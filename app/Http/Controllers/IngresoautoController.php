@@ -44,14 +44,19 @@ class IngresoautoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->hasFile('image1')?$path1 = $request->file('image1')->store('images'):$path1='';
+        $request->hasFile('image2')?$path2 = $request->file('image2')->store('images'):$path2='';
+        $request->hasFile('image3')?$path3 = $request->file('image3')->store('images'):$path3='';
+        $request->hasFile('image4')?$path4 = $request->file('image4')->store('images'):$path4='';
+
         $d=New Ingresoauto();
 //        return $request->objetos;
-        isset($request->objetos)?$d->objetos=$request->objetos:$d->objetos='';
+        isset($request->objetos)&&$request->objetos!='undefined'?$d->objetos=$request->objetos:$d->objetos='';
         $d->recinto=Auth::user()->tipo;
 //            $d->motivo=$request->motivo;
-        isset($request->motivo)?$d->motivo=$request->motivo:$d->motivo='';
+        isset($request->motivo)&&$request->motivo!='undefined'?$d->motivo=$request->motivo:$d->motivo='';
 //            $d->targeta=$request->targeta;
-        isset($request->targeta)?$d->targeta=$request->targeta:$d->targeta='';
+        isset($request->targeta)&&$request->targeta!='undefined'?$d->targeta=$request->targeta:$d->targeta='';
 //        $d->objetos=$request->objetos;
 //        $d->recinto=Auth::user()->tipo;
 //        $d->motivo=$request->motivo;
@@ -59,19 +64,27 @@ class IngresoautoController extends Controller
         $d->persona_id=$request->persona_id;
         $d->destino_id=$request->destino_id;
         $d->auto_id=$request->auto_id;
+        $d->image1=$path1;
+        $d->image2=$path2;
+        $d->image3=$path3;
+        $d->image4=$path4;
         $d->user_id=Auth::user()->id;
         $d->save();
 
         $ad=New Asistencia();
 //        return $request->objetos;
-        isset($request->objetos)?$ad->objetos=$request->objetos:$ad->objetos='';
+        isset($request->objetos)&&$request->objetos!='undefined'?$ad->objetos=$request->objetos:$ad->objetos='';
         $ad->recinto=Auth::user()->tipo;
 //            $ad->motivo=$request->motivo;
-        isset($request->motivo)?$ad->motivo=$request->motivo:$ad->motivo='';
+        isset($request->motivo)&&$request->motivo!='undefined'?$ad->motivo=$request->motivo:$ad->motivo='';
 //            $ad->targeta=$request->targeta;
-        isset($request->targeta)?$ad->targeta=$request->targeta:$ad->targeta='';
+        isset($request->targeta)&&$request->targeta!='undefined'?$ad->targeta=$request->targeta:$ad->targeta='';
         $ad->persona_id=$request->persona_id;
         $ad->destino_id=$request->destino_id;
+        $ad->image1=$path1;
+        $ad->image2=$path2;
+        $ad->image3=$path3;
+        $ad->image4=$path4;
         $ad->user_id=Auth::user()->id;
         $ad->save();
     }

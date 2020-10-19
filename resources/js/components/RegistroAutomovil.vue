@@ -129,13 +129,13 @@
                         <div class="col-md-12">
 
                             <label for="motivo">Motivo</label>
-                            <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" ></textarea>
+                            <textarea type="text" v-model="dato.motivo" style="text-transform: uppercase" class="form-control" id="motivo" placeholder="Motivo" ></textarea>
 
                         </div>
                         <div class="col-md-6">
                             <!--                            <div class="form-group">-->
                             <label for="destino">Destino</label>
-                            <select name="destino" id="destino" class="form-control" v-model="dato.destino" required>
+                            <select name="destino" id="destino" style="text-transform: uppercase" class="form-control" v-model="dato.destino" required>
                                 <option v-for="i in destinos" v-bind:value="i.id">{{i.nombre}}</option>
                             </select>
                             <!--                            </div>-->
@@ -143,13 +143,13 @@
                         <div class="col-md-6">
                             <!--                            <div class="form-group">-->
                             <label for="targeta">Empresa/Institución</label>
-                            <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Empresa/Institución" >
+                            <input type="text"  v-model="dato.targeta" style="text-transform: uppercase" class="form-control" id="targeta" placeholder="Empresa/Institución" >
                             <!--                            </div>-->
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <label for="objetos">Objetos de valor</label>
-                                <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos"  ></textarea>
+                                <textarea type="text" style="text-transform: uppercase" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos"  ></textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="objetos">Fotografias</label>

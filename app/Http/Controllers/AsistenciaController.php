@@ -78,12 +78,12 @@ class AsistenciaController extends Controller
 //        exit;
             $d=New Asistencia();
 //            $d->objetos=$request->objetos;
-        isset($request->objetos)&&$request->objetos!='undefined'?$d->objetos=$request->objetos:$d->objetos='';
+        isset($request->objetos)&&$request->objetos!='undefined'?$d->objetos=strtoupper($request->objetos):$d->objetos='';
             $d->recinto=Auth::user()->tipo;
 //            $d->motivo=$request->motivo;
-        isset($request->motivo)&&$request->motivo!='undefined'?$d->motivo=$request->motivo:$d->motivo='';
+        isset($request->motivo)&&$request->motivo!='undefined'?$d->motivo=strtoupper($request->motivo):$d->motivo='';
 //            $d->targeta=$request->targeta;
-        isset($request->targeta)&&$request->targeta!='undefined'?$d->targeta=$request->targeta:$d->targeta='';
+        isset($request->targeta)&&$request->targeta!='undefined'?$d->targeta=strtoupper($request->targeta):$d->targeta='';
             $d->image1=$path1;
             $d->image2=$path2;
             $d->image3=$path3;

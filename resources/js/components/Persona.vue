@@ -27,11 +27,11 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-1 control-label">Nombres</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.nombres" class="form-control" id="name" placeholder="Nombres" required>
+                                                        <input type="text" v-model="dato.nombres" style="text-transform: uppercase" class="form-control" id="name" placeholder="Nombres" required>
                                                     </div>
                                                     <label for="apellidos" class="col-sm-1 control-label">Apellidos</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.apellidos" class="form-control" id="apellidos" placeholder="Apellidos" required>
+                                                        <input type="text" v-model="dato.apellidos" style="text-transform: uppercase" class="form-control" id="apellidos" placeholder="Apellidos" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

@@ -31903,6 +31903,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: {
                     type: "text",
                     id: "nombres",
@@ -31936,6 +31937,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: {
                     type: "text",
                     id: "apellidos",
@@ -31967,6 +31969,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: { type: "text", id: "motivo", placeholder: "Motivo" },
                   domProps: { value: _vm.dato.motivo },
                   on: {
@@ -32040,6 +32043,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: {
                     type: "text",
                     id: "targeta",
@@ -32072,6 +32076,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: {
                     type: "text",
                     id: "objetos",
@@ -33900,6 +33905,9 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control",
+                                  staticStyle: {
+                                    "text-transform": "uppercase"
+                                  },
                                   attrs: {
                                     type: "text",
                                     id: "name",
@@ -33942,6 +33950,9 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control",
+                                  staticStyle: {
+                                    "text-transform": "uppercase"
+                                  },
                                   attrs: {
                                     type: "text",
                                     id: "apellidos",
@@ -35466,6 +35477,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: { type: "text", id: "motivo", placeholder: "Motivo" },
                   domProps: { value: _vm.dato.motivo },
                   on: {
@@ -35494,6 +35506,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
+                    staticStyle: { "text-transform": "uppercase" },
                     attrs: { name: "destino", id: "destino", required: "" },
                     on: {
                       change: function($event) {
@@ -35539,6 +35552,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  staticStyle: { "text-transform": "uppercase" },
                   attrs: {
                     type: "text",
                     id: "targeta",
@@ -35572,6 +35586,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
+                    staticStyle: { "text-transform": "uppercase" },
                     attrs: {
                       type: "text",
                       id: "objetos",

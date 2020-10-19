@@ -51,12 +51,12 @@ class IngresoautoController extends Controller
 
         $d=New Ingresoauto();
 //        return $request->objetos;
-        isset($request->objetos)&&$request->objetos!='undefined'?$d->objetos=$request->objetos:$d->objetos='';
+        isset($request->objetos)&&$request->objetos!='undefined'?$d->objetos=strtoupper($request->objetos):$d->objetos='';
         $d->recinto=Auth::user()->tipo;
 //            $d->motivo=$request->motivo;
-        isset($request->motivo)&&$request->motivo!='undefined'?$d->motivo=$request->motivo:$d->motivo='';
+        isset($request->motivo)&&$request->motivo!='undefined'?$d->motivo=strtoupper($request->motivo):$d->motivo='';
 //            $d->targeta=$request->targeta;
-        isset($request->targeta)&&$request->targeta!='undefined'?$d->targeta=$request->targeta:$d->targeta='';
+        isset($request->targeta)&&$request->targeta!='undefined'?$d->targeta=strtoupper($request->targeta):$d->targeta='';
 //        $d->objetos=$request->objetos;
 //        $d->recinto=Auth::user()->tipo;
 //        $d->motivo=$request->motivo;
@@ -73,12 +73,12 @@ class IngresoautoController extends Controller
 
         $ad=New Asistencia();
 //        return $request->objetos;
-        isset($request->objetos)&&$request->objetos!='undefined'?$ad->objetos=$request->objetos:$ad->objetos='';
+        isset($request->objetos)&&$request->objetos!='undefined'?$ad->objetos=strtoupper($request->objetos):$ad->objetos='';
         $ad->recinto=Auth::user()->tipo;
 //            $ad->motivo=$request->motivo;
-        isset($request->motivo)&&$request->motivo!='undefined'?$ad->motivo=$request->motivo:$ad->motivo='';
+        isset($request->motivo)&&$request->motivo!='undefined'?$ad->motivo=strtoupper($request->motivo):$ad->motivo='';
 //            $ad->targeta=$request->targeta;
-        isset($request->targeta)&&$request->targeta!='undefined'?$ad->targeta=$request->targeta:$ad->targeta='';
+        isset($request->targeta)&&$request->targeta!='undefined'?$ad->targeta=strtoupper($request->targeta):$ad->targeta='';
         $ad->persona_id=$request->persona_id;
         $ad->destino_id=$request->destino_id;
         $ad->image1=$path1;

@@ -28,8 +28,8 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         $p=new Persona();
-        $p->nombres=$request->nombres;
-        $p->apellidos=$request->apellidos;
+        $p->nombres=strtoupper($request->nombres);
+        $p->apellidos=strtoupper($request->apellidos);
 //        $p->celular=$request->celular;
         isset($request->celular)?$p->celular=$request->celular:$p->celular='';
         $p->expedido=$request->expedido;

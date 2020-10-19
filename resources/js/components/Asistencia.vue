@@ -7,7 +7,7 @@
                         <h3 class="box-title">Control de asistencia</h3>
                     </div>
                     <div class="box-body">
-                        <form action="">
+                        <form action="" v-bind:class="user.tipo=='ADMIN'?'':'hidden'" >
                             <form role="form">
                                 <div class="row">
                                     <div class="col-md-5">
@@ -106,7 +106,7 @@
                         <div class="col-md-6">
 <!--                            <div class="form-group">-->
                                 <label for="celular">Celular</label>
-                                <input type="text" v-model="dato.celular" class="form-control" id="celular" placeholder="Celular" required>
+                                <input type="text" v-model="dato.celular" class="form-control" id="celular" placeholder="Celular" >
 <!--                            </div>-->
                         </div>
                         <div class="col-md-6">
@@ -124,7 +124,7 @@
                         <div class="col-md-12">
 <!--                            <div class="form-group">-->
                                 <label for="motivo">Motivo</label>
-                                <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" required></textarea>
+                                <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" ></textarea>
 <!--                            </div>-->
                         </div>
                         <div class="col-md-6">
@@ -137,14 +137,14 @@
                         </div>
                         <div class="col-md-6">
 <!--                            <div class="form-group">-->
-                                <label for="targeta">Tarjeta</label>
-                                <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Targeta" required>
+                                <label for="targeta">Empresa/Institución</label>
+                                <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Empresa/Institución" >
 <!--                            </div>-->
                         </div>
                         <div class="col-md-12">
 <!--                            <div class="form-group">-->
                                 <label for="objetos">Objetos de valor</label>
-                                <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos" required ></textarea>
+                                <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos"  ></textarea>
 <!--                            </div>-->
                         </div>
                     </div>
@@ -214,6 +214,10 @@
                 ]
             });
             this.misdatos();
+            axios.get('/isUser').then(res=>{
+                this.user=res.data;
+                // console.log(this.user);
+            });
             // console.log(this.dato.password);
             axios.get('/destino/1/1').then(res=>{
                 this.destinos=res.data;
@@ -223,6 +227,7 @@
         },
         data:function (){
             return {
+                user:{},
                 datatable:null,
                 datos:[],
                 destinos:[],

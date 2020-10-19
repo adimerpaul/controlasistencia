@@ -91,3 +91,4 @@ Route::apiResource('/recinto',\App\Http\Controllers\RecintoController::class)->m
 Route::put('/pass/{id}',[App\Http\Controllers\UserController::class, 'pass'])->middleware('auth');
 Route::get('/obs/{id}',[App\Http\Controllers\PersonaController::class, 'obs'])->middleware('auth');
 Route::get('/quitar/{id}',[App\Http\Controllers\AsistenciaController::class, 'quitar'])->middleware('auth');
+Route::get('/isUser',[App\Http\Controllers\UserController::class, 'usuario'])->middleware('auth');

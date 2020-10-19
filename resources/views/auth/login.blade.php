@@ -31,12 +31,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Con</b>trol</a>
+        {{--        <a ><b>Con</b>trol</a>--}}
+        <img src="img/logo.png" alt="" width="250">
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Ingrese su cuenta para inisiar session</p>
-
+        <p class="login-box-msg">Ingrese su cuenta para iniciar session</p>
         <form action="{{route('login')}}" method="post">
             @csrf
             <div class="form-group has-feedback">

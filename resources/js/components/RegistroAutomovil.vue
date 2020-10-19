@@ -8,7 +8,7 @@
                     </div>
                     <div class="box-body">
                         <form action="">
-                            <form role="form">
+                            <form role="form" v-bind:class="user.tipo=='ADMIN'?'':'hidden'">
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="box-body">
@@ -129,7 +129,7 @@
                         <div class="col-md-12">
 
                             <label for="motivo">Motivo</label>
-                            <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" required></textarea>
+                            <textarea type="text" v-model="dato.motivo" class="form-control" id="motivo" placeholder="Motivo" ></textarea>
 
                         </div>
                         <div class="col-md-6">
@@ -142,14 +142,14 @@
                         </div>
                         <div class="col-md-6">
                             <!--                            <div class="form-group">-->
-                            <label for="targeta">Tarjeta</label>
-                            <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Targeta" required>
+                            <label for="targeta">Empresa/Institución</label>
+                            <input type="text"  v-model="dato.targeta" class="form-control" id="targeta" placeholder="Empresa/Institución" >
                             <!--                            </div>-->
                         </div>
                         <div class="col-md-12">
                             <!--                            <div class="form-group">-->
                             <label for="objetos">Objetos de valor</label>
-                            <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos" required ></textarea>
+                            <textarea type="text" v-model="dato.objetos" class="form-control" id="objetos" placeholder="Objetos"  ></textarea>
                             <!--                            </div>-->
                         </div>
                     </div>
@@ -231,9 +231,14 @@ export default {
             this.personas=res.data;
             // console.log(this.personas);
         })
+        axios.get('/isUser').then(res=>{
+            this.user=res.data;
+            // console.log(this.user);
+        });
     },
     data:function (){
         return {
+            user:{},
             datatable:null,
             datos:[],
             destinos:[],
@@ -324,6 +329,7 @@ export default {
                         })
                         .then(res=>{
                             // console.log(res.data);
+                            // return false;
                             this.misdatos();
                             this.dato={persona:{nombres:'',apellidos:''}};
                             this.placa='';

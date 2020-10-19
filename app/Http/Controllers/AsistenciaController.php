@@ -67,10 +67,13 @@ class AsistenciaController extends Controller
     {
 
             $d=New Asistencia();
-            $d->objetos=$request->objetos;
+//            $d->objetos=$request->objetos;
+        isset($request->objetos)?$d->objetos=$request->objetos:$d->objetos='';
             $d->recinto=Auth::user()->tipo;
-            $d->motivo=$request->motivo;
-            $d->targeta=$request->targeta;
+//            $d->motivo=$request->motivo;
+        isset($request->motivo)?$d->motivo=$request->motivo:$d->motivo='';
+//            $d->targeta=$request->targeta;
+        isset($request->targeta)?$d->targeta=$request->targeta:$d->targeta='';
             $d->persona_id=$request->persona_id;
             $d->destino_id=$request->destino_id;
             $d->user_id=Auth::user()->id;

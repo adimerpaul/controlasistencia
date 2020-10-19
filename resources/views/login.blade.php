@@ -36,7 +36,7 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Ingrese su cuenta para inisiar session</p>
+        <p class="login-box-msg">Ingrese su cuenta para iniciar session</p>
         <form action="{{route('login')}}" method="post">
             @csrf
             <div class="form-group has-feedback">

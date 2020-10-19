@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RecintoSeeder::class,
             UserSeeder::class,
-//            PersonaSeeder::class,
-//            DestinoSeeder::class,
-//            AsistenciaSeeder::class,
-//            AutoSeeder::class,
+            PersonaSeeder::class,
+            DestinoSeeder::class,
+            AsistenciaSeeder::class,
+            AutoSeeder::class,
         ]);
     }
 }

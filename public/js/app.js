@@ -2126,7 +2126,10 @@ __webpack_require__.r(__webpack_exports__);
       dom: 'Bfrtip',
       buttons: ['copy', 'csv', 'pdf', 'print']
     });
-    this.misdatos(); // console.log(this.dato.password);
+    this.misdatos();
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/isUser').then(function (res) {
+      _this.user = res.data; // console.log(this.user);
+    }); // console.log(this.dato.password);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/destino/1/1').then(function (res) {
       _this.destinos = res.data; // console.log(res.data)
@@ -2134,6 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      user: {},
       datatable: null,
       datos: [],
       destinos: [],
@@ -3233,6 +3237,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/persona', this.dato).then(function (res) {
+        // console.log(res.data);
+        // return false;
         _this2.misdatos();
 
         $('#modal-default').modal('hide');
@@ -3806,9 +3812,13 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/persona').then(function (res) {
       _this.personas = res.data; // console.log(this.personas);
     });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/isUser').then(function (res) {
+      _this.user = res.data; // console.log(this.user);
+    });
   },
   data: function data() {
     return {
+      user: {},
       datatable: null,
       datos: [],
       destinos: [],
@@ -3905,6 +3915,7 @@ __webpack_require__.r(__webpack_exports__);
         destino_id: this.dato.destino
       }).then(function (res) {
         // console.log(res.data);
+        // return false;
         _this3.misdatos();
 
         _this3.dato = {
@@ -4107,6 +4118,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    var _this = this;
+
     // console.log('Component mounted.');
     // $('#example1').DataTable()
     // this.datatable = $('#example1').DataTable({});
@@ -4143,11 +4156,15 @@ __webpack_require__.r(__webpack_exports__);
       dom: 'Bfrtip',
       buttons: ['copy', 'csv', 'pdf', 'print']
     });
-    this.misdatos(); // console.log('aa');
+    this.misdatos();
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/isUser').then(function (res) {
+      _this.user = res.data; // console.log(this.user);
+    }); // console.log('aa');
     // console.log(this.dato.password);
   },
   data: function data() {
     return {
+      user: {},
       datatable: null,
       datos: [],
       dato: {
@@ -4163,24 +4180,24 @@ __webpack_require__.r(__webpack_exports__);
     //     this.dato={tipo:''};
     // },
     misdatos: function misdatos() {
-      var _this = this;
+      var _this2 = this;
 
       // axios.get('/asistencia').then(res=>{
       //     this.datos=res.data;
       //     console.log(this.datos);
       // });
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/ingresoauto/' + this.date1 + '/' + this.date2).then(function (res) {
-        _this.datos = res.data;
+        _this2.datos = res.data;
 
-        _this.datatable.clear().draw();
+        _this2.datatable.clear().draw();
 
         var cont = 0;
 
-        _this.datos.forEach(function (r) {
+        _this2.datos.forEach(function (r) {
           // console.log(r);
           cont++;
 
-          _this.datatable.row.add([cont, r.persona.nombres + ' ' + r.persona.apellidos, r.auto.placa, r.persona.celular, moment__WEBPACK_IMPORTED_MODULE_2___default()(r.created_at).format('DD-MM-YY HH:mm:ss'), moment__WEBPACK_IMPORTED_MODULE_2___default()(r.salida).format('DD-MM-YY HH:mm:ss'), // r.salida,
+          _this2.datatable.row.add([cont, r.persona.nombres + ' ' + r.persona.apellidos, r.auto.placa, r.persona.celular, moment__WEBPACK_IMPORTED_MODULE_2___default()(r.created_at).format('DD-MM-YY HH:mm:ss'), moment__WEBPACK_IMPORTED_MODULE_2___default()(r.salida).format('DD-MM-YY HH:mm:ss'), // r.salida,
           r.user.name, r.estado, r.objetos, r.observaciones]).draw(false);
         }); // console.log(this.datos);
 
@@ -4199,23 +4216,23 @@ __webpack_require__.r(__webpack_exports__);
       // })
     },
     update: function update() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/ingresoauto/' + this.dato.id, this.dato).then(function (res) {
         console.log(res.data);
 
-        _this2.misdatos();
+        _this3.misdatos();
 
         $('#modificar').modal('hide');
 
-        _this2.$toast.open({
+        _this3.$toast.open({
           message: "Dato modificado",
           type: "warning",
           duration: 3000,
           dismissible: true
         });
 
-        _this2.dato = {
+        _this3.dato = {
           tipo: ''
         };
       });
@@ -4234,7 +4251,7 @@ __webpack_require__.r(__webpack_exports__);
       this.dato = i;
     },
     salida: function salida(i) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$fire({
         title: 'Seguro de marcar salida??',
@@ -4247,17 +4264,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (r) {
         if (r.value) {
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/ingresoauto/' + i.id).then(function (res) {
-            _this3.misdatos(); // $('#modal-default').modal('hide');
+            _this4.misdatos(); // $('#modal-default').modal('hide');
 
 
-            _this3.$toast.open({
+            _this4.$toast.open({
               message: "marcado salida",
               type: "info",
               duration: 3000,
               dismissible: true
             });
 
-            _this3.dato = {
+            _this4.dato = {
               tipo: ''
             };
           });
@@ -4405,6 +4422,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    var _this = this;
+
     // console.log('Component mounted.');
     // $('#example1').DataTable()
     // this.datatable = $('#example1').DataTable({});
@@ -4441,11 +4460,15 @@ __webpack_require__.r(__webpack_exports__);
       dom: 'Bfrtip',
       buttons: ['copy', 'csv', 'pdf', 'print']
     });
-    this.misdatos(); // console.log('aa');
+    this.misdatos();
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/isUser').then(function (res) {
+      _this.user = res.data;
+    }); // console.log('aa');
     // console.log(this.dato.password);
   },
   data: function data() {
     return {
+      user: {},
       datatable: null,
       datos: [],
       dato: {
@@ -4461,24 +4484,24 @@ __webpack_require__.r(__webpack_exports__);
     //     this.dato={tipo:''};
     // },
     misdatos: function misdatos() {
-      var _this = this;
+      var _this2 = this;
 
       // axios.get('/asistencia').then(res=>{
       //     this.datos=res.data;
       //     console.log(this.datos);
       // });
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/asistencia/' + this.date1 + '/' + this.date2).then(function (res) {
-        _this.datos = res.data;
+        _this2.datos = res.data;
 
-        _this.datatable.clear().draw();
+        _this2.datatable.clear().draw();
 
         var cont = 0;
 
-        _this.datos.forEach(function (r) {
+        _this2.datos.forEach(function (r) {
           // console.log(r);
           cont++;
 
-          _this.datatable.row.add([cont, r.persona.nombres + ' ' + r.persona.apellidos, r.persona.celular, moment__WEBPACK_IMPORTED_MODULE_2___default()(r.created_at).format('DD-MM-YY HH:mm:ss'), moment__WEBPACK_IMPORTED_MODULE_2___default()(r.salida).format('DD-MM-YY HH:mm:ss'), // r.salida,
+          _this2.datatable.row.add([cont, r.persona.nombres + ' ' + r.persona.apellidos, r.persona.celular, moment__WEBPACK_IMPORTED_MODULE_2___default()(r.created_at).format('DD-MM-YY HH:mm:ss'), moment__WEBPACK_IMPORTED_MODULE_2___default()(r.salida).format('DD-MM-YY HH:mm:ss'), // r.salida,
           r.user.name, r.estado, r.objetos, r.observaciones]).draw(false);
         });
       });
@@ -4496,23 +4519,23 @@ __webpack_require__.r(__webpack_exports__);
       // })
     },
     update: function update() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/asistencia/' + this.dato.id, this.dato).then(function (res) {
         console.log(res.data);
 
-        _this2.misdatos();
+        _this3.misdatos();
 
         $('#modificar').modal('hide');
 
-        _this2.$toast.open({
+        _this3.$toast.open({
           message: "Dato modificado",
           type: "warning",
           duration: 3000,
           dismissible: true
         });
 
-        _this2.dato = {
+        _this3.dato = {
           tipo: ''
         };
       });
@@ -4531,7 +4554,7 @@ __webpack_require__.r(__webpack_exports__);
       this.dato = i;
     },
     salida: function salida(i) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$fire({
         title: 'Seguro de marcar salida??',
@@ -4544,17 +4567,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (r) {
         if (r.value) {
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/asistencia/' + i.id).then(function (res) {
-            _this3.misdatos(); // $('#modal-default').modal('hide');
+            _this4.misdatos(); // $('#modal-default').modal('hide');
 
 
-            _this3.$toast.open({
+            _this4.$toast.open({
               message: "marcado salida",
               type: "info",
               duration: 3000,
               dismissible: true
             });
 
-            _this3.dato = {
+            _this4.dato = {
               tipo: ''
             };
           });
@@ -4706,19 +4729,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    var _this = this;
+
     // console.log('Component mounted.');
     // $('#example1').DataTable()
     // this.datatable = $('#example1').DataTable({});
     this.misdatos(); // console.log('aa');
     // console.log(this.dato.password);
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/isUser').then(function (res) {
+      _this.user = res.data; // console.log(this.user);
+    });
   },
   data: function data() {
     return {
+      search: '',
+      user: {},
       datatable: null,
       datos: [],
       dato: {
@@ -4734,14 +4772,15 @@ __webpack_require__.r(__webpack_exports__);
     //     this.dato={tipo:''};
     // },
     misdatos: function misdatos() {
-      var _this = this;
+      var _this2 = this;
 
       // axios.get('/asistencia').then(res=>{
       //     this.datos=res.data;
       //     console.log(this.datos);
       // });
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/ingresoauto/' + this.date1 + '/' + this.date2).then(function (res) {
-        _this.datos = res.data; // console.log(this.datos);
+        _this2.datos = res.data;
+        _this2.search = ''; // console.log(this.datos);
       });
     },
     guardar: function guardar() {// axios.post('/persona',this.dato).then(res=>{
@@ -4757,23 +4796,23 @@ __webpack_require__.r(__webpack_exports__);
       // })
     },
     update: function update() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/ingresoauto/' + this.dato.id, this.dato).then(function (res) {
         console.log(res.data);
 
-        _this2.misdatos();
+        _this3.misdatos();
 
         $('#modificar').modal('hide');
 
-        _this2.$toast.open({
+        _this3.$toast.open({
           message: "Dato modificado",
           type: "warning",
           duration: 3000,
           dismissible: true
         });
 
-        _this2.dato = {
+        _this3.dato = {
           tipo: ''
         };
       });
@@ -4792,7 +4831,7 @@ __webpack_require__.r(__webpack_exports__);
       this.dato = i;
     },
     salida: function salida(i) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$fire({
         title: 'Seguro de marcar salida??',
@@ -4805,17 +4844,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (r) {
         if (r.value) {
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/ingresoauto/' + i.id).then(function (res) {
-            _this3.misdatos(); // $('#modal-default').modal('hide');
+            _this4.misdatos(); // $('#modal-default').modal('hide');
 
 
-            _this3.$toast.open({
+            _this4.$toast.open({
               message: "marcado salida",
               type: "info",
               duration: 3000,
               dismissible: true
             });
 
-            _this3.dato = {
+            _this4.dato = {
               tipo: ''
             };
           });
@@ -4827,6 +4866,20 @@ __webpack_require__.r(__webpack_exports__);
     reg: function reg() {
       // console.log(this.dato.password);
       if (this.dato.password == '' || this.dato.password == this.dato.password2) return false;else return true;
+    },
+    filteredAndSorted: function filteredAndSorted() {
+      var _this5 = this;
+
+      // function to compare names
+      function compare(a, b) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      }
+
+      return this.datos.filter(function (user) {
+        return user.persona.ci.toLowerCase().includes(_this5.search.toLowerCase());
+      }).sort(compare);
     }
   },
   filters: {
@@ -4849,10 +4902,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -4965,27 +5016,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    var _this = this;
+
     // console.log('Component mounted.');
     // $('#example1').DataTable()
     // this.datatable = $('#example1').DataTable({});
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/isUser').then(function (res) {
+      _this.user = res.data;
+    });
     this.misdatos(); // console.log('aa');
     // console.log(this.dato.password);
   },
   data: function data() {
     return {
+      search: '',
+      user: {},
       datatable: null,
       datos: [],
       dato: {
         tipo: ''
       },
-      date1: moment__WEBPACK_IMPORTED_MODULE_2___default()().format('YYYY-MM-DD'),
-      date2: moment__WEBPACK_IMPORTED_MODULE_2___default()().format('YYYY-MM-DD'),
-      moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a
+      date1: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-MM-DD'),
+      date2: moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-MM-DD'),
+      moment: moment__WEBPACK_IMPORTED_MODULE_1___default.a
     };
   },
   methods: {
@@ -4993,14 +5060,15 @@ __webpack_require__.r(__webpack_exports__);
     //     this.dato={tipo:''};
     // },
     misdatos: function misdatos() {
-      var _this = this;
+      var _this2 = this;
 
       // axios.get('/asistencia').then(res=>{
       //     this.datos=res.data;
       //     console.log(this.datos);
       // });
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/asistencia/' + this.date1 + '/' + this.date2).then(function (res) {
-        _this.datos = res.data;
+        _this2.datos = res.data;
+        _this2.search = '';
       });
     },
     guardar: function guardar() {// axios.post('/persona',this.dato).then(res=>{
@@ -5016,23 +5084,23 @@ __webpack_require__.r(__webpack_exports__);
       // })
     },
     update: function update() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/asistencia/' + this.dato.id, this.dato).then(function (res) {
         console.log(res.data);
 
-        _this2.misdatos();
+        _this3.misdatos();
 
         $('#modificar').modal('hide');
 
-        _this2.$toast.open({
+        _this3.$toast.open({
           message: "Dato modificado",
           type: "warning",
           duration: 3000,
           dismissible: true
         });
 
-        _this2.dato = {
+        _this3.dato = {
           tipo: ''
         };
       });
@@ -5051,7 +5119,7 @@ __webpack_require__.r(__webpack_exports__);
       this.dato = i;
     },
     salida: function salida(i) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$fire({
         title: 'Seguro de marcar salida??',
@@ -5064,17 +5132,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (r) {
         if (r.value) {
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/asistencia/' + i.id).then(function (res) {
-            _this3.misdatos(); // $('#modal-default').modal('hide');
+            _this4.misdatos(); // $('#modal-default').modal('hide');
 
 
-            _this3.$toast.open({
+            _this4.$toast.open({
               message: "marcado salida",
               type: "info",
               duration: 3000,
               dismissible: true
             });
 
-            _this3.dato = {
+            _this4.dato = {
               tipo: ''
             };
           });
@@ -5086,11 +5154,25 @@ __webpack_require__.r(__webpack_exports__);
     reg: function reg() {
       // console.log(this.dato.password);
       if (this.dato.password == '' || this.dato.password == this.dato.password2) return false;else return true;
+    },
+    filteredAndSorted: function filteredAndSorted() {
+      var _this5 = this;
+
+      // function to compare names
+      function compare(a, b) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      }
+
+      return this.datos.filter(function (user) {
+        return user.persona.ci.toLowerCase().includes(_this5.search.toLowerCase());
+      }).sort(compare);
     }
   },
   filters: {
     fecha: function fecha(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format('DD-MM-YYYY HH:mm:ss ');
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('DD-MM-YYYY HH:mm:ss ');
     }
   }
 });
@@ -31348,104 +31430,111 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
-            _c("form", { attrs: { action: "" } }, [
-              _c("form", { attrs: { role: "form" } }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "inicio" } }, [
-                          _vm._v("Fecha inicio")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.date1,
-                              expression: "date1"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "date",
-                            id: "inicio",
-                            placeholder: "Enter email"
-                          },
-                          domProps: { value: _vm.date1 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+            _c(
+              "form",
+              {
+                class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
+                attrs: { action: "" }
+              },
+              [
+                _c("form", { attrs: { role: "form" } }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("div", { staticClass: "box-body" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "inicio" } }, [
+                            _vm._v("Fecha inicio")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.date1,
+                                expression: "date1"
                               }
-                              _vm.date1 = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "fin" } }, [
-                          _vm._v("Fecha final")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.date2,
-                              expression: "date2"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "date",
-                            id: "fin",
-                            placeholder: "Enter email"
-                          },
-                          domProps: { value: _vm.date2 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              id: "inicio",
+                              placeholder: "Enter email"
+                            },
+                            domProps: { value: _vm.date1 },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.date1 = $event.target.value
                               }
-                              _vm.date2 = $event.target.value
                             }
-                          }
-                        })
+                          })
+                        ])
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-2" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "actualizar" } }, [
-                          _vm._v("Consultar")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info",
-                            staticStyle: { "margin-bottom": "1em" },
-                            attrs: { type: "button", id: "actualizar" },
-                            on: { click: _vm.actualizar }
-                          },
-                          [_c("i", { staticClass: "fa fa-refresh" })]
-                        )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("div", { staticClass: "box-body" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "fin" } }, [
+                            _vm._v("Fecha final")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.date2,
+                                expression: "date2"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              id: "fin",
+                              placeholder: "Enter email"
+                            },
+                            domProps: { value: _vm.date2 },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.date2 = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("div", { staticClass: "box-body" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "actualizar" } }, [
+                            _vm._v("Consultar")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              staticStyle: { "margin-bottom": "1em" },
+                              attrs: { type: "button", id: "actualizar" },
+                              on: { click: _vm.actualizar }
+                            },
+                            [_c("i", { staticClass: "fa fa-refresh" })]
+                          )
+                        ])
                       ])
                     ])
                   ])
                 ])
-              ])
-            ]),
+              ]
+            ),
             _vm._v(" "),
             _vm._m(1)
           ])
@@ -31688,8 +31777,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     id: "celular",
-                    placeholder: "Celular",
-                    required: ""
+                    placeholder: "Celular"
                   },
                   domProps: { value: _vm.dato.celular },
                   on: {
@@ -31780,12 +31868,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "motivo",
-                    placeholder: "Motivo",
-                    required: ""
-                  },
+                  attrs: { type: "text", id: "motivo", placeholder: "Motivo" },
                   domProps: { value: _vm.dato.motivo },
                   on: {
                     input: function($event) {
@@ -31844,7 +31927,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "targeta" } }, [_vm._v("Tarjeta")]),
+                _c("label", { attrs: { for: "targeta" } }, [
+                  _vm._v("Empresa/Institución")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -31859,8 +31944,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     id: "targeta",
-                    placeholder: "Targeta",
-                    required: ""
+                    placeholder: "Empresa/Institución"
                   },
                   domProps: { value: _vm.dato.targeta },
                   on: {
@@ -31892,8 +31976,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     id: "objetos",
-                    placeholder: "Objetos",
-                    required: ""
+                    placeholder: "Objetos"
                   },
                   domProps: { value: _vm.dato.objetos },
                   on: {
@@ -33901,8 +33984,7 @@ var render = function() {
                                   attrs: {
                                     type: "text",
                                     id: "celular",
-                                    placeholder: "Celular",
-                                    required: ""
+                                    placeholder: "Celular"
                                   },
                                   domProps: { value: _vm.dato.celular },
                                   on: {
@@ -34297,8 +34379,7 @@ var render = function() {
                                   attrs: {
                                     type: "text",
                                     id: "celular2",
-                                    placeholder: "Celular",
-                                    required: ""
+                                    placeholder: "Celular"
                                   },
                                   domProps: { value: _vm.dato.celular },
                                   on: {
@@ -35015,102 +35096,109 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
             _c("form", { attrs: { action: "" } }, [
-              _c("form", { attrs: { role: "form" } }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "inicio" } }, [
-                          _vm._v("Fecha inicio")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.date1,
-                              expression: "date1"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "date",
-                            id: "inicio",
-                            placeholder: "Enter email"
-                          },
-                          domProps: { value: _vm.date1 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+              _c(
+                "form",
+                {
+                  class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
+                  attrs: { role: "form" }
+                },
+                [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("div", { staticClass: "box-body" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "inicio" } }, [
+                            _vm._v("Fecha inicio")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.date1,
+                                expression: "date1"
                               }
-                              _vm.date1 = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "fin" } }, [
-                          _vm._v("Fecha final")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.date2,
-                              expression: "date2"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "date",
-                            id: "fin",
-                            placeholder: "Enter email"
-                          },
-                          domProps: { value: _vm.date2 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              id: "inicio",
+                              placeholder: "Enter email"
+                            },
+                            domProps: { value: _vm.date1 },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.date1 = $event.target.value
                               }
-                              _vm.date2 = $event.target.value
                             }
-                          }
-                        })
+                          })
+                        ])
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-2" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "actualizar" } }, [
-                          _vm._v("Consultar")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info",
-                            staticStyle: { "margin-bottom": "1em" },
-                            attrs: { type: "button", id: "actualizar" },
-                            on: { click: _vm.actualizar }
-                          },
-                          [_c("i", { staticClass: "fa fa-refresh" })]
-                        )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("div", { staticClass: "box-body" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "fin" } }, [
+                            _vm._v("Fecha final")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.date2,
+                                expression: "date2"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              id: "fin",
+                              placeholder: "Enter email"
+                            },
+                            domProps: { value: _vm.date2 },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.date2 = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("div", { staticClass: "box-body" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "actualizar" } }, [
+                            _vm._v("Consultar")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              staticStyle: { "margin-bottom": "1em" },
+                              attrs: { type: "button", id: "actualizar" },
+                              on: { click: _vm.actualizar }
+                            },
+                            [_c("i", { staticClass: "fa fa-refresh" })]
+                          )
+                        ])
                       ])
                     ])
                   ])
-                ])
-              ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _vm._m(1)
@@ -35233,12 +35321,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "motivo",
-                    placeholder: "Motivo",
-                    required: ""
-                  },
+                  attrs: { type: "text", id: "motivo", placeholder: "Motivo" },
                   domProps: { value: _vm.dato.motivo },
                   on: {
                     input: function($event) {
@@ -35297,7 +35380,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "targeta" } }, [_vm._v("Tarjeta")]),
+                _c("label", { attrs: { for: "targeta" } }, [
+                  _vm._v("Empresa/Institución")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -35312,8 +35397,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     id: "targeta",
-                    placeholder: "Targeta",
-                    required: ""
+                    placeholder: "Empresa/Institución"
                   },
                   domProps: { value: _vm.dato.targeta },
                   on: {
@@ -35345,8 +35429,7 @@ var render = function() {
                   attrs: {
                     type: "text",
                     id: "objetos",
-                    placeholder: "Objetos",
-                    required: ""
+                    placeholder: "Objetos"
                   },
                   domProps: { value: _vm.dato.objetos },
                   on: {
@@ -35452,102 +35535,109 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
-            _c("form", { attrs: { role: "form" } }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "inicio" } }, [
-                        _vm._v("Fecha inicio")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date1,
-                            expression: "date1"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "inicio",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date1 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+            _c(
+              "form",
+              {
+                class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
+                attrs: { role: "form" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inicio" } }, [
+                          _vm._v("Fecha inicio")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date1,
+                              expression: "date1"
                             }
-                            _vm.date1 = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "fin" } }, [
-                        _vm._v("Fecha final")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date2,
-                            expression: "date2"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "fin",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date2 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "inicio",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date1 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date1 = $event.target.value
                             }
-                            _vm.date2 = $event.target.value
                           }
-                        }
-                      })
+                        })
+                      ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "actualizar" } }, [
-                        _vm._v("Consultar")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          staticStyle: { "margin-bottom": "1em" },
-                          attrs: { type: "button", id: "actualizar" },
-                          on: { click: _vm.actualizar }
-                        },
-                        [_c("i", { staticClass: "fa fa-refresh" })]
-                      )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "fin" } }, [
+                          _vm._v("Fecha final")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date2,
+                              expression: "date2"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "fin",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date2 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date2 = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-2" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "actualizar" } }, [
+                          _vm._v("Consultar")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            staticStyle: { "margin-bottom": "1em" },
+                            attrs: { type: "button", id: "actualizar" },
+                            on: { click: _vm.actualizar }
+                          },
+                          [_c("i", { staticClass: "fa fa-refresh" })]
+                        )
+                      ])
                     ])
                   ])
                 ])
-              ])
-            ]),
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -35753,102 +35843,109 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
-            _c("form", { attrs: { role: "form" } }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "inicio" } }, [
-                        _vm._v("Fecha inicio")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date1,
-                            expression: "date1"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "inicio",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date1 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+            _c(
+              "form",
+              {
+                class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
+                attrs: { role: "form" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inicio" } }, [
+                          _vm._v("Fecha inicio")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date1,
+                              expression: "date1"
                             }
-                            _vm.date1 = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "fin" } }, [
-                        _vm._v("Fecha final")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date2,
-                            expression: "date2"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "fin",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date2 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "inicio",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date1 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date1 = $event.target.value
                             }
-                            _vm.date2 = $event.target.value
                           }
-                        }
-                      })
+                        })
+                      ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "actualizar" } }, [
-                        _vm._v("Consultar")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          staticStyle: { "margin-bottom": "1em" },
-                          attrs: { type: "button", id: "actualizar" },
-                          on: { click: _vm.actualizar }
-                        },
-                        [_c("i", { staticClass: "fa fa-refresh" })]
-                      )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "fin" } }, [
+                          _vm._v("Fecha final")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date2,
+                              expression: "date2"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "fin",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date2 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date2 = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-2" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "actualizar" } }, [
+                          _vm._v("Consultar")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            staticStyle: { "margin-bottom": "1em" },
+                            attrs: { type: "button", id: "actualizar" },
+                            on: { click: _vm.actualizar }
+                          },
+                          [_c("i", { staticClass: "fa fa-refresh" })]
+                        )
+                      ])
                     ])
                   ])
                 ])
-              ])
-            ]),
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -36051,105 +36148,138 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-xs-12" }, [
         _c("div", { staticClass: "box" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "box-header" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Buscar por Carnet" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
-            _c("form", { attrs: { role: "form" } }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "inicio" } }, [
-                        _vm._v("Fecha inicio")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date1,
-                            expression: "date1"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "inicio",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date1 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+            _c(
+              "form",
+              {
+                class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
+                attrs: { role: "form" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inicio" } }, [
+                          _vm._v("Fecha inicio")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date1,
+                              expression: "date1"
                             }
-                            _vm.date1 = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "fin" } }, [
-                        _vm._v("Fecha final")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date2,
-                            expression: "date2"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "fin",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date2 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "inicio",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date1 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date1 = $event.target.value
                             }
-                            _vm.date2 = $event.target.value
                           }
-                        }
-                      })
+                        })
+                      ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "actualizar" } }, [
-                        _vm._v("Consultar")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          staticStyle: { "margin-bottom": "1em" },
-                          attrs: { type: "button", id: "actualizar" },
-                          on: { click: _vm.actualizar }
-                        },
-                        [_c("i", { staticClass: "fa fa-refresh" })]
-                      )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "fin" } }, [
+                          _vm._v("Fecha final")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date2,
+                              expression: "date2"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "fin",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date2 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date2 = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-2" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "actualizar" } }, [
+                          _vm._v("Consultar")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            staticStyle: { "margin-bottom": "1em" },
+                            attrs: { type: "button", id: "actualizar" },
+                            on: { click: _vm.actualizar }
+                          },
+                          [_c("i", { staticClass: "fa fa-refresh" })]
+                        )
+                      ])
                     ])
                   ])
                 ])
-              ])
-            ]),
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -36157,7 +36287,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "modal-dialog modal-lg" }, [
                   _c("div", { staticClass: "modal-content" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-body" }, [
                       _c(
@@ -36218,7 +36348,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(2)
+                          _vm._m(1)
                         ]
                       )
                     ])
@@ -36235,13 +36365,15 @@ var render = function() {
                   attrs: { id: "example1" }
                 },
                 [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.datos, function(i, index) {
+                    _vm._l(_vm.filteredAndSorted, function(i, index) {
                       return _c("tr", { key: index }, [
                         _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(i.persona.ci))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -36342,14 +36474,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Hover Data Table")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
         "button",
@@ -36395,6 +36519,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("N")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ci")]),
         _vm._v(" "),
         _c("th", [_vm._v("Persona")]),
         _vm._v(" "),
@@ -36444,105 +36570,138 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-xs-12" }, [
         _c("div", { staticClass: "box" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "box-header" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Buscar por Carnet" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
-            _c("form", { attrs: { role: "form" } }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "inicio" } }, [
-                        _vm._v("Fecha inicio")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date1,
-                            expression: "date1"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "inicio",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date1 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+            _c(
+              "form",
+              {
+                class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
+                attrs: { role: "form" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inicio" } }, [
+                          _vm._v("Fecha inicio")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date1,
+                              expression: "date1"
                             }
-                            _vm.date1 = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "fin" } }, [
-                        _vm._v("Fecha final")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.date2,
-                            expression: "date2"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          id: "fin",
-                          placeholder: "Enter email"
-                        },
-                        domProps: { value: _vm.date2 },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "inicio",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date1 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date1 = $event.target.value
                             }
-                            _vm.date2 = $event.target.value
                           }
-                        }
-                      })
+                        })
+                      ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "actualizar" } }, [
-                        _vm._v("Consultar")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          staticStyle: { "margin-bottom": "1em" },
-                          attrs: { type: "button", id: "actualizar" },
-                          on: { click: _vm.actualizar }
-                        },
-                        [_c("i", { staticClass: "fa fa-refresh" })]
-                      )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-5" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "fin" } }, [
+                          _vm._v("Fecha final")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.date2,
+                              expression: "date2"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            id: "fin",
+                            placeholder: "Enter email"
+                          },
+                          domProps: { value: _vm.date2 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.date2 = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-2" }, [
+                    _c("div", { staticClass: "box-body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "actualizar" } }, [
+                          _vm._v("Consultar")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            staticStyle: { "margin-bottom": "1em" },
+                            attrs: { type: "button", id: "actualizar" },
+                            on: { click: _vm.actualizar }
+                          },
+                          [_c("i", { staticClass: "fa fa-refresh" })]
+                        )
+                      ])
                     ])
                   ])
                 ])
-              ])
-            ]),
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -36550,7 +36709,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "modal-dialog modal-lg" }, [
                   _c("div", { staticClass: "modal-content" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-body" }, [
                       _c(
@@ -36611,7 +36770,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(2)
+                          _vm._m(1)
                         ]
                       )
                     ])
@@ -36628,13 +36787,15 @@ var render = function() {
                   attrs: { id: "example1" }
                 },
                 [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.datos, function(i, index) {
+                    _vm._l(_vm.filteredAndSorted, function(i, index) {
                       return _c("tr", { key: index }, [
                         _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(i.persona.ci))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -36745,14 +36906,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Hover Data Table")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
         "button",
@@ -36798,6 +36951,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("N")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ci")]),
         _vm._v(" "),
         _c("th", [_vm._v("Persona")]),
         _vm._v(" "),
@@ -59844,8 +59999,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravel\controlingreso\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravel\controlingreso\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravel\controlasistencia\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravel\controlasistencia\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

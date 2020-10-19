@@ -7,7 +7,7 @@
                         <h3 class="box-title">Reporte Control de personas</h3>
                     </div>
                     <div class="box-body">
-                        <form role="form">
+                        <form role="form" v-bind:class="user.tipo=='ADMIN'?'':'hidden'">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="box-body">
@@ -149,11 +149,15 @@ export default {
             ]
         });
         this.misdatos();
+        axios.get('/isUser').then(res=>{
+            this.user=res.data;
+        });
         // console.log('aa');
         // console.log(this.dato.password);
     },
     data:function (){
         return {
+            user:{},
             datatable:null,
             datos:[],
             dato:{tipo:''},

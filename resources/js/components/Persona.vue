@@ -58,7 +58,7 @@
                                                 <div class="form-group">
                                                     <label for="celular" class="col-sm-1 control-label">Celular</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.celular" class="form-control" id="celular" placeholder="Celular" required>
+                                                        <input type="text" v-model="dato.celular" class="form-control" id="celular" placeholder="Celular" >
                                                     </div>
                                                     <label for="nacionalidad" class="col-sm-1 control-label">Nacionalidad</label>
                                                     <div class="col-sm-5">
@@ -129,7 +129,7 @@
                                                 <div class="form-group">
                                                     <label for="celular2" class="col-sm-1 control-label">Celular</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" v-model="dato.celular" class="form-control" id="celular2" placeholder="Celular" required>
+                                                        <input type="text" v-model="dato.celular" class="form-control" id="celular2" placeholder="Celular" >
                                                     </div>
                                                     <label for="nacionalidad2" class="col-sm-1 control-label">Nacionalidad</label>
                                                     <div class="col-sm-5">
@@ -224,6 +224,8 @@ export default {
         },
         guardar(){
             axios.post('/persona',this.dato).then(res=>{
+                // console.log(res.data);
+                // return false;
                 this.misdatos();
                 $('#modal-default').modal('hide');
                 this.$toast.open({

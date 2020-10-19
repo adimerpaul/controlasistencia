@@ -30,7 +30,8 @@ class PersonaController extends Controller
         $p=new Persona();
         $p->nombres=$request->nombres;
         $p->apellidos=$request->apellidos;
-        $p->celular=$request->celular;
+//        $p->celular=$request->celular;
+        isset($request->celular)?$p->celular=$request->celular:$p->celular='';
         $p->expedido=$request->expedido;
         $p->nacionalidad=$request->nacionalidad;
         $p->ci=$request->ci;
@@ -65,7 +66,7 @@ class PersonaController extends Controller
         $p=Persona::find($id);
         $p->nombres=$request->nombres;
         $p->apellidos=$request->apellidos;
-        $p->celular=$request->celular;
+        isset($request->celular)?$p->celular=$request->celular:$p->celular='';
         $p->expedido=$request->expedido;
         $p->nacionalidad=$request->nacionalidad;
         $p->ci=$request->ci;

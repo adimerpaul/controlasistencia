@@ -45,10 +45,17 @@ class IngresoautoController extends Controller
     public function store(Request $request)
     {
         $d=New Ingresoauto();
-        $d->objetos=$request->objetos;
+//        return $request->objetos;
+        isset($request->objetos)?$d->objetos=$request->objetos:$d->objetos='';
         $d->recinto=Auth::user()->tipo;
-        $d->motivo=$request->motivo;
-        $d->targeta=$request->targeta;
+//            $d->motivo=$request->motivo;
+        isset($request->motivo)?$d->motivo=$request->motivo:$d->motivo='';
+//            $d->targeta=$request->targeta;
+        isset($request->targeta)?$d->targeta=$request->targeta:$d->targeta='';
+//        $d->objetos=$request->objetos;
+//        $d->recinto=Auth::user()->tipo;
+//        $d->motivo=$request->motivo;
+//        $d->targeta=$request->targeta;
         $d->persona_id=$request->persona_id;
         $d->destino_id=$request->destino_id;
         $d->auto_id=$request->auto_id;
@@ -56,10 +63,13 @@ class IngresoautoController extends Controller
         $d->save();
 
         $ad=New Asistencia();
-        $ad->objetos=$request->objetos;
+//        return $request->objetos;
+        isset($request->objetos)?$ad->objetos=$request->objetos:$ad->objetos='';
         $ad->recinto=Auth::user()->tipo;
-        $ad->motivo=$request->motivo;
-        $ad->targeta=$request->targeta;
+//            $ad->motivo=$request->motivo;
+        isset($request->motivo)?$ad->motivo=$request->motivo:$ad->motivo='';
+//            $ad->targeta=$request->targeta;
+        isset($request->targeta)?$ad->targeta=$request->targeta:$ad->targeta='';
         $ad->persona_id=$request->persona_id;
         $ad->destino_id=$request->destino_id;
         $ad->user_id=Auth::user()->id;

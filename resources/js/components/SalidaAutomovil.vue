@@ -4,10 +4,15 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Hover Data Table</h3>
+<!--                        <h3 class="box-title">Hover Data Table</h3>-->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" v-model="search" placeholder="Buscar por Carnet"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="box-body">
-                        <form role="form">
+                        <form role="form" v-bind:class="user.tipo=='ADMIN'?'':'hidden'">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="box-body">
@@ -71,6 +76,7 @@
                                 <thead>
                                 <tr>
                                     <th>N</th>
+                                    <th>Ci</th>
                                     <th>Persona</th>
                                     <th>Movilidad</th>
                                     <th>Celular</th>
@@ -84,8 +90,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="(i,index) in datos" :key="index">
+                                <tr v-for="(i,index) in filteredAndSorted" :key="index">
                                     <td>{{index+1}}</td>
+                                    <td>{{i.persona.ci}}</td>
                                     <td>{{i.persona.apellidos}} {{i.persona.nombres}}</td>
                                     <td>{{i.auto.placa}}</td>
                                     <td>{{i.persona.celular}}</td>
@@ -125,9 +132,15 @@ export default {
         this.misdatos();
         // console.log('aa');
         // console.log(this.dato.password);
+        axios.get('/isUser').then(res=>{
+            this.user=res.data;
+            // console.log(this.user);
+        });
     },
     data:function (){
         return {
+            search: '',
+            user:{},
             datatable:null,
             datos:[],
             dato:{tipo:''},
@@ -148,6 +161,7 @@ export default {
             // });
             axios.get('/ingresoauto/'+this.date1+'/'+this.date2).then(res=>{
                 this.datos=res.data;
+                this.search='';
                 // console.log(this.datos);
             });
         },
@@ -226,6 +240,16 @@ export default {
                 return false;
             else
                 return true;
+        }, filteredAndSorted(){
+            // function to compare names
+            function compare(a, b) {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
+            }
+            return this.datos.filter(user => {
+                return user.persona.ci.toLowerCase().includes(this.search.toLowerCase())
+            }).sort(compare)
         }
     },
     filters: {

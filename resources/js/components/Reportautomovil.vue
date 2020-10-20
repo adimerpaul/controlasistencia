@@ -79,6 +79,7 @@
                                     <th>Registrado por:</th>
                                     <th>Estado</th>
                                     <th>Pertenencias</th>
+                                    <th>Recinto</th>
                                     <th>Observado</th>
                                 </tr>
                                 </thead>
@@ -197,6 +198,7 @@ export default {
                         r.user.name,
                         r.estado,
                         r.objetos,
+                        r.recinto,
                         r.observaciones,
                     ]).draw(false)
                 })

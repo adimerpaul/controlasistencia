@@ -78,6 +78,7 @@
                                     <th>Registrado por:</th>
                                     <th>Estado</th>
                                     <th>Pertenencias</th>
+                                    <th>Recinto</th>
                                     <th>Observado</th>
                                 </tr>
                                 </thead>
@@ -183,7 +184,7 @@ export default {
                 this.datatable.clear().draw();
                 let cont=0;
                 this.datos.forEach(r=>{
-                    // console.log(r);
+                    console.log(r);
                     cont++;
                     this.datatable.row.add([
                         cont,
@@ -195,6 +196,7 @@ export default {
                         r.user.name,
                         r.estado,
                         r.objetos,
+                        r.recinto,
                         r.observaciones,
                     ]).draw(false)
                 })

@@ -4182,6 +4182,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4267,7 +4268,7 @@ __webpack_require__.r(__webpack_exports__);
           cont++;
 
           _this2.datatable.row.add([cont, r.persona.nombres + ' ' + r.persona.apellidos, r.auto.placa, r.persona.celular, moment__WEBPACK_IMPORTED_MODULE_2___default()(r.created_at).format('DD-MM-YY HH:mm:ss'), moment__WEBPACK_IMPORTED_MODULE_2___default()(r.salida).format('DD-MM-YY HH:mm:ss'), // r.salida,
-          r.user.name, r.estado, r.objetos, r.observaciones]).draw(false);
+          r.user.name, r.estado, r.objetos, r.recinto, r.observaciones]).draw(false);
         }); // console.log(this.datos);
 
       });
@@ -4486,6 +4487,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4567,11 +4569,11 @@ __webpack_require__.r(__webpack_exports__);
         var cont = 0;
 
         _this2.datos.forEach(function (r) {
-          // console.log(r);
+          console.log(r);
           cont++;
 
           _this2.datatable.row.add([cont, r.persona.nombres + ' ' + r.persona.apellidos, r.persona.celular, moment__WEBPACK_IMPORTED_MODULE_2___default()(r.created_at).format('DD-MM-YY HH:mm:ss'), moment__WEBPACK_IMPORTED_MODULE_2___default()(r.salida).format('DD-MM-YY HH:mm:ss'), // r.salida,
-          r.user.name, r.estado, r.objetos, r.observaciones]).draw(false);
+          r.user.name, r.estado, r.objetos, r.recinto, r.observaciones]).draw(false);
         });
       });
     },
@@ -36013,6 +36015,8 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("th", [_vm._v("Pertenencias")]),
               _vm._v(" "),
+              _c("th", [_vm._v("Recinto")]),
+              _vm._v(" "),
               _c("th", [_vm._v("Observado")])
             ])
           ]),
@@ -36320,6 +36324,8 @@ var staticRenderFns = [
               _c("th", [_vm._v("Estado")]),
               _vm._v(" "),
               _c("th", [_vm._v("Pertenencias")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Recinto")]),
               _vm._v(" "),
               _c("th", [_vm._v("Observado")])
             ])

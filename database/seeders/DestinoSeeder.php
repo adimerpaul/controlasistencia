@@ -15,6 +15,6 @@ class DestinoSeeder extends Seeder
     public function run()
     {
         DB::table('destinos')->insert(['nombre'=>'PLAYA MAQUINARIA','recinto_id'=>2]);
-        DB::table('destinos')->insert(['nombre'=>'OFICINAS ADMINISTRATIVAS','recinto_id'=>2]);
+        DB::table('destinos')->insert(['nombre'=>'OFICINAS ADMINISTRATIVAS','recinto_id'=>3]);
     }
 }

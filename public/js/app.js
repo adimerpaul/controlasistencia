@@ -2090,6 +2090,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2098,6 +2114,16 @@ __webpack_require__.r(__webpack_exports__);
 
     // console.log('Component mounted.');
     // $('#example1').DataTable()
+    var webcamElement = document.getElementById('webcam');
+    var click = document.getElementById('click');
+    var canvasElement = document.getElementById('canvas');
+    var snapSoundElement = document.getElementById('snapSound');
+    this.webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+    this.webcam.start().then(function (result) {
+      console.log("webcam started");
+    })["catch"](function (err) {
+      console.log(err);
+    });
     this.datatable = $('#example1').DataTable({
       "order": [[0, "desc"]],
       "language": {
@@ -2142,6 +2168,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      boolphoto: false,
+      ima1: '',
+      ima2: '',
+      ima3: '',
+      ima4: '',
+      conta: 0,
+      message: 'Hola Vue!',
+      webcam: null,
       user: {},
       imagen1: null,
       imagen2: null,
@@ -2158,7 +2192,35 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    foto: function foto() {
+      this.conta++; // console.log('a');
+
+      var picture = this.webcam.snap(); // console.log(picture);
+      // this.message=picture;
+
+      if (this.conta == 1) {
+        this.ima1 = picture;
+        this.imagen1 = picture;
+      }
+
+      if (this.conta == 2) {
+        this.ima2 = picture;
+        this.imagen2 = picture;
+      }
+
+      if (this.conta == 3) {
+        this.ima3 = picture;
+        this.imagen3 = picture;
+      }
+
+      if (this.conta == 4) {
+        this.ima4 = picture;
+        this.imagen4 = picture;
+        this.conta = 0;
+      }
+    },
     getImage1: function getImage1(event) {
+      console.log(event.target.files[0]);
       this.imagen1 = event.target.files[0];
     },
     getImage2: function getImage2(event) {
@@ -2201,6 +2263,7 @@ __webpack_require__.r(__webpack_exports__);
         if (res.data.length >= 1) {
           // this.dato=res.data[0];
           var data = new FormData();
+          console.log(_this3.imagen1);
           data.append('image1', _this3.imagen1);
           data.append('image2', _this3.imagen2);
           data.append('image3', _this3.imagen3);
@@ -2216,11 +2279,19 @@ __webpack_require__.r(__webpack_exports__);
             _this3.misdatos();
 
             _this3.dato = {};
-            _this3.ci = '';
-            $('#image1').val('');
-            $('#image2').val('');
-            $('#image3').val('');
-            $('#image4').val('');
+            _this3.ci = ''; // $('#image1').val('');
+            // $('#image2').val('');
+            // $('#image3').val('');
+            // $('#image4').val('');
+
+            _this3.ima1 = '';
+            _this3.ima2 = '';
+            _this3.ima3 = '';
+            _this3.ima4 = '';
+            _this3.imagen1 = '';
+            _this3.imagen2 = '';
+            _this3.imagen3 = '';
+            _this3.imagen4 = '';
 
             _this3.$toast.open({
               message: "Guardado Correctamnte",
@@ -32063,7 +32134,7 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-12" }, [
                 _c("label", { attrs: { for: "objetos" } }, [
                   _vm._v("Objetos de valor")
                 ]),
@@ -32096,51 +32167,80 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "objetos" } }, [
-                  _vm._v("Fotografias")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "file",
-                    id: "image1",
-                    name: "image",
-                    accept: "image/*"
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btn-sm",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.boolphoto = !_vm.boolphoto
+                      }
+                    }
                   },
-                  on: { change: _vm.getImage1 }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "file",
-                    id: "image2",
-                    name: "image",
-                    accept: "image/*"
-                  },
-                  on: { change: _vm.getImage2 }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "file",
-                    id: "image3",
-                    name: "image",
-                    accept: "image/*"
-                  },
-                  on: { change: _vm.getImage3 }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "file",
-                    id: "image4",
-                    name: "image",
-                    accept: "image/*"
-                  },
-                  on: { change: _vm.getImage4 }
-                })
-              ])
+                  [
+                    _c("i", { staticClass: "fa fa-camera" }),
+                    _vm._v(" "),
+                    _vm.boolphoto
+                      ? _c("small", [_vm._v("Ocultar Camara")])
+                      : _c("small", [_vm._v("Mostrar Camara")])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-12",
+                  class: _vm.boolphoto ? "" : "hidden"
+                },
+                [
+                  _c("video", {
+                    attrs: {
+                      id: "webcam",
+                      autoplay: "",
+                      playsinline: "",
+                      width: "640",
+                      height: "480"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { id: "click", type: "button" },
+                      on: { click: _vm.foto }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-camera" }),
+                      _vm._v(" Tomar foto!")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("canvas", {
+                    staticClass: "d-none",
+                    attrs: { id: "canvas", hidden: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { width: "40", src: _vm.ima1, alt: "" } }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { width: "40", src: _vm.ima2, alt: "" } }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { width: "40", src: _vm.ima3, alt: "" } }),
+                  _vm._v(" "),
+                  _c("img", { attrs: { width: "40", src: _vm.ima4, alt: "" } }),
+                  _vm._v(" "),
+                  _c("audio", {
+                    attrs: {
+                      id: "snapSound",
+                      src: "audio/snap.wav",
+                      preload: "auto"
+                    }
+                  })
+                ]
+              )
             ]),
             _vm._v(" "),
             _vm._m(2)
@@ -36391,109 +36491,103 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "box-body" }, [
-            _c(
-              "form",
-              {
-                class: _vm.user.tipo == "ADMIN" ? "" : "hidden",
-                attrs: { role: "form" }
-              },
-              [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "inicio" } }, [
-                          _vm._v("Fecha inicio")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.date1,
-                              expression: "date1"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "date",
-                            id: "inicio",
-                            placeholder: "Enter email"
-                          },
-                          domProps: { value: _vm.date1 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.date1 = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "fin" } }, [
-                          _vm._v("Fecha final")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.date2,
-                              expression: "date2"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "date",
-                            id: "fin",
-                            placeholder: "Enter email"
-                          },
-                          domProps: { value: _vm.date2 },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.date2 = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-2" }, [
-                    _c("div", { staticClass: "box-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "actualizar" } }, [
-                          _vm._v("Consultar")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
+            _c("form", { attrs: { role: "form" } }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-5" }, [
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "inicio" } }, [
+                        _vm._v("Fecha inicio")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
                           {
-                            staticClass: "btn btn-info",
-                            staticStyle: { "margin-bottom": "1em" },
-                            attrs: { type: "button", id: "actualizar" },
-                            on: { click: _vm.actualizar }
-                          },
-                          [_c("i", { staticClass: "fa fa-refresh" })]
-                        )
-                      ])
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.date1,
+                            expression: "date1"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "date",
+                          id: "inicio",
+                          placeholder: "Enter email"
+                        },
+                        domProps: { value: _vm.date1 },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.date1 = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-5" }, [
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "fin" } }, [
+                        _vm._v("Fecha final")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.date2,
+                            expression: "date2"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "date",
+                          id: "fin",
+                          placeholder: "Enter email"
+                        },
+                        domProps: { value: _vm.date2 },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.date2 = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "actualizar" } }, [
+                        _vm._v("Consultar")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info",
+                          staticStyle: { "margin-bottom": "1em" },
+                          attrs: { type: "button", id: "actualizar" },
+                          on: { click: _vm.actualizar }
+                        },
+                        [_c("i", { staticClass: "fa fa-refresh" })]
+                      )
                     ])
                   ])
                 ])
-              ]
-            ),
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "div",
@@ -37139,17 +37233,12 @@ var render = function() {
                           i.image1 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image1
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image1 } },
                                 [
                                   _c("img", {
                                     attrs: {
                                       width: "30",
-                                      src: "app/" + i.image1,
+                                      src: i.image1,
                                       alt: ""
                                     }
                                   })
@@ -37160,17 +37249,12 @@ var render = function() {
                           i.image2 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image2
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image2 } },
                                 [
                                   _c("img", {
                                     attrs: {
                                       width: "30",
-                                      src: "app/" + i.image2,
+                                      src: i.image2,
                                       alt: ""
                                     }
                                   })
@@ -37181,17 +37265,12 @@ var render = function() {
                           i.image3 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image3
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image3 } },
                                 [
                                   _c("img", {
                                     attrs: {
                                       width: "30",
-                                      src: "app/" + i.image3,
+                                      src: i.image3,
                                       alt: ""
                                     }
                                   })
@@ -37202,17 +37281,12 @@ var render = function() {
                           i.image4 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image4
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image4 } },
                                 [
                                   _c("img", {
                                     attrs: {
                                       width: "30",
-                                      src: "app/" + i.image4,
+                                      src: i.image4,
                                       alt: ""
                                     }
                                   })
@@ -60389,8 +60463,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravel\controlingreso\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravel\controlingreso\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravel\controlasistencia\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravel\controlasistencia\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -65,10 +65,60 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->hasFile('image1')?$path1 = $request->file('image1')->store('images'):$path1='';
-        $request->hasFile('image2')?$path2 = $request->file('image2')->store('images'):$path2='';
-        $request->hasFile('image3')?$path3 = $request->file('image3')->store('images'):$path3='';
-        $request->hasFile('image4')?$path4 = $request->file('image4')->store('images'):$path4='';
+
+        $folderPath = "images/";
+        if ($_POST['image1']!=''){
+        $image_parts = explode(";base64,", $_POST['image1']);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $file = $folderPath . uniqid() . '.'.$image_type;
+        file_put_contents($file, $image_base64);
+            $path1=$file;
+        }else{
+            $path1="";
+        }
+
+        if ($_POST['image2']!=''){
+            $image_parts = explode(";base64,", $_POST['image2']);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = $folderPath . uniqid() . '.'.$image_type;
+            file_put_contents($file, $image_base64);
+            $path2=$file;
+        }else{
+            $path2="";
+        }
+
+        if ($_POST['image3']!=''){
+            $image_parts = explode(";base64,", $_POST['image3']);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = $folderPath . uniqid() . '.'.$image_type;
+            file_put_contents($file, $image_base64);
+            $path3=$file;
+        }else{
+            $path3="";
+        }
+
+        if ($_POST['image4']!=''){
+            $image_parts = explode(";base64,", $_POST['image4']);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = $folderPath . uniqid() . '.'.$image_type;
+            file_put_contents($file, $image_base64);
+            $path4=$file;
+        }else{
+            $path4="";
+        }
+
+//        $request->hasFile('image1')?$path1 = $request->file('image1')->store('images'):$path1='';
+//        $request->hasFile('image2')?$path2 = $request->file('image2')->store('images'):$path2='';
+//        $request->hasFile('image3')?$path3 = $request->file('image3')->store('images'):$path3='';
+//        $request->hasFile('image4')?$path4 = $request->file('image4')->store('images'):$path4='';
 //        $path = $request->file('image2')->store('images');
 //        $path = $request->file('image3')->store('images');
 //        $path = $request->file('image4')->store('images');

@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form role="form" v-bind:class="user.tipo=='ADMIN'?'':'hidden'">
+                        <form role="form" >
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="box-body">
@@ -33,7 +33,7 @@
                                 <div class="col-md-2">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <label for="actualizar">Consultar</label>
+                                            <label for="actualizar">Consultar</label><br>
                                             <button type="button" v-on:click="actualizar" id="actualizar" class="btn btn-info" style="margin-bottom: 1em">
                                                 <i class="fa fa-refresh"></i>
                                             </button>

@@ -141,16 +141,32 @@
                                 <input type="text"  v-model="dato.targeta" style="text-transform: uppercase" class="form-control" id="targeta" placeholder="Empresa/Institución" >
 <!--                            </div>-->
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                                 <label for="objetos">Objetos de valor</label>
                                 <textarea type="text" v-model="dato.objetos" style="text-transform: uppercase" class="form-control" id="objetos" placeholder="Objetos"  ></textarea>
                         </div>
-                        <div class="col-md-6">
-                            <label for="objetos">Fotografias</label>
-                            <input type="file" id="image1" name="image" @change="getImage1" accept="image/*">
-                            <input type="file" id="image2" name="image" @change="getImage2" accept="image/*">
-                            <input type="file" id="image3" name="image" @change="getImage3" accept="image/*">
-                            <input type="file" id="image4" name="image" @change="getImage4" accept="image/*">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-info btn-sm" @click="boolphoto=!boolphoto">
+                                <i class="fa fa-camera"></i>
+                                <small v-if="boolphoto" >Ocultar Camara</small>
+                                <small v-else>Mostrar Camara</small>
+                            </button>
+                        </div>
+                        <div class="col-md-12" v-bind:class="boolphoto?'':'hidden'">
+<!--                            <label for="objetos">Fotografias</label>-->
+                            <video id="webcam" autoplay playsinline width="640" height="480"></video>
+                            <button id="click" class="btn btn-primary" type="button" @click="foto"> <i class="fa fa-camera"></i> Tomar foto!</button>
+                            <canvas id="canvas" class="d-none" hidden></canvas>
+                            <img width="40" v-bind:src="ima1" alt="">
+                            <img width="40" v-bind:src="ima2" alt="">
+                            <img width="40" v-bind:src="ima3" alt="">
+                            <img width="40" v-bind:src="ima4" alt="">
+                            <audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio>
+<!--                            <input v-model="message">-->
+<!--                            <input type="file" id="image1" name="image" @change="getImage1" accept="image/*">-->
+<!--                            <input type="file" id="image2" name="image" @change="getImage2" accept="image/*">-->
+<!--                            <input type="file" id="image3" name="image" @change="getImage3" accept="image/*">-->
+<!--                            <input type="file" id="image4" name="image" @change="getImage4" accept="image/*">-->
                         </div>
                     </div>
 <!--                    <div class="box-body">-->
@@ -183,6 +199,18 @@
         mounted() {
             // console.log('Component mounted.');
             // $('#example1').DataTable()
+            const webcamElement = document.getElementById('webcam');
+            const click = document.getElementById('click');
+            const canvasElement = document.getElementById('canvas');
+            const snapSoundElement = document.getElementById('snapSound');
+            this.webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+            this.webcam.start()
+                .then(result =>{
+                    console.log("webcam started");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
             this.datatable = $('#example1').DataTable({
                 "order": [[ 0, "desc" ]],
                 "language": {
@@ -232,6 +260,14 @@
         },
         data:function (){
             return {
+                boolphoto:false,
+                ima1:'',
+                ima2:'',
+                ima3:'',
+                ima4:'',
+                conta:0,
+                message: 'Hola Vue!',
+                webcam : null,
                 user:{},
                 imagen1 : null,
                 imagen2 : null,
@@ -245,11 +281,35 @@
                 date1:moment().format('YYYY-MM-DD'),
                 date2:moment().format('YYYY-MM-DD'),
                 observaciones:[],
-
             }
         },
         methods:{
+            foto(){
+                this.conta++;
+                // console.log('a');
+                var picture = this.webcam.snap();
+                // console.log(picture);
+                // this.message=picture;
+                if (this.conta==1){
+                    this.ima1=picture
+                    this.imagen1 = picture;
+                }
+                if (this.conta==2){
+                    this.ima2=picture
+                    this.imagen2 = picture;
+                }
+                if (this.conta==3){
+                    this.ima3=picture
+                    this.imagen3= picture;
+                }
+                if (this.conta==4){
+                    this.ima4=picture;
+                    this.imagen4 = picture;
+                    this.conta=0;
+                }
+            },
             getImage1(event){
+                console.log(event.target.files[0]);
                 this.imagen1 = event.target.files[0];
             },
             getImage2(event){
@@ -289,6 +349,7 @@
                     if (res.data.length>=1){
                         // this.dato=res.data[0];
                         var data = new  FormData();
+                        console.log(this.imagen1);
                         data.append('image1', this.imagen1);
                         data.append('image2', this.imagen2);
                         data.append('image3', this.imagen3);
@@ -305,10 +366,20 @@
                             this.misdatos();
                             this.dato={};
                             this.ci='';
-                            $('#image1').val('');
-                            $('#image2').val('');
-                            $('#image3').val('');
-                            $('#image4').val('');
+                            // $('#image1').val('');
+                            // $('#image2').val('');
+                            // $('#image3').val('');
+                            // $('#image4').val('');
+                            this.ima1='';
+                            this.ima2='';
+                            this.ima3='';
+                            this.ima4='';
+
+                            this.imagen1='';
+                            this.imagen2='';
+                            this.imagen3='';
+                            this.imagen4='';
+
                             this.$toast.open({
                                 message: "Guardado Correctamnte",
                                 type: "success",

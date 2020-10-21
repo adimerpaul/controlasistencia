@@ -72,7 +72,9 @@ Route::get('/opersona', function () {
     return view('home');
 })->middleware('auth');
 
-
+Route::get('/video', function () {
+    return view('video');
+});
 
 
 Auth::routes();

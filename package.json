@@ -28,6 +28,7 @@
         "vue-moment": "^4.1.0",
         "vue-router": "^3.4.3",
         "vue-simple-alert": "^1.1.1",
-        "vue-toast-notification": "^0.5.0"
+        "vue-toast-notification": "^0.5.0",
+        "webcam-easy": "^1.0.5"
     }
 }

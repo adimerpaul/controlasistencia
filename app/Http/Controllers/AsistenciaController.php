@@ -42,6 +42,19 @@ class AsistenciaController extends Controller
                 ->with('destino')
                 ->with('user')
                 ->where('recinto','=',Auth::user()->tipo)
+                ->where('user_id','=',Auth::user()->id)
+                ->whereDate('created_at','>=',$d1)
+                ->whereDate('created_at','<=',$d2)
+                ->get();
+    }
+    public function date2($d1,$d2)
+    {
+            return Asistencia::with('persona')
+                ->with('destino')
+                ->with('user')
+                ->where('recinto','=',Auth::user()->tipo)
+                ->whereNull('salida')
+                ->where('user_id','=',Auth::user()->id)
                 ->whereDate('created_at','>=',$d1)
                 ->whereDate('created_at','<=',$d2)
                 ->get();
@@ -67,19 +80,27 @@ class AsistenciaController extends Controller
     {
 
         $folderPath = "images/";
-        if ($_POST['image1']!=''){
-        $image_parts = explode(";base64,", $_POST['image1']);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath . uniqid() . '.'.$image_type;
-        file_put_contents($file, $image_base64);
-            $path1=$file;
-        }else{
+//        return strlen ( $_POST['image1']);
+//        return $_POST['image1']=='null';
+//        exit;
+        if ($_POST['image1']=='' ||$_POST['image1']=='null'){
             $path1="";
+        }else{
+            $image_parts = explode(";base64,", $_POST['image1']);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = $folderPath . uniqid() . '.'.$image_type;
+            file_put_contents($file, $image_base64);
+            $path1=$file;
         }
 
-        if ($_POST['image2']!=''){
+
+
+        if ($_POST['image2']=='' ||$_POST['image2']=='null'){
+            $path2="";
+        }else{
+
             $image_parts = explode(";base64,", $_POST['image2']);
             $image_type_aux = explode("image/", $image_parts[0]);
             $image_type = $image_type_aux[1];
@@ -87,11 +108,12 @@ class AsistenciaController extends Controller
             $file = $folderPath . uniqid() . '.'.$image_type;
             file_put_contents($file, $image_base64);
             $path2=$file;
-        }else{
-            $path2="";
         }
 
-        if ($_POST['image3']!=''){
+        if ($_POST['image3']=='' ||$_POST['image3']=='null'){
+            $path3="";
+        }else{
+
             $image_parts = explode(";base64,", $_POST['image3']);
             $image_type_aux = explode("image/", $image_parts[0]);
             $image_type = $image_type_aux[1];
@@ -99,11 +121,11 @@ class AsistenciaController extends Controller
             $file = $folderPath . uniqid() . '.'.$image_type;
             file_put_contents($file, $image_base64);
             $path3=$file;
-        }else{
-            $path3="";
         }
 
-        if ($_POST['image4']!=''){
+        if ($_POST['image4']==''||$_POST['image4']=='null'){
+            $path4="";
+        }else{
             $image_parts = explode(";base64,", $_POST['image4']);
             $image_type_aux = explode("image/", $image_parts[0]);
             $image_type = $image_type_aux[1];
@@ -111,8 +133,6 @@ class AsistenciaController extends Controller
             $file = $folderPath . uniqid() . '.'.$image_type;
             file_put_contents($file, $image_base64);
             $path4=$file;
-        }else{
-            $path4="";
         }
 
 //        $request->hasFile('image1')?$path1 = $request->file('image1')->store('images'):$path1='';
@@ -142,6 +162,14 @@ class AsistenciaController extends Controller
             $d->destino_id=$request->destino_id;
             $d->user_id=Auth::user()->id;
             $d->save();
+//            return $d;
+        return Asistencia::with('persona')
+            ->with('destino')
+            ->with('user')
+            ->where('recinto','=',Auth::user()->tipo)
+            ->where('user_id','=',Auth::user()->id)
+            ->where('id','=',$d->id)
+            ->get();
 
     }
 

@@ -85,6 +85,7 @@ Route::apiResource('/persona',\App\Http\Controllers\PersonaController::class)->m
 Route::apiResource('/asistencia',\App\Http\Controllers\AsistenciaController::class)->middleware('auth');
 Route::apiResource('/ingresoauto',\App\Http\Controllers\IngresoautoController::class)->middleware('auth');
 Route::get('/asistencia/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date'])->middleware('auth');
+Route::get('/asistencia2/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date2'])->middleware('auth');
 Route::get('/ingresoauto/{d1}/{d2}',[\App\Http\Controllers\IngresoautoController::class,'date'])->middleware('auth');
 Route::get('/destino/{d1}/{d2}',[\App\Http\Controllers\DestinoController::class,'date'])->middleware('auth');
 Route::apiResource('/destino',\App\Http\Controllers\DestinoController::class)->middleware('auth');

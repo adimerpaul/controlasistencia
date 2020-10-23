@@ -71,6 +71,7 @@ class PersonaController extends Controller
         $p->nacionalidad=$request->nacionalidad;
         $p->ci=$request->ci;
         $p->save();
+        return $p;
     }
 
     /**

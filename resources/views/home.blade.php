@@ -343,7 +343,7 @@
                     >
                         <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                             <a :href="href" @click="navigate">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-dashboard"></i> <span>Menu principal</span>
                             </a>
                         </li>
                     </router-link>

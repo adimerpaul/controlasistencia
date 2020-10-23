@@ -4,7 +4,12 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Control de asistencia</h3>
+<!--                        <h3 class="box-title">Control de asistencia</h3>-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" v-model="search" placeholder="Buscar por Carnet"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="box-body">
                         <form action="" v-bind:class="user.tipo=='ADMIN'?'':'hidden'" >
@@ -40,17 +45,29 @@
                             </form>
                         </form>
                         <div class="table-responsive">
-                            <table id="example1" class="table table-bordered table-hover">
+                            <table id="example" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>Fecha  hora</th>
                                     <th>Nombres  apellidos</th>
-                                    <th>Id</th>
-                                    <th>Entrada y salida</th>
-                                    <th>Tarjeta</th>
+                                    <th>Celular</th>
+                                    <th>Empresa</th>
+                                    <th>Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <tr v-for="(i,index) in filteredAndSorted" :key="index">
+                                    <td>{{moment(i.created_at).format('DD-MM-YY HH:mm:ss')}}</td>
+                                    <td>{{i.persona.nombres}} {{i.persona.apellidos}}</td>
+                                    <td>{{i.persona.celular}}</td>
+                                    <td>{{i.targeta}}</td>
+                                    <td>
+                                        <template v-if="i.salida==null">
+                                            <button v-if="moment(i.created_at).format('YYYY-MM-DD')==moment().format('YYYY-MM-DD')"  @click="observacion(i)" class="btn btn-warning btn-xs"><i class="fa fa-eye-slash"></i> Obs.</button>
+                                            <button v-if="moment(i.created_at).format('YYYY-MM-DD')==moment().format('YYYY-MM-DD')"  @click="salida(i,index)" class="btn btn-info btn-xs"><i class="fa fa-trash"></i> Salida</button>
+                                        </template>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -189,6 +206,34 @@
                 </form>
             </div>
         </div>
+        <div class="modal fade" id="modificar">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Agregar observacion</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" @submit.prevent="update">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="name2" class="col-sm-2 control-label">Observacion:</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" v-model="dato.observaciones" class="form-control" id="name2" placeholder="Detallar las observaciones" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"> <i class="fa fa-trash"></i> Cancelar</button>
+                                <button type="submit" class="btn btn-warning" > <i class="fa fa-plus-circle"></i> Modificar </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 
@@ -261,6 +306,7 @@
         data:function (){
             return {
                 boolphoto:false,
+                search:'',
                 ima1:'',
                 ima2:'',
                 ima3:'',
@@ -281,6 +327,7 @@
                 date1:moment().format('YYYY-MM-DD'),
                 date2:moment().format('YYYY-MM-DD'),
                 observaciones:[],
+                moment:moment
             }
         },
         methods:{
@@ -325,31 +372,34 @@
                 this.dato={tipo:''};
             },
             misdatos(){
-                axios.get('/asistencia/'+this.date1+'/'+this.date2).then(res=>{
+                axios.get('/asistencia2/'+this.date1+'/'+this.date2).then(res=>{
                     this.datos=res.data;
                     // console.log(this.datos);
-                    this.datatable.clear().draw();
-                    let cont=0;
-                    this.datos.forEach(r=>{
-                        // console.log(r);
-                        cont++;
-                        this.datatable.row.add([
-                            moment(r.created_at).format('DD-MM-YY HH:mm:ss'),
-                            r.persona.nombres+' '+r.persona.apellidos,
-                            r.id,
-                            r.destino.nombre,
-                            r.targeta==''?'--':r.targeta,
-                        ]).draw(false)
-                    })
+                    // this.datatable.clear().draw();
+                    // let cont=0;
+                    // this.datos.forEach(r=>{
+                    //     // console.log(r);
+                    //     cont++;
+                    //     this.datatable.row.add([
+                    //         moment(r.created_at).format('DD-MM-YY HH:mm:ss'),
+                    //         r.persona.nombres+' '+r.persona.apellidos,
+                    //         r.id,
+                    //         r.destino.nombre,
+                    //         r.targeta==''?'--':r.targeta,
+                    //     ]).draw(false)
+                    // })
                 });
             },
             guardar(){
                 axios.get('/persona/'+this.ci).then(res=>{
-                    // console.log(res.data);
+
                     if (res.data.length>=1){
+                        axios.put('/persona/'+this.dato.id,this.dato).then(res=>{
+                            console.log(res.data);
+                        });
                         // this.dato=res.data[0];
                         var data = new  FormData();
-                        console.log(this.imagen1);
+                        // console.log(this.imagen1);
                         data.append('image1', this.imagen1);
                         data.append('image2', this.imagen2);
                         data.append('image3', this.imagen3);
@@ -363,7 +413,9 @@
 
                         axios.post('/asistencia',data).then(res=>{
                             // console.log(res.data);
-                            this.misdatos();
+                            // return false;
+                            // this.misdatos();
+                            this.datos.push(res.data[0]);
                             this.dato={};
                             this.ci='';
                             // $('#image1').val('');
@@ -448,6 +500,32 @@
                 })
 
             },
+            // actualizar(){
+            //     this.misdatos();
+            //     this.$toast.open({
+            //         message: "Datos Actualizados",
+            //         type: "success",
+            //         duration: 2000,
+            //         dismissible: true
+            //     })
+            // },
+            store(){
+
+            },
+            update(){
+                axios.put('/asistencia/'+this.dato.id,this.dato).then(res=>{
+                    console.log(res.data);
+                    this.misdatos();
+                    $('#modificar').modal('hide');
+                    this.$toast.open({
+                        message: "Dato modificado",
+                        type: "warning",
+                        duration: 3000,
+                        dismissible: true
+                    });
+                    this.dato={tipo:''};
+                })
+            },
             actualizar(){
                 this.misdatos();
                 this.$toast.open({
@@ -457,7 +535,36 @@
                     dismissible: true
                 })
             },
-            store(){
+            observacion(i){
+                $('#modificar').modal('show');
+                this.dato=i;
+            },
+            salida(i,index){
+                this.$fire({
+                    title: 'Seguro de marcar salida??',
+                    // text: "You won't be able to revert this!",
+                    type: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si!'
+                }).then((r) => {
+                    if (r.value){
+                        axios.get('/asistencia/'+i.id).then(res=>{
+                            // this.misdatos();
+                            this.datos.splice(index,1);
+                            // $('#modal-default').modal('hide');
+                            this.$toast.open({
+                                message: "marcado salida",
+                                type:"info",
+                                duration: 3000,
+                                dismissible: true
+                            });
+                            this.dato={tipo:''};
+                        })
+                    }
+                })
+
 
             },
             buscar(){
@@ -487,6 +594,17 @@
                     return false;
                 else
                     return true;
+            },
+            filteredAndSorted(){
+                // function to compare names
+                function compare(a, b) {
+                    if (a.name < b.name) return -1;
+                    if (a.name > b.name) return 1;
+                    return 0;
+                }
+                return this.datos.filter(user => {
+                    return user.persona.ci.toLowerCase().includes(this.search.toLowerCase())
+                }).sort(compare)
             }
         },
         filters: {

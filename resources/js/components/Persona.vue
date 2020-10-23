@@ -4,7 +4,12 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Hover Data Table</h3>
+<!--                        <h3 class="box-title">Hover Data Table</h3>-->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" v-model="search" placeholder="Buscar por Carnet"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="box-body">
                         <button type="button"  @click="crear" class="btn btn-primary" style="margin-bottom: 1em" data-toggle="modal" data-target="#modal-default">
@@ -170,7 +175,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="(i,index) in datos" :key="index">
+                                <tr v-for="(i,index) in filteredAndSorted" :key="index">
                                     <td>{{index+1}}</td>
                                     <td>{{i.nombres}}</td>
                                     <td>{{i.apellidos}}</td>
@@ -208,6 +213,7 @@ export default {
     },
     data:function (){
         return {
+            search:'',
             datatable:null,
             datos:[],
             dato:{tipo:''}
@@ -299,6 +305,17 @@ export default {
                 return false;
             else
                 return true;
+        },
+        filteredAndSorted(){
+            // function to compare names
+            function compare(a, b) {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
+            }
+            return this.datos.filter(user => {
+                return user.ci.toLowerCase().includes(this.search.toLowerCase())
+            }).sort(compare)
         }
     }
 }

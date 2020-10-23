@@ -2151,6 +2151,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2213,6 +2214,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      registro: true,
       boolphoto: false,
       search: '',
       ima1: '',
@@ -2307,6 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
     guardar: function guardar() {
       var _this3 = this;
 
+      this.registro = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/persona/' + this.ci).then(function (res) {
         if (res.data.length >= 1) {
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('/persona/' + _this3.dato.id, _this3.dato).then(function (res) {
@@ -2345,6 +2348,7 @@ __webpack_require__.r(__webpack_exports__);
             _this3.imagen2 = '';
             _this3.imagen3 = '';
             _this3.imagen4 = '';
+            _this3.registro = true;
 
             _this3.$toast.open({
               message: "Guardado Correctamnte",
@@ -2391,6 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
               $('#image2').val('');
               $('#image3').val('');
               $('#image4').val('');
+              _this3.registro = true;
 
               _this3.$toast.open({
                 message: "Guardado Correctamnte",
@@ -5047,6 +5052,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5215,6 +5236,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -32478,10 +32516,12 @@ var render = function() {
                       id: "webcam",
                       autoplay: "",
                       playsinline: "",
-                      width: "640",
-                      height: "480"
+                      width: "320",
+                      height: "240"
                     }
                   }),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _c(
                     "button",
@@ -32520,7 +32560,19 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "box-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success btn-block",
+                  attrs: { type: "submit", disabled: !_vm.registro }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-plus-circle" }),
+                  _vm._v(" Registrar Visita")
+                ]
+              )
+            ])
           ]
         )
       ])
@@ -32529,7 +32581,7 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "modificar" } }, [
       _c("div", { staticClass: "modal-dialog modal-lg" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c(
@@ -32590,7 +32642,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(3)
+                _vm._m(2)
               ]
             )
           ])
@@ -32616,21 +32668,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success btn-block", attrs: { type: "submit" } },
-        [
-          _c("i", { staticClass: "fa fa-plus-circle" }),
-          _vm._v(" Registrar Visita")
-        ]
-      )
     ])
   },
   function() {
@@ -37113,20 +37150,13 @@ var render = function() {
                           i.image1 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image1
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image1 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: "app/" + i.image1,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image1) +
+                                      "\n                                            "
+                                  )
                                 ]
                               )
                             : _vm._e(),
@@ -37134,20 +37164,13 @@ var render = function() {
                           i.image2 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image2
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image2 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: "app/" + i.image2,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image2) +
+                                      "\n                                            "
+                                  )
                                 ]
                               )
                             : _vm._e(),
@@ -37155,20 +37178,13 @@ var render = function() {
                           i.image3 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image3
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image3 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: "app/" + i.image3,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image3) +
+                                      "\n                                            "
+                                  )
                                 ]
                               )
                             : _vm._e(),
@@ -37176,20 +37192,13 @@ var render = function() {
                           i.image4 != ""
                             ? _c(
                                 "a",
-                                {
-                                  attrs: {
-                                    target: "_blank",
-                                    href: "app/" + i.image4
-                                  }
-                                },
+                                { attrs: { target: "_blank", href: i.image4 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: "app/" + i.image4,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image4) +
+                                      "\n                                            "
+                                  )
                                 ]
                               )
                             : _vm._e()
@@ -37623,13 +37632,11 @@ var render = function() {
                                 "a",
                                 { attrs: { target: "_blank", href: i.image1 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: i.image1,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image1) +
+                                      "\n"
+                                  )
                                 ]
                               )
                             : _vm._e(),
@@ -37639,13 +37646,11 @@ var render = function() {
                                 "a",
                                 { attrs: { target: "_blank", href: i.image2 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: i.image2,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image2) +
+                                      "\n"
+                                  )
                                 ]
                               )
                             : _vm._e(),
@@ -37655,13 +37660,11 @@ var render = function() {
                                 "a",
                                 { attrs: { target: "_blank", href: i.image3 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: i.image3,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image3) +
+                                      "\n"
+                                  )
                                 ]
                               )
                             : _vm._e(),
@@ -37671,13 +37674,11 @@ var render = function() {
                                 "a",
                                 { attrs: { target: "_blank", href: i.image4 } },
                                 [
-                                  _c("img", {
-                                    attrs: {
-                                      width: "30",
-                                      src: i.image4,
-                                      alt: ""
-                                    }
-                                  })
+                                  _vm._v(
+                                    "\n                                            " +
+                                      _vm._s(i.image4) +
+                                      "\n"
+                                  )
                                 ]
                               )
                             : _vm._e()

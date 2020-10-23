@@ -105,17 +105,34 @@
                                     <td>{{i.objetos}}</td>
                                     <td>{{i.observaciones}}</td>
                                     <td>
+<!--                                        <a v-if="i.image1!=''" target="_blank" v-bind:href="i.image1">-->
+<!--                                            <img  width="30" v-bind:src="i.image1" alt="">-->
+<!--                                        </a>-->
+<!--                                        <a v-if="i.image2!=''" target="_blank" v-bind:href="i.image2">-->
+<!--                                            <img  width="30" v-bind:src="i.image2" alt="">-->
+<!--                                        </a>-->
+<!--                                        <a v-if="i.image3!=''" target="_blank" v-bind:href="i.image3">-->
+<!--                                            <img  width="30" v-bind:src="i.image3" alt="">-->
+<!--                                        </a>-->
+<!--                                        <a v-if="i.image4!=''" target="_blank" v-bind:href="i.image4">-->
+<!--                                            <img  width="30" v-bind:src="i.image4" alt="">-->
+<!--                                        </a>-->
+
                                         <a v-if="i.image1!=''" target="_blank" v-bind:href="i.image1">
-                                            <img  width="30" v-bind:src="i.image1" alt="">
+                                            {{i.image1}}
+<!--                                            <img  width="30" v-bind:src="i.image1" alt="">-->
                                         </a>
                                         <a v-if="i.image2!=''" target="_blank" v-bind:href="i.image2">
-                                            <img  width="30" v-bind:src="i.image2" alt="">
+                                            {{i.image2}}
+<!--                                            <img  width="30" v-bind:src="i.image2" alt="">-->
                                         </a>
                                         <a v-if="i.image3!=''" target="_blank" v-bind:href="i.image3">
-                                            <img  width="30" v-bind:src="i.image3" alt="">
+                                            {{i.image3}}
+<!--                                            <img  width="30" v-bind:src="i.image3" alt="">-->
                                         </a>
                                         <a v-if="i.image4!=''" target="_blank" v-bind:href="i.image4">
-                                            <img  width="30" v-bind:src="i.image4" alt="">
+                                            {{i.image4}}
+<!--                                            <img  width="30" v-bind:src="i.image4" alt="">-->
                                         </a>
                                     </td>
                                     <td>

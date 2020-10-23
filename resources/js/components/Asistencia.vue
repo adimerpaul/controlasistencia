@@ -171,7 +171,8 @@
                         </div>
                         <div class="col-md-12" v-bind:class="boolphoto?'':'hidden'">
 <!--                            <label for="objetos">Fotografias</label>-->
-                            <video id="webcam" autoplay playsinline width="640" height="480"></video>
+                            <video id="webcam" autoplay playsinline width="320" height="240"></video>
+                            <br>
                             <button id="click" class="btn btn-primary" type="button" @click="foto"> <i class="fa fa-camera"></i> Tomar foto!</button>
                             <canvas id="canvas" class="d-none" hidden></canvas>
                             <img width="40" v-bind:src="ima1" alt="">
@@ -201,7 +202,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-plus-circle"></i> Registrar Visita</button>
+                        <button type="submit" :disabled="!registro" class="btn btn-success btn-block"><i class="fa fa-plus-circle"></i> Registrar Visita</button>
                     </div>
                 </form>
             </div>
@@ -305,6 +306,7 @@
         },
         data:function (){
             return {
+                registro:true,
                 boolphoto:false,
                 search:'',
                 ima1:'',
@@ -391,8 +393,8 @@
                 });
             },
             guardar(){
+                this.registro=false;
                 axios.get('/persona/'+this.ci).then(res=>{
-
                     if (res.data.length>=1){
                         axios.put('/persona/'+this.dato.id,this.dato).then(res=>{
                             console.log(res.data);
@@ -431,7 +433,7 @@
                             this.imagen2='';
                             this.imagen3='';
                             this.imagen4='';
-
+                            this.registro=true;
                             this.$toast.open({
                                 message: "Guardado Correctamnte",
                                 type: "success",
@@ -480,6 +482,7 @@
                                 $('#image2').val('');
                                 $('#image3').val('');
                                 $('#image4').val('');
+                                this.registro=true;
                                 this.$toast.open({
                                     message: "Guardado Correctamnte",
                                     type: "success",

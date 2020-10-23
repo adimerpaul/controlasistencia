@@ -117,19 +117,19 @@
 <!--                                            <img  width="30" v-bind:src="'app/'+i.image4" alt="">-->
 <!--                                        </a>-->
                                         <a v-if="i.image1!=''" target="_blank" v-bind:href="i.image1">
-                                            {{i.image1}}
+                                            Imagen1
                                             <!--                                            <img  width="30" v-bind:src="i.image1" alt="">-->
                                         </a>
                                         <a v-if="i.image2!=''" target="_blank" v-bind:href="i.image2">
-                                            {{i.image2}}
+                                            Imagen2
                                             <!--                                            <img  width="30" v-bind:src="i.image2" alt="">-->
                                         </a>
                                         <a v-if="i.image3!=''" target="_blank" v-bind:href="i.image3">
-                                            {{i.image3}}
+                                            Imagen3
                                             <!--                                            <img  width="30" v-bind:src="i.image3" alt="">-->
                                         </a>
                                         <a v-if="i.image4!=''" target="_blank" v-bind:href="i.image4">
-                                            {{i.image4}}
+                                            Imagen4
                                             <!--                                            <img  width="30" v-bind:src="i.image4" alt="">-->
                                         </a>
                                     </td>

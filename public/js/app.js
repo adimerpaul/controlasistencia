@@ -37153,9 +37153,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image1 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image1) +
-                                      "\n                                            "
+                                    "\n                                            Imagen1\n                                            "
                                   )
                                 ]
                               )
@@ -37167,9 +37165,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image2 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image2) +
-                                      "\n                                            "
+                                    "\n                                            Imagen2\n                                            "
                                   )
                                 ]
                               )
@@ -37181,9 +37177,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image3 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image3) +
-                                      "\n                                            "
+                                    "\n                                            Imagen3\n                                            "
                                   )
                                 ]
                               )
@@ -37195,9 +37189,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image4 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image4) +
-                                      "\n                                            "
+                                    "\n                                            Imagen4\n                                            "
                                   )
                                 ]
                               )
@@ -37633,9 +37625,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image1 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image1) +
-                                      "\n"
+                                    "\n                                            Imagen1\n                                            "
                                   )
                                 ]
                               )
@@ -37647,9 +37637,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image2 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image2) +
-                                      "\n"
+                                    "\n                                            Imagen2\n                                            "
                                   )
                                 ]
                               )
@@ -37661,9 +37649,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image3 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image3) +
-                                      "\n"
+                                    "\n                                            Imagen3\n                                            "
                                   )
                                 ]
                               )
@@ -37675,9 +37661,7 @@ var render = function() {
                                 { attrs: { target: "_blank", href: i.image4 } },
                                 [
                                   _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(i.image4) +
-                                      "\n"
+                                    "\n                                            Imagen4\n                                            "
                                   )
                                 ]
                               )

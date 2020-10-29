@@ -51,6 +51,7 @@ class PersonaController extends Controller
         return $p;
     }
     public function obs($id){
+
         return Asistencia::where('persona_id','=',$id)->where('observado','=','SI')->get();
     }
 
@@ -71,6 +72,11 @@ class PersonaController extends Controller
         $p->nacionalidad=$request->nacionalidad;
         $p->ci=$request->ci;
         $p->save();
+        return $p;
+    }
+    public function buscar($id,$tabla)
+    {
+        $p = Persona::where($tabla,'like',"$id%")->get();
         return $p;
     }
 

@@ -57,6 +57,17 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group" >
+                                                    <label for="tipo" class="col-sm-2 control-label">Tipo</label>
+                                                    <div class="col-sm-10">
+                                                        <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
+                                                        <select name="recinto" id="tipo" v-model="dato.tipo2" class="form-control" required>
+                                                            <!--                                                            <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>-->
+                                                            <option value="SUPERVISOR">SUPERVISOR</option>
+                                                            <option value="RECEPCION">RECEPCION</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal"> <i class="fa fa-trash"></i> Cancelar</button>
@@ -97,6 +108,17 @@
                                                         <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
                                                         <select name="recinto" id="recinto2" v-model="dato.recinto_id" class="form-control" required>
                                                             <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label for="tipo" class="col-sm-2 control-label">Tipo</label>
+                                                    <div class="col-sm-10">
+                                                        <!--                                                        <input type="password" class="form-control" id="recinto" placeholder="Password" autocomplete="">-->
+                                                        <select name="recinto" id="tipo" v-model="dato.tipo2" class="form-control" required>
+<!--                                                            <option v-for="i in recintos" v-bind:value="i.id">{{i.nombre}}</option>-->
+                                                            <option value="SUPERVISOR">SUPERVISOR</option>
+                                                            <option value="RECEPCION">RECEPCION</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -153,6 +175,7 @@
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Recinto</th>
+                                <th>Tipo</th>
                                 <th>Opciones</th>
                             </tr>
                             </thead>
@@ -162,6 +185,7 @@
                                     <td>{{i.name}}</td>
                                     <td>{{i.email}}</td>
                                     <td>{{i.recinto.nombre}}</td>
+                                    <td>{{i.tipo2}}</td>
                                     <td>
                                         <button @click="modificar(i)" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
                                         <button @click="pass(i)" class="btn btn-info btn-xs"><i class="fa fa-key"></i></button>

@@ -7,7 +7,7 @@
                         <h3 class="box-title">Reporte Control de personas</h3>
                     </div>
                     <div class="box-body">
-                        <form role="form" v-bind:class="user.tipo=='ADMIN'?'':'hidden'">
+                        <form role="form" v-bind:class="user.tipo=='ADMIN'||user.tipo2=='SUPERVISOR'?'':'hidden'">
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="box-body">
@@ -115,7 +115,7 @@ export default {
         // $('#example1').DataTable()
         // this.datatable = $('#example1').DataTable({});
         this.datatable = $('#example1').DataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[ 0, "asc" ]],
             "language": {
                 "sProcessing":     "Procesando...",
                 "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -179,7 +179,7 @@ export default {
             // });
 
 
-            axios.get('/asistencia/'+this.date1+'/'+this.date2).then(res=>{
+            axios.get('/asistencia3/'+this.date1+'/'+this.date2).then(res=>{
                 this.datos=res.data;
                 this.datatable.clear().draw();
                 let cont=0;

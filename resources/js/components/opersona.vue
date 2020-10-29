@@ -146,7 +146,7 @@ export default {
             //     this.datos=res.data;
             //     console.log(this.datos);
             // });
-            axios.get('/asistencia/'+this.date1+'/'+this.date2).then(res=>{
+            axios.get('/asistencia3/'+this.date1+'/'+this.date2).then(res=>{
                 this.datos=[];
                 res.data.forEach(r=>{
                     if (r.observaciones!='')

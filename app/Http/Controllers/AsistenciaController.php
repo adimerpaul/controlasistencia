@@ -27,6 +27,15 @@ class AsistenciaController extends Controller
     {
         return Asistencia::with('persona')->with('destino')->with('user')->get();
     }
+    public function buscar($id)
+    {
+        return Asistencia::with('persona')
+            ->with('destino')
+            ->where('persona_id','=',$id)
+            ->orderBy('created_at','desc')
+            ->get();
+    }
+
     public function date($d1,$d2)
     {
         if (Auth::user()->tipo=='ADMIN')
@@ -58,6 +67,18 @@ class AsistenciaController extends Controller
                 ->whereDate('created_at','>=',$d1)
                 ->whereDate('created_at','<=',$d2)
                 ->get();
+    }
+    public function date3($d1,$d2)
+    {
+        return Asistencia::with('persona')
+            ->with('destino')
+            ->with('user')
+            ->where('recinto','=',Auth::user()->tipo)
+            ->whereNull('salida')
+//            ->where('user_id','=',Auth::user()->id)
+            ->whereDate('created_at','>=',$d1)
+            ->whereDate('created_at','<=',$d2)
+            ->get();
     }
 
     /**

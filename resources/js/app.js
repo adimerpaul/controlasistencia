@@ -48,11 +48,15 @@ import Reportautomovil from './components/Reportautomovil';
 import Reportpersona from './components/Reportpersona';
 import opersona from './components/opersona';
 import oautomovil from './components/oautomovil';
+import historialci from './components/historialci';
+import historialnombre from './components/historialnombre';
 
 const Bar = { template: '<div>bar</div>' }
 
 const routes = [
     { path: '/usuario', component: Usuario },
+    { path: '/historialci', component: historialci },
+    { path: '/historialnombre', component: historialnombre },
     { path: '/verpersona', component: Persona },
     { path: '/verasistencia', component: Asistencia },
     { path: '/reporte', component: Reporte },

@@ -55,6 +55,16 @@ class AutoController extends Controller
         $p=Auto::where('id','=',"$id")->with('persona')->get();
         return $p;
     }
+    public function autobuscar($id)
+    {
+        $p=Auto::where('placa','=',"$id")->with('persona')->get();
+        return $p;
+    }
+    public function buscar($id)
+    {
+        $p=Auto::where('placa','=',$id)->with('persona')->get();
+        return $p;
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header">
-<!--                        <h3 class="box-title">Control de asistencia</h3>-->
+                        <h3 class="box-title">Registro Personas</h3>
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" class="form-control" v-model="search" placeholder="Buscar por Carnet"/>
@@ -78,7 +78,7 @@
                 <form role="form" @submit.prevent="guardar">
                     <div class="row" v-if="observaciones.length>0">
                         <div class="col-md-12">
-                            <label v-for="i in observaciones" class="label label-warning">En fecha:{{i.created_at|fecha}} Tuvo la observacion de :{{i.observaciones}}</label>
+                            <label v-for="i in observaciones" style="display: block"  class="label label-warning">En fecha:{{i.created_at|fecha}} Tuvo la observacion de :{{i.observaciones}}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -517,8 +517,8 @@
             },
             update(){
                 axios.put('/asistencia/'+this.dato.id,this.dato).then(res=>{
-                    console.log(res.data);
-                    this.misdatos();
+                    // console.log(res.data);
+                    // this.misdatos();
                     $('#modificar').modal('hide');
                     this.$toast.open({
                         message: "Dato modificado",

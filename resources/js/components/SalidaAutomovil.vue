@@ -84,7 +84,7 @@
                                     <th>Hora salida</th>
                                     <th>Registrado por:</th>
                                     <th>Estado</th>
-                                    <th>Pertenencias</th>
+                                    <th>Obser. Regi.</th>
                                     <th>Observado</th>
                                     <th>Fotografias</th>
                                     <th>Opciones</th>
@@ -101,7 +101,7 @@
                                     <td>{{i.salida}}</td>
                                     <td>{{i.user.name}}</td>
                                     <td><span class="label" v-bind:class="i.estado=='INGRESADO'?'label-success':'label-warning'">{{i.estado}}</span></td>
-                                    <td>{{i.objetos}}</td>
+                                    <td>{{i.targeta}}</td>
                                     <td>{{i.observaciones}}</td>
                                     <td>
 <!--                                        <a v-if="i.image1!=''" target="_blank" v-bind:href="'app/'+i.image1">-->

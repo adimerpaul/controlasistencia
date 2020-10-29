@@ -33,6 +33,7 @@ class UserController extends Controller
         $u->name=$request->name;
         $u->email=$request->email;
         $u->tipo=$r->nombre;
+        $u->tipo2=$request->tipo2;
         $u->recinto_id=$request->recinto_id;
         $u->password= Hash::make($request->password);
         $u->save();
@@ -66,6 +67,7 @@ class UserController extends Controller
         $u->name=$request->name;
         $u->email=$request->email;
         $u->tipo=$r->nombre;
+        $u->tipo2=$request->tipo2;
         $u->recinto_id=$request->recinto_id;
         $u->save();
 //        return isset($request->password);

@@ -236,7 +236,7 @@ export default {
                 confirmButtonText: 'Si!'
             }).then((r) => {
                 if (r.value){
-                    axios.get('/quitar/'+i.id).then(res=>{
+                    axios.get('/quitarauto/'+i.id).then(res=>{
                         this.misdatos();
                         // $('#modal-default').modal('hide');
                         this.$toast.open({

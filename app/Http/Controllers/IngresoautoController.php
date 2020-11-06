@@ -16,6 +16,14 @@ class IngresoautoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function buscarauto($id){
+        return Ingresoauto::with('persona')
+            ->with('destino')
+            ->with('auto')
+            ->where('auto_id','=',$id)
+            ->orderBy('created_at','desc')
+            ->get();
+    }
     public function quitar($id)
     {
         $d=Ingresoauto::find($id);
@@ -270,12 +278,24 @@ class IngresoautoController extends Controller
     }
     public function date3($d1,$d2)
     {
+        if (Auth::user()->tipo=='ADMIN')
+            return Ingresoauto::with('persona')
+                ->with('destino')
+                ->with('auto')
+                ->with('user')
+//                ->where('recinto','=',Auth::user()->tipo)
+//            ->whereNull('salida')
+//            ->where('user_id','=',Auth::user()->id)
+                ->whereDate('created_at','>=',$d1)
+                ->whereDate('created_at','<=',$d2)
+                ->get();
+            else
         return Ingresoauto::with('persona')
             ->with('destino')
             ->with('auto')
             ->with('user')
             ->where('recinto','=',Auth::user()->tipo)
-            ->whereNull('salida')
+//            ->whereNull('salida')
 //            ->where('user_id','=',Auth::user()->id)
             ->whereDate('created_at','>=',$d1)
             ->whereDate('created_at','<=',$d2)

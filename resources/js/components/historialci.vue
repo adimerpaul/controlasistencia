@@ -68,7 +68,7 @@
                             <table id="example10" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Fecha  hora</th>
+                                    <th>Entrada</th>
                                     <th>Salida</th>
                                     <th>Nombres  apellidos</th>
                                     <th>Objetos</th>

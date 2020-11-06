@@ -50,6 +50,7 @@ import opersona from './components/opersona';
 import oautomovil from './components/oautomovil';
 import historialci from './components/historialci';
 import historialnombre from './components/historialnombre';
+import historialplaca from './components/historialplaca';
 
 const Bar = { template: '<div>bar</div>' }
 
@@ -71,6 +72,7 @@ const routes = [
     { path: '/reportautomovil', component: Reportautomovil },
     { path: '/opersona', component: opersona },
     { path: '/oautomovil', component: oautomovil },
+    { path: '/historialplaca', component: historialplaca },
 ]
 
 const router = new VueRouter({

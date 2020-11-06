@@ -13,8 +13,8 @@
                                     <div class="col-md-9">
                                         <div class="box-body">
                                             <div class="form-group">
-                                                <label for="inicio">Nombre</label>
-                                                <input type="text" v-model="search" class="form-control" id="inicio" placeholder="Nombre o apellido" required>
+                                                <label for="inicio">Placa del automovil</label>
+                                                <input type="text" v-model="search" class="form-control" id="inicio" placeholder="Placa del automovil" required>
                                             </div>
                                         </div>
                                     </div>
@@ -36,8 +36,9 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>placa</th>
                                     <th>Nombres  apellidos</th>
-                                    <th>Ci</th>
+
                                     <th>Celular</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -45,9 +46,10 @@
                                 <tbody>
                                 <tr v-for="(i,index) in datos" :key="index">
                                     <td>{{index+1}}</td>
-                                    <td>{{i.nombres}} {{i.apellidos}}</td>
-                                    <td>{{i.ci}}</td>
-                                    <td>{{i.celular}}</td>
+                                    <td>{{i.placa}}</td>
+                                    <td>{{i.persona.nombres}} {{i.persona.apellidos}}</td>
+
+                                    <td>{{i.persona.celular}}</td>
                                     <td>
                                         <button  @click="historial(i)" class="btn btn-warning btn-xs"><i class="fa fa-history"></i> Historia.</button>
                                     </td>
@@ -70,10 +72,12 @@
                                 <tr>
                                     <th>Entrada</th>
                                     <th>Salida</th>
+                                    <th>placa</th>
+
                                     <th>Nombres  apellidos</th>
-                                    <th>Objetos</th>
+<!--                                    <th>Objetos</th>-->
                                     <th>Observaciones</th>
-                                    <th>Fotos</th>
+<!--                                    <th>Fotos</th>-->
                                     <th>Unidad</th>
                                 </tr>
                                 </thead>
@@ -81,23 +85,24 @@
                                 <tr v-for="(i,index) in historiales" :key="index">
                                     <td>{{moment(i.created_at).format('DD-MM-YY HH:mm:ss')}}</td>
                                     <td>{{i.salida}}</td>
+                                    <td>{{i.auto.placa}}</td>
                                     <td>{{i.persona.nombres}} {{i.persona.apellidos}}</td>
-                                    <td>{{i.objetos}}</td>
+<!--                                    <td>{{i.objetos}}</td>-->
                                     <td>{{i.observaciones}}</td>
-                                    <td>
-                                        <a v-if="i.image1!=''" target="_blank" v-bind:href="i.image1">
-                                            Imagen1
-                                        </a>
-                                        <a v-if="i.image2!=''" target="_blank" v-bind:href="i.image2">
-                                            Imagen2
-                                        </a>
-                                        <a v-if="i.image3!=''" target="_blank" v-bind:href="i.image3">
-                                            Imagen3
-                                        </a>
-                                        <a v-if="i.image4!=''" target="_blank" v-bind:href="i.image4">
-                                            Imagen4
-                                        </a>
-                                    </td>
+<!--                                    <td>-->
+<!--                                        <a v-if="i.image1!=''" target="_blank" v-bind:href="i.image1">-->
+<!--                                            Imagen1-->
+<!--                                        </a>-->
+<!--                                        <a v-if="i.image2!=''" target="_blank" v-bind:href="i.image2">-->
+<!--                                            Imagen2-->
+<!--                                        </a>-->
+<!--                                        <a v-if="i.image3!=''" target="_blank" v-bind:href="i.image3">-->
+<!--                                            Imagen3-->
+<!--                                        </a>-->
+<!--                                        <a v-if="i.image4!=''" target="_blank" v-bind:href="i.image4">-->
+<!--                                            Imagen4-->
+<!--                                        </a>-->
+<!--                                    </td>-->
                                     <td>
                                         {{i.destino.nombre}}
                                     </td>
@@ -270,7 +275,8 @@ export default {
         //     });
         // },
         historial(i){
-            axios.get('/buscarasistencia/'+i.id).then(res=>{
+            // console.log(i);
+            axios.get('/buscarasistenciaauto/'+i.id).then(res=>{
                 // console.log(res.data);
                 this.historiales=res.data;
             });
@@ -279,7 +285,7 @@ export default {
         buscar(){
             this.historiales=[];
             if (this.search!=""){
-                axios.get('/buscar/'+this.search+'/nombres').then(res=>{
+                axios.get('/buscar/'+this.search+'/auto').then(res=>{
                     // console.log(res.data);
                     this.datos=res.data;
                     // if (res.data.length>=1){

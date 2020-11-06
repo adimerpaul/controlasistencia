@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asistencia;
+use App\Models\Auto;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 
@@ -76,8 +77,23 @@ class PersonaController extends Controller
     }
     public function buscar($id,$tabla)
     {
-        $p = Persona::where($tabla,'like',"$id%")->get();
-        return $p;
+        if ($tabla=='nombres'){
+            $p = Persona::where($tabla,'like',"%$id%")->get();
+            $cantidad=$p->count();
+            if ($cantidad>=1){
+                return $p;
+            }else{
+                $p = Persona::where('apellidos','like',"%$id%")->get();
+                return $p;
+            }
+        }else if($tabla=='auto'){
+            $p = Auto::with('persona')->where('placa','like',"%$id%")->get();
+            return $p;
+        }
+        else{
+            $p = Persona::where($tabla,'like',"$id%")->get();
+            return $p;
+        }
     }
 
     /**

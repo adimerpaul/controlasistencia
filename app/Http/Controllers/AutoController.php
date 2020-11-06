@@ -12,6 +12,8 @@ class AutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         return Auto::with('persona')->orderBy('placa')->get();

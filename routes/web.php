@@ -77,6 +77,9 @@ Route::get('/historialci', function () {
 Route::get('/historialnombre', function () {
     return view('home');
 })->middleware('auth');
+Route::get('/historialplaca', function () {
+    return view('home');
+})->middleware('auth');
 
 Route::get('/video', function () {
     return view('video');
@@ -91,6 +94,7 @@ Route::apiResource('/user',\App\Http\Controllers\UserController::class)->middlew
 Route::apiResource('/persona',\App\Http\Controllers\PersonaController::class)->middleware('auth');
 Route::get('/buscar/{id}/{tabla}',[\App\Http\Controllers\PersonaController::class,'buscar'])->middleware('auth');
 Route::get('/buscarasistencia/{id}',[\App\Http\Controllers\AsistenciaController::class,'buscar'])->middleware('auth');
+Route::get('/buscarasistenciaauto/{id}',[\App\Http\Controllers\IngresoautoController::class,'buscarauto'])->middleware('auth');
 Route::get('/buscarplaca/{id}',[\App\Http\Controllers\AutoController::class,'buscar'])->middleware('auth');
 
 Route::apiResource('/asistencia',\App\Http\Controllers\AsistenciaController::class)->middleware('auth');

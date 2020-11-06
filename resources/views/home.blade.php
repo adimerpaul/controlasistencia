@@ -513,6 +513,16 @@
                                     </a>
                                 </li>
                             </router-link>
+                            <router-link
+                                to="/historialplaca"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-bus"></i><span> Por placa</span>
+                                    </a>
+                                </li>
+                            </router-link>
                         </ul>
                     </li>
                 @endif
@@ -636,6 +646,16 @@
                                 <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
                                     <a :href="href" @click="navigate">
                                         <i class="fa fa-save"></i><span> Por nombre</span>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/historialplaca"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }"
+                            >
+                                <li class="treeview" :class="[isActive && 'active', isExactActive && '']">
+                                    <a :href="href" @click="navigate">
+                                        <i class="fa fa-bus"></i><span> Por placa</span>
                                     </a>
                                 </li>
                             </router-link>

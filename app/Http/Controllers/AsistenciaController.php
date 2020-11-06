@@ -13,6 +13,7 @@ class AsistenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function quitar($id)
     {
         $d=Asistencia::find($id);

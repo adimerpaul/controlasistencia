@@ -176,11 +176,13 @@ export default {
         //     this.dato={tipo:''};
         // },
         misdatos(){
+            // console.log('aa');
             // axios.get('/asistencia').then(res=>{
             //     this.datos=res.data;
             //     console.log(this.datos);
             // });
             axios.get('/ingresoauto3/'+this.date1+'/'+this.date2).then(res=>{
+                // console.log(res.data);
                 this.datos=res.data;
                 this.datatable.clear().draw();
                 let cont=0;

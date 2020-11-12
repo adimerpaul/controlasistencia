@@ -34,6 +34,22 @@ class IngresoautoController extends Controller
         $d->save();
         return  $d;
     }
+    public function personaauto($id)
+    {
+        $d=Auto::where('placa','=',$id)->get();
+//        return $d[0]->id;
+        if($d->count()>=1){
+            return Ingresoauto::with('persona')
+                ->with('destino')
+                ->with('auto')
+                ->where('auto_id','=',$d[0]->id)
+                ->where('observado','=','SI')
+                ->orderBy('created_at','desc')
+                ->get();
+        }
+
+
+    }
     public function index()
     {
         return Ingresoauto::with('persona')
@@ -300,5 +316,19 @@ class IngresoautoController extends Controller
             ->whereDate('created_at','>=',$d1)
             ->whereDate('created_at','<=',$d2)
             ->get();
+    }
+    public function date4($d1,$d2)
+    {
+
+            return Ingresoauto::with('persona')
+                ->with('destino')
+                ->with('auto')
+                ->with('user')
+//                ->where('recinto','=',Auth::user()->tipo)
+//            ->whereNull('salida')
+//            ->where('user_id','=',Auth::user()->id)
+                ->whereDate('created_at','>=',$d1)
+                ->whereDate('created_at','<=',$d2)
+                ->get();
     }
 }

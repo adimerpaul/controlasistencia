@@ -625,23 +625,23 @@ export default {
         },
         buscarplaca(){
             if (this.placa!=""){
-                axios.get('/buscarplaca/'+this.placa).then(res=>{
-                    // console.log(res.data);
-                    if (res.data.length>=1){
-                        this.auto=res.data[0];
-                        // console.log(res.data[0].persona);
-                        this.dato=res.data[0].persona;
-                        this.ci=res.data[0].persona.ci;
-                        axios.get('/obs/'+this.dato.id).then(res=>{
-                            // console.log(res.data);
+                axios.get('/personaauto/'+this.placa).then(res=>{
+                    console.log(res.data);
+                    // if (res.data.length>=1){
+                    //     this.auto=res.data[0];
+                    //     // console.log(res.data[0].persona);
+                    //     this.dato=res.data[0].persona;
+                    //     this.ci=res.data[0].persona.ci;
+                    //     axios.get('/obs/'+this.dato.id).then(res=>{
+                    //         // console.log(res.data);
                             this.observaciones=res.data;
-                        });
-                    }else{
-                        this.dato={};
-                        this.auto={};
-                        this.observaciones={};
-                        this.ci='';
-                    }
+                    //     });
+                    // }else{
+                    //     this.dato={};
+                    //     this.auto={};
+                    //     this.observaciones={};
+                    //     this.ci='';
+                    // }
                 })
             }else{
                 this.dato={};

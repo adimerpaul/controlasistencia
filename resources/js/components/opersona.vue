@@ -146,12 +146,12 @@ export default {
             //     this.datos=res.data;
             //     console.log(this.datos);
             // });
-            axios.get('/asistencia3/'+this.date1+'/'+this.date2).then(res=>{
-                this.datos=[];
-                res.data.forEach(r=>{
-                    if (r.observaciones!='')
-                        this.datos.push(r);
-                });
+            axios.get('/asistencia4/'+this.date1+'/'+this.date2).then(res=>{
+                this.datos=res.data;
+                // res.data.forEach(r=>{
+                //     if (r.observaciones!='')
+                //         this.datos.push(r);
+                // });
 
             });
         },

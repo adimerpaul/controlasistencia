@@ -4492,23 +4492,22 @@ __webpack_require__.r(__webpack_exports__);
       var _this7 = this;
 
       if (this.placa != "") {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/buscarplaca/' + this.placa).then(function (res) {
-          // console.log(res.data);
-          if (res.data.length >= 1) {
-            _this7.auto = res.data[0]; // console.log(res.data[0].persona);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/personaauto/' + this.placa).then(function (res) {
+          console.log(res.data); // if (res.data.length>=1){
+          //     this.auto=res.data[0];
+          //     // console.log(res.data[0].persona);
+          //     this.dato=res.data[0].persona;
+          //     this.ci=res.data[0].persona.ci;
+          //     axios.get('/obs/'+this.dato.id).then(res=>{
+          //         // console.log(res.data);
 
-            _this7.dato = res.data[0].persona;
-            _this7.ci = res.data[0].persona.ci;
-            axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/obs/' + _this7.dato.id).then(function (res) {
-              // console.log(res.data);
-              _this7.observaciones = res.data;
-            });
-          } else {
-            _this7.dato = {};
-            _this7.auto = {};
-            _this7.observaciones = {};
-            _this7.ci = '';
-          }
+          _this7.observaciones = res.data; //     });
+          // }else{
+          //     this.dato={};
+          //     this.auto={};
+          //     this.observaciones={};
+          //     this.ci='';
+          // }
         });
       } else {
         this.dato = {};
@@ -7330,7 +7329,7 @@ __webpack_require__.r(__webpack_exports__);
       //     this.datos=res.data;
       //     console.log(this.datos);
       // });
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/ingresoauto/' + this.date1 + '/' + this.date2).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/ingresoauto4/' + this.date1 + '/' + this.date2).then(function (res) {
         _this.datos = [];
         res.data.forEach(function (r) {
           if (r.observaciones != '') _this.datos.push(r);
@@ -7625,11 +7624,11 @@ __webpack_require__.r(__webpack_exports__);
       //     this.datos=res.data;
       //     console.log(this.datos);
       // });
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/asistencia3/' + this.date1 + '/' + this.date2).then(function (res) {
-        _this.datos = [];
-        res.data.forEach(function (r) {
-          if (r.observaciones != '') _this.datos.push(r);
-        });
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/asistencia4/' + this.date1 + '/' + this.date2).then(function (res) {
+        _this.datos = res.data; // res.data.forEach(r=>{
+        //     if (r.observaciones!='')
+        //         this.datos.push(r);
+        // });
       });
     },
     guardar: function guardar() {// axios.post('/persona',this.dato).then(res=>{
@@ -63959,8 +63958,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravel\controlingreso\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravel\controlingreso\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravel\controlasistencia\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravel\controlasistencia\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

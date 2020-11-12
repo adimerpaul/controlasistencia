@@ -82,6 +82,20 @@ class AsistenciaController extends Controller
             ->get();
     }
 
+    public function date4($d1,$d2)
+    {
+        return Asistencia::with('persona')
+            ->with('destino')
+            ->with('user')
+//            ->where('recinto','=',Auth::user()->tipo)
+            ->where('observado','=','SI')
+//            ->whereNull('salida')
+//            ->where('user_id','=',Auth::user()->id)
+            ->whereDate('created_at','>=',$d1)
+            ->whereDate('created_at','<=',$d2)
+            ->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

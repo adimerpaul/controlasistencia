@@ -14,3 +14,6 @@ yarn-error.log
 .idea
 /public/images
 public/images
+
+/public/js
+public/js

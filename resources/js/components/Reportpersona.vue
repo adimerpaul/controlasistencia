@@ -72,10 +72,10 @@
                                 <tr>
                                     <th>N</th>
                                     <th>Persona</th>
-                                    <th>Carnet Identidad</th>
+<!--                                    <th>Carnet Identidad</th>-->
                                     <th>Celular</th>
                                     <th>Hora entrada</th>
-                                    <th>Hora salida</th>
+<!--                                    <th>Hora salida</th>-->
                                     <th>Registrado por:</th>
                                     <th>Estado</th>
                                     <th>Pertenencias</th>
@@ -191,9 +191,9 @@ export default {
                         cont,
                         r.persona.nombres+' '+r.persona.apellidos,
                         r.persona.ci,
-                        r.persona.celular,
+                        // r.persona.celular,
                         moment(r.created_at).format('DD-MM-YY HH:mm:ss'),
-                        moment(r.salida).format('DD-MM-YY HH:mm:ss'),
+                        // moment(r.salida).format('DD-MM-YY HH:mm:ss'),
                         // r.salida,
                         r.user.name,
                         r.estado,

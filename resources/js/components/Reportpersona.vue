@@ -72,6 +72,7 @@
                                 <tr>
                                     <th>N</th>
                                     <th>Persona</th>
+                                    <th>Carnet Identidad</th>
                                     <th>Celular</th>
                                     <th>Hora entrada</th>
                                     <th>Hora salida</th>
@@ -189,6 +190,7 @@ export default {
                     this.datatable.row.add([
                         cont,
                         r.persona.nombres+' '+r.persona.apellidos,
+                        r.persona.ci,
                         r.persona.celular,
                         moment(r.created_at).format('DD-MM-YY HH:mm:ss'),
                         moment(r.salida).format('DD-MM-YY HH:mm:ss'),

@@ -30,8 +30,8 @@
     <![endif]-->
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" rel="stylesheet">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

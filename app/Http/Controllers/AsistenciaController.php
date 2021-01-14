@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asistencia;
+use App\Models\Recinto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\isFalse;
 
 class AsistenciaController extends Controller
 {
@@ -69,12 +71,15 @@ class AsistenciaController extends Controller
                 ->whereDate('created_at','<=',$d2)
                 ->get();
     }
-    public function date3($d1,$d2)
+    public function date3($d1,$d2,$recinto)
     {
+//        $a=Recinto::find($recinto);
+//        return $a;
+//        exit;
         return Asistencia::with('persona')
             ->with('destino')
             ->with('user')
-            ->where('recinto','=',Auth::user()->tipo)
+            ->where('recinto','=',$recinto)
             ->whereNull('salida')
 //            ->where('user_id','=',Auth::user()->id)
             ->whereDate('created_at','>=',$d1)

@@ -102,7 +102,7 @@ Route::apiResource('/asistencia',\App\Http\Controllers\AsistenciaController::cla
 Route::apiResource('/ingresoauto',\App\Http\Controllers\IngresoautoController::class)->middleware('auth');
 Route::get('/asistencia/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date'])->middleware('auth');
 Route::get('/asistencia2/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date2'])->middleware('auth');
-Route::get('/asistencia3/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date3'])->middleware('auth');
+Route::get('/asistencia3/{d1}/{d2}/{recinto}',[\App\Http\Controllers\AsistenciaController::class,'date3'])->middleware('auth');
 Route::get('/asistencia4/{d1}/{d2}',[\App\Http\Controllers\AsistenciaController::class,'date4'])->middleware('auth');
 Route::get('/ingresoauto/{d1}/{d2}',[\App\Http\Controllers\IngresoautoController::class,'date'])->middleware('auth');
 Route::get('/ingresoauto2/{d1}/{d2}',[\App\Http\Controllers\IngresoautoController::class,'date2'])->middleware('auth');

@@ -9,27 +9,40 @@
                     <div class="box-body">
                         <form role="form" v-bind:class="user.tipo=='ADMIN'||user.tipo2=='SUPERVISOR'?'':'hidden'">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="inicio">Fecha inicio</label>
-                                            <input type="date" v-model="date1" class="form-control" id="inicio" placeholder="Enter email">
+                                            <input type="date" v-model="date1" class="form-control" id="inicio" placeholder="Fecha inicio">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+
+                                <div class="col-md-3">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="fin">Fecha final</label>
-                                            <input type="date" v-model="date2" class="form-control" id="fin" placeholder="Enter email">
+                                            <input type="date" v-model="date2" class="form-control" id="fin" placeholder="Fecha final">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="recinto">Recinto</label>
+<!--                                            <input type="date" v-model="recinto" class="form-control" id="recinto" placeholder="Recinto">-->
+                                            <select name="recinto" id="recinto" v-model="recinto" class="form-control">
+                                                <option v-for="i in recintos " :value="i.nombre">{{i.nombre}}</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="actualizar">Consultar</label>
-                                            <button type="button" v-on:click="actualizar" id="actualizar" class="btn btn-info" style="margin-bottom: 1em">
+                                            <button type="button" v-on:click="actualizar" id="actualizar" class="btn btn-info btn-block" style="margin-bottom: 1em">
                                                 <i class="fa fa-refresh"></i>
                                             </button>
                                         </div>
@@ -150,10 +163,21 @@ export default {
                 'copy', 'csv', 'pdf', 'print'
             ]
         });
-        this.misdatos();
-        axios.get('/isUser').then(res=>{
-            this.user=res.data;
+
+
+        axios.get('/recinto').then(res=>{
+            // console.log(res.data);
+            this.recintos=res.data;
+            axios.get('/isUser').then(res=>{
+                this.user=res.data;
+                // console.log(this.user);
+                let respuesta=this.recintos.findIndex(dat => dat.id === this.user.recinto_id);
+                // console.log(this.recintos[respuesta].nombre);
+                this.recinto=this.recintos[respuesta].nombre;
+                this.misdatos();
+            });
         });
+
         // console.log('aa');
         // console.log(this.dato.password);
     },
@@ -166,7 +190,8 @@ export default {
             date1:moment().format('YYYY-MM-DD'),
             date2:moment().format('YYYY-MM-DD'),
             moment:moment,
-
+            recintos:[],
+            recinto:'',
         }
     },
     methods:{
@@ -179,8 +204,9 @@ export default {
             //     console.log(this.datos);
             // });
 
-
-            axios.get('/asistencia3/'+this.date1+'/'+this.date2).then(res=>{
+            axios.get('/asistencia3/'+this.date1+'/'+this.date2+'/'+this.recinto).then(res=>{
+                // console.log(res.data);
+                // return false;
                 this.datos=res.data;
                 this.datatable.clear().draw();
                 let cont=0;
@@ -219,7 +245,7 @@ export default {
         },
         update(){
             axios.put('/asistencia/'+this.dato.id,this.dato).then(res=>{
-                console.log(res.data);
+                // console.log(res.data);
                 this.misdatos();
                 $('#modificar').modal('hide');
                 this.$toast.open({

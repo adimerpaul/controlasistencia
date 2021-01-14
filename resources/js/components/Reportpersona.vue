@@ -72,8 +72,8 @@
                                 <tr>
                                     <th>N</th>
                                     <th>Persona</th>
-<!--                                    <th>Carnet Identidad</th>-->
-                                    <th>Celular</th>
+                                    <th>Carnet Identidad</th>
+<!--                                    <th>Celular</th>-->
                                     <th>Hora entrada</th>
 <!--                                    <th>Hora salida</th>-->
                                     <th>Registrado por:</th>
